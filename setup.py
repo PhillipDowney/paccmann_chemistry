@@ -26,7 +26,7 @@ setup(
     version=get_version("paccmann_chemistry/__init__.py"),
     description="Generative models of chemical data for PaccMann^RL",
     long_description=open("README.md").read(),
-    url="https://github.com/PaccMann/paccmann_chemistry",
+    url="https://github.com/PhillipDowney/paccmann_chemistry",
     author=("Ali Oskooei, Matteo Manica, Jannis Born, Joris Cadow, Nil Adell Mill"),
     author_email=(
         "ali.oskooei@gmail.com, drugilsberg@gmail.com, " "jab@zurich.ibm.com, joriscadow@gmail.com, nila@ethz.ch"
