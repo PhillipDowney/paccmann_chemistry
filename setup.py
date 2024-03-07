@@ -31,7 +31,7 @@ setup(
     author_email=(
         "ali.oskooei@gmail.com, drugilsberg@gmail.com, " "jab@zurich.ibm.com, joriscadow@gmail.com, nila@ethz.ch"
     ),
-    install_requires=["numpy", "torch>=1.0.0", "pytoda @ git+https://github.com/PaccMann/paccmann_datasets @ 1.1.3"],
+    install_requires=["numpy", "torch>=1.0.0", "pytoda @ git+https://github.com/PaccMann/paccmann_datasets @ v1.1.3"],
     packages=find_packages("."),
     zip_safe=False,
 )
