@@ -114,6 +114,9 @@ def packed_sequential_data_preparation(
         target_seq (torch.Tensor): Batch of padded target sequences ending
             in the end_index, of size `[sequence length +1, batch_size, 1]`.
     """
+    if not isinstance(input_batch, torch.Tensor):
+        print(f'type(input_batch): {type(input_batch)}')
+        print(f'input_batch[:5]: {input_batch[:5]}')
 
     def _process_sample(sample):
         if len(sample.shape) != 1:
@@ -162,7 +165,8 @@ def collate_fn(batch):
         batch[index] for index in map(
             lambda t: t[0],
             sorted(
-                enumerate(batch), key=lambda t: t[1].shape[0], reverse=True
+                # enumerate(batch), key=lambda t: t[1].shape[0], reverse=True
+                enumerate(batch), key=lambda t: len(t[1]), reverse=True
             )
         )
     ]

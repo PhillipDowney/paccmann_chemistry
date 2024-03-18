@@ -124,7 +124,7 @@ def train_vae(
         }
 
     device = get_device()
-    selfies = train_dataloader.dataset._dataset.selfies
+    selfies = train_dataloader.dataset.smiles_language.selfies
     data_preparation = get_data_preparation(batch_mode)
     vae_model = model.to(device)
     vae_model.train()
@@ -132,7 +132,6 @@ def train_vae(
     optimizer = OPTIMIZER_FACTORY[optimizer](vae_model.parameters(), lr=lr)
     t = time()
     for _iter, batch in enumerate(train_dataloader):
-
         global_step = epoch * len(train_dataloader) + _iter
 
         encoder_seq, decoder_seq, target_seq = data_preparation(
