@@ -1,0 +1,33 @@
+WARNING:pytoda_SMILES_transforms:
+Invalid SMILES C[n+]1cn(C2OC(COP(O)([O-])=O)C(O)C2O)c2NC(NCc3ccc(cc3)N(=O)=[O-])=NC(=O)c12, HsExplicit:Falseand bondsExplicit: False are ignored.
+ERROR:training_vae:Exception occurred while running train_vae.py.
+Traceback (most recent call last):
+  File "/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_chemistry/examples/train_vae.py", line 312, in main
+    loss_tracker = train_vae(
+  File "/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_chemistry/paccmann_chemistry/models/training.py", line 134, in train_vae
+    for _iter, batch in enumerate(train_dataloader):
+  File "/opt/conda/envs/openad-train/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 631, in __next__
+    data = self._next_data()
+  File "/opt/conda/envs/openad-train/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 675, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "/opt/conda/envs/openad-train/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 51, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/opt/conda/envs/openad-train/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 51, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_datasets/pytoda/datasets/smiles_dataset.py", line 236, in __getitem__
+    return self.smiles_language.smiles_to_token_indexes(self.dataset[index])
+  File "/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_datasets/pytoda/smiles/smiles_language.py", line 609, in smiles_to_token_indexes
+    for token in self.smiles_tokenizer(self.transform_smiles(smiles))
+  File "/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_datasets/pytoda/transforms.py", line 251, in __call__
+    sample = transform(sample)
+  File "/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_datasets/pytoda/smiles/transforms.py", line 542, in __call__
+    return selfies_encoder(smiles)
+  File "/opt/conda/envs/openad-train/lib/python3.10/site-packages/selfies/encoder.py", line 75, in encoder
+    _check_bond_constraints(mol, smiles)
+  File "/opt/conda/envs/openad-train/lib/python3.10/site-packages/selfies/encoder.py", line 115, in _check_bond_constraints
+    raise EncoderError(err_msg)
+selfies.exceptions.EncoderError: input violates the currently-set semantic constraints
+        SMILES: C[n+]1cn(C2OC(COP(O)([O-])=O)C(O)C2O)c2NC(NCc3ccc(cc3)N(=O)=[O-])=NC(=O)c12
+        Errors:
+        [N with 5 bond(s) - a max. of 3 bond(s) was specified]
+        [[O-1] with 2 bond(s) - a max. of 1 bond(s) was specified]cc(cc1N(=O)=[O-])N(=O)=[O-])N1

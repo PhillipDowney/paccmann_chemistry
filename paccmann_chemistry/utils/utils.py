@@ -114,12 +114,9 @@ def packed_sequential_data_preparation(
         target_seq (torch.Tensor): Batch of padded target sequences ending
             in the end_index, of size `[sequence length +1, batch_size, 1]`.
     """
-    if not isinstance(input_batch, torch.Tensor):
-        print(f'type(input_batch): {type(input_batch)}')
-        print(f'input_batch[:5]: {input_batch[:5]}')
 
     def _process_sample(sample):
-        if len(sample.shape) != 1:
+        if hasattr(sample, "shape") and len(sample.shape) != 1:
             raise ValueError
         input = sample.long().to(device)
         decoder = input.clone()
@@ -198,8 +195,9 @@ def packed_to_padded(seq, target_packed):
         seq_lst = seq[t].tolist()
         tg_lst = target_packed[t - 1].tolist()
         # Insert Padding token where necessary
-        [seq_lst.insert(idx, 0) for idx in sorted(stopped_idx, reverse=False)]
-        padded[:, t] = torch.Tensor(seq_lst).long()
+        for idx in sorted(stopped_idx, reverse=False):
+            seq_lst.insert(idx, 0)
+        padded[:len(seq_lst), t] = torch.as_tensor(seq_lst).long()
 
         stop_idx = list(filter(lambda x: tg_lst[x] == 3, range(len(tg_lst))))
         stopped_idx += stop_idx

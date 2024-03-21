@@ -1,0 +1,122 @@
+2024-03-19 22:37:07.415825: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-19 22:37:07.565008: E tensorflow/stream_executor/cuda/cuda_blas.cc:2981] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2024-03-19 22:37:08.044846: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer.so.7'; dlerror: libnvinfer.so.7: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /usr/local/cuda-11/lib64:/opt/amazon/efa/lib:/opt/amazon/openmpi/lib:/usr/local/cuda/efa/lib:/usr/local/cuda/lib:/usr/local/cuda:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:/usr/local/cuda/targets/x86_64-linux/lib:/usr/local/lib:/usr/lib:
+2024-03-19 22:37:08.044954: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer_plugin.so.7'; dlerror: libnvinfer_plugin.so.7: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /usr/local/cuda-11/lib64:/opt/amazon/efa/lib:/opt/amazon/openmpi/lib:/usr/local/cuda/efa/lib:/usr/local/cuda/lib:/usr/local/cuda:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:/usr/local/cuda/targets/x86_64-linux/lib:/usr/local/lib:/usr/lib:
+2024-03-19 22:37:08.044972: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+INFO:training_vae:Model with name svae starts.
+/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_datasets/pytoda/smiles/smiles_language.py:179: FutureWarning: Loading languages will use a text files in the future
+  warnings.warn(
+INFO:training_vae:Smiles filepath: ./data/splitted_data/train_chembl_22_clean_1576904_sorted_std_final-filt.smi
+ERROR:pytoda.datasets.smiles_dataset:Since you provided a smiles_language, the following parameters to this class will be ignored: canonical, augment, kekulize, all_bonds_explicit, selfies, sanitize, all_hs_explicit, remove_bonddir, remove_chirality, randomize, add_start_and_stop, padding, padding_length.
+Here are the problems:
+ERROR:pytoda.datasets.smiles_dataset:Looking great, no problems found!
+WARNING:pytoda.smiles.smiles_language:NOTE: We found 55653 smiles that failed to be transformed (excluding invalid smiles). Inspect the attribute `failed_transform_smiles`.
+WARNING:pytoda.smiles.smiles_language:68 new token(s) were added to SMILES language.
+ERROR:pytoda.datasets.smiles_dataset:Since you provided a smiles_language, the following parameters to this class will be ignored: canonical, augment, kekulize, all_bonds_explicit, selfies, sanitize, all_hs_explicit, remove_bonddir, remove_chirality, randomize, add_start_and_stop, padding, padding_length.
+Here are the problems:
+ERROR:pytoda.datasets.smiles_dataset:Looking great, no problems found!
+WARNING:pytoda.smiles.smiles_language:NOTE: We found 6231 smiles that failed to be transformed (excluding invalid smiles). Inspect the attribute `failed_transform_smiles`.
+/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_datasets/pytoda/smiles/smiles_language.py:214: FutureWarning: Saving languages will only store a text files in the future
+  warnings.warn(
+INFO:training_vae:
+****MODEL SUMMARY***
+
+INFO:training_vae:Param encoder.stack_controls_layer.weight, shape:     torch.Size([3, 512])
+INFO:training_vae:Param encoder.stack_controls_layer.bias, shape:       torch.Size([3])
+INFO:training_vae:Param encoder.stack_input_layer.weight, shape:        torch.Size([50, 512])
+INFO:training_vae:Param encoder.stack_input_layer.bias, shape:  torch.Size([50])
+INFO:training_vae:Param encoder.embedding.weight, shape:        torch.Size([155, 155])
+INFO:training_vae:Param encoder.gru.weight_ih_l0, shape:        torch.Size([1536, 205])
+INFO:training_vae:Param encoder.gru.weight_hh_l0, shape:        torch.Size([1536, 512])
+INFO:training_vae:Param encoder.gru.bias_ih_l0, shape:  torch.Size([1536])
+INFO:training_vae:Param encoder.gru.bias_hh_l0, shape:  torch.Size([1536])
+INFO:training_vae:Param encoder.gru.weight_ih_l1, shape:        torch.Size([1536, 512])
+INFO:training_vae:Param encoder.gru.weight_hh_l1, shape:        torch.Size([1536, 512])
+INFO:training_vae:Param encoder.gru.bias_ih_l1, shape:  torch.Size([1536])
+INFO:training_vae:Param encoder.gru.bias_hh_l1, shape:  torch.Size([1536])
+INFO:training_vae:Param encoder.hidden_to_mu.weight, shape:     torch.Size([256, 512])
+INFO:training_vae:Param encoder.hidden_to_mu.bias, shape:       torch.Size([256])
+INFO:training_vae:Param encoder.hidden_to_logvar.weight, shape: torch.Size([256, 512])
+INFO:training_vae:Param encoder.hidden_to_logvar.bias, shape:   torch.Size([256])
+INFO:training_vae:Param decoder.stack_controls_layer.weight, shape:     torch.Size([3, 512])
+INFO:training_vae:Param decoder.stack_controls_layer.bias, shape:       torch.Size([3])
+INFO:training_vae:Param decoder.stack_input_layer.weight, shape:        torch.Size([50, 512])
+INFO:training_vae:Param decoder.stack_input_layer.bias, shape:  torch.Size([50])
+INFO:training_vae:Param decoder.embedding.weight, shape:        torch.Size([155, 155])
+INFO:training_vae:Param decoder.gru.weight_ih_l0, shape:        torch.Size([1536, 205])
+INFO:training_vae:Param decoder.gru.weight_hh_l0, shape:        torch.Size([1536, 512])
+INFO:training_vae:Param decoder.gru.bias_ih_l0, shape:  torch.Size([1536])
+INFO:training_vae:Param decoder.gru.bias_hh_l0, shape:  torch.Size([1536])
+INFO:training_vae:Param decoder.gru.weight_ih_l1, shape:        torch.Size([1536, 512])
+INFO:training_vae:Param decoder.gru.weight_hh_l1, shape:        torch.Size([1536, 512])
+INFO:training_vae:Param decoder.gru.bias_ih_l1, shape:  torch.Size([1536])
+INFO:training_vae:Param decoder.gru.bias_hh_l1, shape:  torch.Size([1536])
+INFO:training_vae:Param decoder.latent_to_hidden.weight, shape: torch.Size([512, 256])
+INFO:training_vae:Param decoder.latent_to_hidden.bias, shape:   torch.Size([512])
+INFO:training_vae:Param decoder.output_layer.weight, shape:     torch.Size([155, 512])
+INFO:training_vae:Param decoder.output_layer.bias, shape:       torch.Size([155])
+INFO:training_vae:Total # params: 5936823
+INFO:training_vae:Model creation and data processing done, Training starts.
+{'add_start_stop_token': True,
+ 'batch_mode': 'packed',
+ 'batch_size': 256,
+ 'bidirectional': False,
+ 'decoder_search': 'sampling',
+ 'dropout': 0.2,
+ 'embedding': 'one_hot',
+ 'embedding_size': 155,
+ 'end_index': 3,
+ 'epochs': 50,
+ 'eval_interval': 500,
+ 'generate_len': 100,
+ 'input_keep': 0.85,
+ 'kl_growth': 0.003,
+ 'latent_dim': 256,
+ 'learning_rate': 0.0005,
+ 'log_interval': 100,
+ 'n_layers': 2,
+ 'num_workers': 0,
+ 'optimizer': 'adam',
+ 'pad_index': 0,
+ 'pin_memory': False,
+ 'rnn_cell_size': 512,
+ 'save_interval': 1000,
+ 'selfies': True,
+ 'stack_depth': 50,
+ 'stack_width': 50,
+ 'start_index': 2,
+ 'temperature': 0.8,
+ 'test_input_keep': 1.0,
+ 'training_name': 'svae',
+ 'vocab_size': 155}
+ERROR:training_vae:Exception occurred while running train_vae.py.
+Traceback (most recent call last):
+  File "/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_chemistry/examples/train_vae.py", line 314, in main
+    loss_tracker = train_vae(
+  File "/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_chemistry/paccmann_chemistry/models/training.py", line 134, in train_vae
+    for _iter, batch in enumerate(train_dataloader):
+  File "/opt/conda/envs/openad-train/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 631, in __next__
+    data = self._next_data()
+  File "/opt/conda/envs/openad-train/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 675, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "/opt/conda/envs/openad-train/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 51, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/opt/conda/envs/openad-train/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 51, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_datasets/pytoda/datasets/smiles_dataset.py", line 236, in __getitem__
+    return self.smiles_language.smiles_to_token_indexes(self.dataset[index])
+  File "/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_datasets/pytoda/smiles/smiles_language.py", line 609, in smiles_to_token_indexes
+    for token in self.smiles_tokenizer(self.transform_smiles(smiles))
+  File "/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_datasets/pytoda/transforms.py", line 251, in __call__
+    sample = transform(sample)
+  File "/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_datasets/pytoda/smiles/transforms.py", line 542, in __call__
+    return selfies_encoder(smiles)
+  File "/opt/conda/envs/openad-train/lib/python3.10/site-packages/selfies/encoder.py", line 75, in encoder
+    _check_bond_constraints(mol, smiles)
+  File "/opt/conda/envs/openad-train/lib/python3.10/site-packages/selfies/encoder.py", line 115, in _check_bond_constraints
+    raise EncoderError(err_msg)
+selfies.exceptions.EncoderError: input violates the currently-set semantic constraints
+        SMILES: CCOC(=O)CC(OC1OC2OC3(C)CCC4C(C)CCC(C1C)C24OO3)c1ccc(cc1)N(=O)=O
+        Errors:
+        [N with 5 bond(s) - a max. of 3 bond(s) was specified]

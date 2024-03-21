@@ -104,7 +104,7 @@ class StackGRU(nn.Module):
             dropout=params['dropout']
         )
 
-        self.set_batch_mode(params.get('batch_mode'))
+        self.set_batch_mode(params.get('batch_mode', 'packed'))
 
         self._check_params()
 

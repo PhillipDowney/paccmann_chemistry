@@ -1,0 +1,2237 @@
+(base) deanelzinga@cde-ubuntu-g5-3:~/phillipdowney/paccmann_rl$ conda activate openad-train
+(openad-train) deanelzinga@cde-ubuntu-g5-3:~/phillipdowney/paccmann_rl$ /opt/conda/envs/openad-train/bin/python /home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_chemistry/examples/do_train_vae_as_svae.py
+2024-03-19 22:37:07.415825: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-19 22:37:07.565008: E tensorflow/stream_executor/cuda/cuda_blas.cc:2981] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2024-03-19 22:37:08.044846: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer.so.7'; dlerror: libnvinfer.so.7: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /usr/local/cuda-11/lib64:/opt/amazon/efa/lib:/opt/amazon/openmpi/lib:/usr/local/cuda/efa/lib:/usr/local/cuda/lib:/usr/local/cuda:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:/usr/local/cuda/targets/x86_64-linux/lib:/usr/local/lib:/usr/lib:
+2024-03-19 22:37:08.044954: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer_plugin.so.7'; dlerror: libnvinfer_plugin.so.7: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /usr/local/cuda-11/lib64:/opt/amazon/efa/lib:/opt/amazon/openmpi/lib:/usr/local/cuda/efa/lib:/usr/local/cuda/lib:/usr/local/cuda:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:/usr/local/cuda/targets/x86_64-linux/lib:/usr/local/lib:/usr/lib:
+2024-03-19 22:37:08.044972: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+INFO:training_vae:Model with name svae starts.
+/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_datasets/pytoda/smiles/smiles_language.py:179: FutureWarning: Loading languages will use a text files in the future
+  warnings.warn(
+INFO:training_vae:Smiles filepath: ./data/splitted_data/train_chembl_22_clean_1576904_sorted_std_final-filt.smi
+ERROR:pytoda.datasets.smiles_dataset:Since you provided a smiles_language, the following parameters to this class will be ignored: canonical, augment, kekulize, all_bonds_explicit, selfies, sanitize, all_hs_explicit, remove_bonddir, remove_chirality, randomize, add_start_and_stop, padding, padding_length.
+Here are the problems:
+ERROR:pytoda.datasets.smiles_dataset:Looking great, no problems found!
+WARNING:pytoda.smiles.smiles_language:NOTE: We found 55653 smiles that failed to be transformed (excluding invalid smiles). Inspect the attribute `failed_transform_smiles`.
+WARNING:pytoda.smiles.smiles_language:68 new token(s) were added to SMILES language.
+ERROR:pytoda.datasets.smiles_dataset:Since you provided a smiles_language, the following parameters to this class will be ignored: canonical, augment, kekulize, all_bonds_explicit, selfies, sanitize, all_hs_explicit, remove_bonddir, remove_chirality, randomize, add_start_and_stop, padding, padding_length.
+Here are the problems:
+ERROR:pytoda.datasets.smiles_dataset:Looking great, no problems found!
+WARNING:pytoda.smiles.smiles_language:NOTE: We found 6231 smiles that failed to be transformed (excluding invalid smiles). Inspect the attribute `failed_transform_smiles`.
+/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_datasets/pytoda/smiles/smiles_language.py:214: FutureWarning: Saving languages will only store a text files in the future
+  warnings.warn(
+INFO:training_vae:
+****MODEL SUMMARY***
+
+INFO:training_vae:Param encoder.stack_controls_layer.weight, shape:     torch.Size([3, 512])
+INFO:training_vae:Param encoder.stack_controls_layer.bias, shape:       torch.Size([3])
+INFO:training_vae:Param encoder.stack_input_layer.weight, shape:        torch.Size([50, 512])
+INFO:training_vae:Param encoder.stack_input_layer.bias, shape:  torch.Size([50])
+INFO:training_vae:Param encoder.embedding.weight, shape:        torch.Size([155, 155])
+INFO:training_vae:Param encoder.gru.weight_ih_l0, shape:        torch.Size([1536, 205])
+INFO:training_vae:Param encoder.gru.weight_hh_l0, shape:        torch.Size([1536, 512])
+INFO:training_vae:Param encoder.gru.bias_ih_l0, shape:  torch.Size([1536])
+INFO:training_vae:Param encoder.gru.bias_hh_l0, shape:  torch.Size([1536])
+INFO:training_vae:Param encoder.gru.weight_ih_l1, shape:        torch.Size([1536, 512])
+INFO:training_vae:Param encoder.gru.weight_hh_l1, shape:        torch.Size([1536, 512])
+INFO:training_vae:Param encoder.gru.bias_ih_l1, shape:  torch.Size([1536])
+INFO:training_vae:Param encoder.gru.bias_hh_l1, shape:  torch.Size([1536])
+INFO:training_vae:Param encoder.hidden_to_mu.weight, shape:     torch.Size([256, 512])
+INFO:training_vae:Param encoder.hidden_to_mu.bias, shape:       torch.Size([256])
+INFO:training_vae:Param encoder.hidden_to_logvar.weight, shape: torch.Size([256, 512])
+INFO:training_vae:Param encoder.hidden_to_logvar.bias, shape:   torch.Size([256])
+INFO:training_vae:Param decoder.stack_controls_layer.weight, shape:     torch.Size([3, 512])
+INFO:training_vae:Param decoder.stack_controls_layer.bias, shape:       torch.Size([3])
+INFO:training_vae:Param decoder.stack_input_layer.weight, shape:        torch.Size([50, 512])
+INFO:training_vae:Param decoder.stack_input_layer.bias, shape:  torch.Size([50])
+INFO:training_vae:Param decoder.embedding.weight, shape:        torch.Size([155, 155])
+INFO:training_vae:Param decoder.gru.weight_ih_l0, shape:        torch.Size([1536, 205])
+INFO:training_vae:Param decoder.gru.weight_hh_l0, shape:        torch.Size([1536, 512])
+INFO:training_vae:Param decoder.gru.bias_ih_l0, shape:  torch.Size([1536])
+INFO:training_vae:Param decoder.gru.bias_hh_l0, shape:  torch.Size([1536])
+INFO:training_vae:Param decoder.gru.weight_ih_l1, shape:        torch.Size([1536, 512])
+INFO:training_vae:Param decoder.gru.weight_hh_l1, shape:        torch.Size([1536, 512])
+INFO:training_vae:Param decoder.gru.bias_ih_l1, shape:  torch.Size([1536])
+INFO:training_vae:Param decoder.gru.bias_hh_l1, shape:  torch.Size([1536])
+INFO:training_vae:Param decoder.latent_to_hidden.weight, shape: torch.Size([512, 256])
+INFO:training_vae:Param decoder.latent_to_hidden.bias, shape:   torch.Size([512])
+INFO:training_vae:Param decoder.output_layer.weight, shape:     torch.Size([155, 512])
+INFO:training_vae:Param decoder.output_layer.bias, shape:       torch.Size([155])
+INFO:training_vae:Total # params: 5936823
+INFO:training_vae:Model creation and data processing done, Training starts.
+{'add_start_stop_token': True,
+ 'batch_mode': 'packed',
+ 'batch_size': 256,
+ 'bidirectional': False,
+ 'decoder_search': 'sampling',
+ 'dropout': 0.2,
+ 'embedding': 'one_hot',
+ 'embedding_size': 155,
+ 'end_index': 3,
+ 'epochs': 50,
+ 'eval_interval': 500,
+ 'generate_len': 100,
+ 'input_keep': 0.85,
+ 'kl_growth': 0.003,
+ 'latent_dim': 256,
+ 'learning_rate': 0.0005,
+ 'log_interval': 100,
+ 'n_layers': 2,
+ 'num_workers': 0,
+ 'optimizer': 'adam',
+ 'pad_index': 0,
+ 'pin_memory': False,
+ 'rnn_cell_size': 512,
+ 'save_interval': 1000,
+ 'selfies': True,
+ 'stack_depth': 50,
+ 'stack_width': 50,
+ 'start_index': 2,
+ 'temperature': 0.8,
+ 'test_input_keep': 1.0,
+ 'training_name': 'svae',
+ 'vocab_size': 155}
+ERROR:training_vae:Exception occurred while running train_vae.py.
+Traceback (most recent call last):
+  File "/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_chemistry/examples/train_vae.py", line 314, in main
+    loss_tracker = train_vae(
+  File "/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_chemistry/paccmann_chemistry/models/training.py", line 134, in train_vae
+    for _iter, batch in enumerate(train_dataloader):
+  File "/opt/conda/envs/openad-train/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 631, in __next__
+    data = self._next_data()
+  File "/opt/conda/envs/openad-train/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 675, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "/opt/conda/envs/openad-train/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 51, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/opt/conda/envs/openad-train/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 51, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_datasets/pytoda/datasets/smiles_dataset.py", line 236, in __getitem__
+    return self.smiles_language.smiles_to_token_indexes(self.dataset[index])
+  File "/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_datasets/pytoda/smiles/smiles_language.py", line 609, in smiles_to_token_indexes
+    for token in self.smiles_tokenizer(self.transform_smiles(smiles))
+  File "/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_datasets/pytoda/transforms.py", line 251, in __call__
+    sample = transform(sample)
+  File "/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_datasets/pytoda/smiles/transforms.py", line 542, in __call__
+    return selfies_encoder(smiles)
+  File "/opt/conda/envs/openad-train/lib/python3.10/site-packages/selfies/encoder.py", line 75, in encoder
+    _check_bond_constraints(mol, smiles)
+  File "/opt/conda/envs/openad-train/lib/python3.10/site-packages/selfies/encoder.py", line 115, in _check_bond_constraints
+    raise EncoderError(err_msg)
+selfies.exceptions.EncoderError: input violates the currently-set semantic constraints
+        SMILES: CCOC(=O)CC(OC1OC2OC3(C)CCC4C(C)CCC(C1C)C24OO3)c1ccc(cc1)N(=O)=O
+        Errors:
+        [N with 5 bond(s) - a max. of 3 bond(s) was specified]
+
+(openad-train) deanelzinga@cde-ubuntu-g5-3:~/phillipdowney/paccmann_rl$ grep -F '^Cn+]1cn(C2OC(COP(O)([O-])=O)C(O)C2O)c2NC(NCc3ccc(cc3)N(=O)=[O-])=NC(=O)c12' data/splitted_data/train_chembl_22_clean_1576904_sorted_std_final.smi
+(openad-train) deanelzinga@cde-ubuntu-g5-3:~/phillipdowney/paccmann_rl$ grep -R -F 'CCOC(=O)CC(OC1OC2OC3(C)CCC4C(C)CCC(C1C)C24OO3)c1ccc(cc1)N(=O)=O' data
+data/smiles/chembl_cleaned.smi:CCOC(=O)CC(OC1OC2OC3(C)CCC4C(C)CCC(C1C)C24OO3)c1ccc(cc1)N(=O)=O  CHEMBL165028
+data/smiles/chembl_cleaned.smi:CCOC(=O)CC(OC1OC2OC3(C)CCC4C(C)CCC(C1C)C24OO3)c1ccc(cc1)N(=O)=O  CHEMBL350802
+data/smiles/chembl_cleaned.smi:CCOC(=O)CC(OC1OC2OC3(C)CCC4C(C)CCC(C1C)C24OO3)c1ccc(cc1)N(=O)=O  CHEMBL3350084
+data/smiles/chembl_cleaned.smi:CCOC(=O)CC(OC1OC2OC3(C)CCC4C(C)CCC(C1C)C24OO3)c1ccc(cc1)N(=O)=O  CHEMBL3350081
+data/smiles/chembl_22_clean_1576904_sorted_std_final.smi:CCOC(=O)CC(OC1OC2OC3(C)CCC4C(C)CCC(C1C)C24OO3)c1ccc(cc1)N(=O)=O        CHEMBL165028
+data/smiles/chembl_22_clean_1576904_sorted_std_final.smi:CCOC(=O)CC(OC1OC2OC3(C)CCC4C(C)CCC(C1C)C24OO3)c1ccc(cc1)N(=O)=O        CHEMBL350802
+data/smiles/chembl_22_clean_1576904_sorted_std_final.smi:CCOC(=O)CC(OC1OC2OC3(C)CCC4C(C)CCC(C1C)C24OO3)c1ccc(cc1)N(=O)=O        CHEMBL3350084
+data/smiles/chembl_22_clean_1576904_sorted_std_final.smi:CCOC(=O)CC(OC1OC2OC3(C)CCC4C(C)CCC(C1C)C24OO3)c1ccc(cc1)N(=O)=O        CHEMBL3350081
+data/splitted_data/train_chembl_22_clean_1576904_sorted_std_final-filt2.smi:CCOC(=O)CC(OC1OC2OC3(C)CCC4C(C)CCC(C1C)C24OO3)c1ccc(cc1)N(=O)=O     CHEMBL165028
+data/splitted_data/train_chembl_22_clean_1576904_sorted_std_final-filt2.smi:CCOC(=O)CC(OC1OC2OC3(C)CCC4C(C)CCC(C1C)C24OO3)c1ccc(cc1)N(=O)=O     CHEMBL350802
+data/splitted_data/train_chembl_22_clean_1576904_sorted_std_final-filt2.smi:CCOC(=O)CC(OC1OC2OC3(C)CCC4C(C)CCC(C1C)C24OO3)c1ccc(cc1)N(=O)=O     CHEMBL3350081
+data/splitted_data/train_chembl_22_clean_1576904_sorted_std_final-filt2.smi:CCOC(=O)CC(OC1OC2OC3(C)CCC4C(C)CCC(C1C)C24OO3)c1ccc(cc1)N(=O)=O     CHEMBL3350084
+data/splitted_data/train_chembl_22_clean_1576904_sorted_std_final-filt.smi:CCOC(=O)CC(OC1OC2OC3(C)CCC4C(C)CCC(C1C)C24OO3)c1ccc(cc1)N(=O)=O      CHEMBL165028
+data/splitted_data/train_chembl_22_clean_1576904_sorted_std_final-filt.smi:CCOC(=O)CC(OC1OC2OC3(C)CCC4C(C)CCC(C1C)C24OO3)c1ccc(cc1)N(=O)=O      CHEMBL350802
+data/splitted_data/train_chembl_22_clean_1576904_sorted_std_final-filt.smi:CCOC(=O)CC(OC1OC2OC3(C)CCC4C(C)CCC(C1C)C24OO3)c1ccc(cc1)N(=O)=O      CHEMBL3350081
+data/splitted_data/train_chembl_22_clean_1576904_sorted_std_final-filt.smi:CCOC(=O)CC(OC1OC2OC3(C)CCC4C(C)CCC(C1C)C24OO3)c1ccc(cc1)N(=O)=O      CHEMBL3350084
+data/splitted_data/train_chembl_22_clean_1576904_sorted_std_final.smi:CCOC(=O)CC(OC1OC2OC3(C)CCC4C(C)CCC(C1C)C24OO3)c1ccc(cc1)N(=O)=O   CHEMBL165028
+data/splitted_data/train_chembl_22_clean_1576904_sorted_std_final.smi:CCOC(=O)CC(OC1OC2OC3(C)CCC4C(C)CCC(C1C)C24OO3)c1ccc(cc1)N(=O)=O   CHEMBL350802
+data/splitted_data/train_chembl_22_clean_1576904_sorted_std_final.smi:CCOC(=O)CC(OC1OC2OC3(C)CCC4C(C)CCC(C1C)C24OO3)c1ccc(cc1)N(=O)=O   CHEMBL3350081
+data/splitted_data/train_chembl_22_clean_1576904_sorted_std_final.smi:CCOC(=O)CC(OC1OC2OC3(C)CCC4C(C)CCC(C1C)C24OO3)c1ccc(cc1)N(=O)=O   CHEMBL3350084
+(openad-train) deanelzinga@cde-ubuntu-g5-3:~/phillipdowney/paccmann_rl$ pip list | grep gt4sd
+gt4sd_common                 0.1.0
+gt4sd_inference_paccmann     0.1.0
+gt4sd_training_paccmann      0.1.0
+(openad-train) deanelzinga@cde-ubuntu-g5-3:~/phillipdowney/paccmann_rl$ python
+Python 3.10.13 | packaged by conda-forge | (main, Dec 23 2023, 15:36:39) [GCC 12.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from rdkit import Chem
+>>> m = Chem.MolFromSmiles("CCOC(=O)CC(OC1OC2OC3(C)CCC4C(C)CCC(C1C)C24OO3)c1ccc(cc1)N(=O)=O")
+>>> problems = Chem.DetectChemistryProblems(m)
+>>> problems
+()
+>>> m.
+m.AddConformer(              m.GetAromaticAtoms(          m.GetBondBetweenAtoms(       m.GetConformer(              m.GetNumAtoms(               m.GetProp(                   m.GetStereoGroups(           m.HasProp(                   m.RemoveConformer(           m.SetProp(
+m.ClearComputedProps(        m.GetAtomWithIdx(            m.GetBondWithIdx(            m.GetConformers(             m.GetNumBonds(               m.GetPropNames(              m.GetSubstructMatch(         m.HasSubstructMatch(         m.SetBoolProp(               m.SetUnsignedProp(
+m.ClearProp(                 m.GetAtoms(                  m.GetBonds(                  m.GetDoubleProp(             m.GetNumConformers(          m.GetPropsAsDict(            m.GetSubstructMatches(       m.NeedsUpdatePropertyCache(  m.SetDoubleProp(             m.ToBinary(
+m.Debug(                     m.GetAtomsMatchingQuery(     m.GetBoolProp(               m.GetIntProp(                m.GetNumHeavyAtoms(          m.GetRingInfo(               m.GetUnsignedProp(           m.RemoveAllConformers(       m.SetIntProp(                m.UpdatePropertyCache(
+>>> 
+(openad-train) deanelzinga@cde-ubuntu-g5-3:~/phillipdowney/paccmann_rl$ conda create -n rdkit-latest python==3.10 rdkit
+Channels:
+ - pytorch
+ - nvidia
+ - pyg
+ - conda-forge
+Platform: linux-64
+Collecting package metadata (repodata.json): done
+Solving environment: done
+
+## Package Plan ##
+
+  environment location: /opt/conda/envs/rdkit-latest
+
+  added / updated specs:
+    - python==3.10
+    - rdkit
+
+
+The following NEW packages will be INSTALLED:
+
+  _libgcc_mutex      conda-forge/linux-64::_libgcc_mutex-0.1-conda_forge 
+  _openmp_mutex      conda-forge/linux-64::_openmp_mutex-4.5-2_gnu 
+  brotli             conda-forge/linux-64::brotli-1.1.0-hd590300_1 
+  brotli-bin         conda-forge/linux-64::brotli-bin-1.1.0-hd590300_1 
+  bzip2              conda-forge/linux-64::bzip2-1.0.8-hd590300_5 
+  ca-certificates    conda-forge/linux-64::ca-certificates-2024.2.2-hbcca054_0 
+  cairo              conda-forge/linux-64::cairo-1.18.0-h3faef2a_0 
+  certifi            conda-forge/noarch::certifi-2024.2.2-pyhd8ed1ab_0 
+  chardet            conda-forge/linux-64::chardet-5.2.0-py310hff52083_1 
+  contourpy          conda-forge/linux-64::contourpy-1.2.0-py310hd41b1e2_0 
+  cycler             conda-forge/noarch::cycler-0.12.1-pyhd8ed1ab_0 
+  expat              conda-forge/linux-64::expat-2.6.2-h59595ed_0 
+  font-ttf-dejavu-s~ conda-forge/noarch::font-ttf-dejavu-sans-mono-2.37-hab24e00_0 
+  font-ttf-inconsol~ conda-forge/noarch::font-ttf-inconsolata-3.000-h77eed37_0 
+  font-ttf-source-c~ conda-forge/noarch::font-ttf-source-code-pro-2.038-h77eed37_0 
+  font-ttf-ubuntu    conda-forge/noarch::font-ttf-ubuntu-0.83-h77eed37_1 
+  fontconfig         conda-forge/linux-64::fontconfig-2.14.2-h14ed4e7_0 
+  fonts-conda-ecosy~ conda-forge/noarch::fonts-conda-ecosystem-1-0 
+  fonts-conda-forge  conda-forge/noarch::fonts-conda-forge-1-0 
+  fonttools          conda-forge/linux-64::fonttools-4.50.0-py310h2372a71_0 
+  freetype           conda-forge/linux-64::freetype-2.12.1-h267a509_2 
+  freetype-py        conda-forge/noarch::freetype-py-2.3.0-pyhd8ed1ab_0 
+  greenlet           conda-forge/linux-64::greenlet-3.0.3-py310hc6cd4ac_0 
+  icu                conda-forge/linux-64::icu-73.2-h59595ed_0 
+  kiwisolver         conda-forge/linux-64::kiwisolver-1.4.5-py310hd41b1e2_1 
+  lcms2              conda-forge/linux-64::lcms2-2.16-hb7c19ff_0 
+  ld_impl_linux-64   conda-forge/linux-64::ld_impl_linux-64-2.40-h41732ed_0 
+  lerc               conda-forge/linux-64::lerc-4.0.0-h27087fc_0 
+  libblas            conda-forge/linux-64::libblas-3.9.0-21_linux64_openblas 
+  libboost           conda-forge/linux-64::libboost-1.82.0-h6fcfa73_6 
+  libboost-python    conda-forge/linux-64::libboost-python-1.82.0-py310hcb52e73_6 
+  libbrotlicommon    conda-forge/linux-64::libbrotlicommon-1.1.0-hd590300_1 
+  libbrotlidec       conda-forge/linux-64::libbrotlidec-1.1.0-hd590300_1 
+  libbrotlienc       conda-forge/linux-64::libbrotlienc-1.1.0-hd590300_1 
+  libcblas           conda-forge/linux-64::libcblas-3.9.0-21_linux64_openblas 
+  libdeflate         conda-forge/linux-64::libdeflate-1.19-hd590300_0 
+  libexpat           conda-forge/linux-64::libexpat-2.6.2-h59595ed_0 
+  libffi             conda-forge/linux-64::libffi-3.4.2-h7f98852_5 
+  libgcc-ng          conda-forge/linux-64::libgcc-ng-13.2.0-h807b86a_5 
+  libgfortran-ng     conda-forge/linux-64::libgfortran-ng-13.2.0-h69a702a_5 
+  libgfortran5       conda-forge/linux-64::libgfortran5-13.2.0-ha4646dd_5 
+  libglib            conda-forge/linux-64::libglib-2.80.0-hf2295e7_0 
+  libgomp            conda-forge/linux-64::libgomp-13.2.0-h807b86a_5 
+  libiconv           conda-forge/linux-64::libiconv-1.17-hd590300_2 
+  libjpeg-turbo      conda-forge/linux-64::libjpeg-turbo-3.0.0-hd590300_1 
+  liblapack          conda-forge/linux-64::liblapack-3.9.0-21_linux64_openblas 
+  libnsl             conda-forge/linux-64::libnsl-2.0.1-hd590300_0 
+  libopenblas        conda-forge/linux-64::libopenblas-0.3.26-pthreads_h413a1c8_0 
+  libpng             conda-forge/linux-64::libpng-1.6.43-h2797004_0 
+  libsqlite          conda-forge/linux-64::libsqlite-3.45.2-h2797004_0 
+  libstdcxx-ng       conda-forge/linux-64::libstdcxx-ng-13.2.0-h7e041cc_5 
+  libtiff            conda-forge/linux-64::libtiff-4.6.0-ha9c0a0a_2 
+  libuuid            conda-forge/linux-64::libuuid-2.38.1-h0b41bf4_0 
+  libwebp-base       conda-forge/linux-64::libwebp-base-1.3.2-hd590300_0 
+  libxcb             conda-forge/linux-64::libxcb-1.15-h0b41bf4_0 
+  libzlib            conda-forge/linux-64::libzlib-1.2.13-hd590300_5 
+  matplotlib-base    conda-forge/linux-64::matplotlib-base-3.8.3-py310h62c0568_0 
+  munkres            conda-forge/noarch::munkres-1.1.4-pyh9f0ad1d_0 
+  ncurses            conda-forge/linux-64::ncurses-6.4.20240210-h59595ed_0 
+  numpy              conda-forge/linux-64::numpy-1.26.4-py310hb13e2d6_0 
+  openjpeg           conda-forge/linux-64::openjpeg-2.5.2-h488ebb8_0 
+  openssl            conda-forge/linux-64::openssl-3.2.1-hd590300_1 
+  packaging          conda-forge/noarch::packaging-24.0-pyhd8ed1ab_0 
+  pandas             conda-forge/linux-64::pandas-2.1.4-py310hcc13569_0 
+  pcre2              conda-forge/linux-64::pcre2-10.43-hcad00b1_0 
+  pillow             conda-forge/linux-64::pillow-10.2.0-py310h01dd4db_0 
+  pip                conda-forge/noarch::pip-24.0-pyhd8ed1ab_0 
+  pixman             conda-forge/linux-64::pixman-0.43.2-h59595ed_0 
+  pthread-stubs      conda-forge/linux-64::pthread-stubs-0.4-h36c2ea0_1001 
+  pycairo            conda-forge/linux-64::pycairo-1.26.0-py310hda9f760_0 
+  pyparsing          conda-forge/noarch::pyparsing-3.1.2-pyhd8ed1ab_0 
+  python             conda-forge/linux-64::python-3.10.0-h543edf9_3_cpython 
+  python-dateutil    conda-forge/noarch::python-dateutil-2.9.0-pyhd8ed1ab_0 
+  python-tzdata      conda-forge/noarch::python-tzdata-2024.1-pyhd8ed1ab_0 
+  python_abi         conda-forge/linux-64::python_abi-3.10-4_cp310 
+  pytz               conda-forge/noarch::pytz-2024.1-pyhd8ed1ab_0 
+  rdkit              conda-forge/linux-64::rdkit-2023.09.6-py310hb79e901_1 
+  readline           conda-forge/linux-64::readline-8.2-h8228510_1 
+  reportlab          conda-forge/linux-64::reportlab-4.1.0-py310h2372a71_0 
+  rlpycairo          conda-forge/noarch::rlpycairo-0.2.0-pyhd8ed1ab_0 
+  setuptools         conda-forge/noarch::setuptools-69.2.0-pyhd8ed1ab_0 
+  six                conda-forge/noarch::six-1.16.0-pyh6c4a22f_0 
+  sqlalchemy         conda-forge/linux-64::sqlalchemy-2.0.28-py310h2372a71_0 
+  sqlite             conda-forge/linux-64::sqlite-3.45.2-h2c6b66d_0 
+  tk                 conda-forge/linux-64::tk-8.6.13-noxft_h4845f30_101 
+  typing-extensions  conda-forge/noarch::typing-extensions-4.10.0-hd8ed1ab_0 
+  typing_extensions  conda-forge/noarch::typing_extensions-4.10.0-pyha770c72_0 
+  tzdata             conda-forge/noarch::tzdata-2024a-h0c530f3_0 
+  unicodedata2       conda-forge/linux-64::unicodedata2-15.1.0-py310h2372a71_0 
+  wheel              conda-forge/noarch::wheel-0.42.0-pyhd8ed1ab_0 
+  xorg-kbproto       conda-forge/linux-64::xorg-kbproto-1.0.7-h7f98852_1002 
+  xorg-libice        conda-forge/linux-64::xorg-libice-1.1.1-hd590300_0 
+  xorg-libsm         conda-forge/linux-64::xorg-libsm-1.2.4-h7391055_0 
+  xorg-libx11        conda-forge/linux-64::xorg-libx11-1.8.7-h8ee46fc_0 
+  xorg-libxau        conda-forge/linux-64::xorg-libxau-1.0.11-hd590300_0 
+  xorg-libxdmcp      conda-forge/linux-64::xorg-libxdmcp-1.1.3-h7f98852_0 
+  xorg-libxext       conda-forge/linux-64::xorg-libxext-1.3.4-h0b41bf4_2 
+  xorg-libxrender    conda-forge/linux-64::xorg-libxrender-0.9.11-hd590300_0 
+  xorg-renderproto   conda-forge/linux-64::xorg-renderproto-0.11.1-h7f98852_1002 
+  xorg-xextproto     conda-forge/linux-64::xorg-xextproto-7.3.0-h0b41bf4_1003 
+  xorg-xproto        conda-forge/linux-64::xorg-xproto-7.0.31-h7f98852_1007 
+  xz                 conda-forge/linux-64::xz-5.2.6-h166bdaf_0 
+  zlib               conda-forge/linux-64::zlib-1.2.13-hd590300_5 
+  zstd               conda-forge/linux-64::zstd-1.5.5-hfc55251_0 
+
+
+Proceed ([y]/n)? y
+
+
+Downloading and Extracting Packages:
+
+Preparing transaction: done
+Verifying transaction: done
+Executing transaction: done
+#
+# To activate this environment, use
+#
+#     $ conda activate rdkit-latest
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+(openad-train) deanelzinga@cde-ubuntu-g5-3:~/phillipdowney/paccmann_rl$ conda activate rdkit-latest
+(rdkit-latest) deanelzinga@cde-ubuntu-g5-3:~/phillipdowney/paccmann_rl$ conda install jupyterlab
+Channels:
+ - pytorch
+ - nvidia
+ - pyg
+ - conda-forge
+Platform: linux-64
+Collecting package metadata (repodata.json): done
+Solving environment: done
+
+## Package Plan ##
+
+  environment location: /opt/conda/envs/rdkit-latest
+
+  added / updated specs:
+    - jupyterlab
+
+
+The following NEW packages will be INSTALLED:
+
+  anyio              conda-forge/noarch::anyio-4.3.0-pyhd8ed1ab_0 
+  argon2-cffi        conda-forge/noarch::argon2-cffi-23.1.0-pyhd8ed1ab_0 
+  argon2-cffi-bindi~ conda-forge/linux-64::argon2-cffi-bindings-21.2.0-py310h2372a71_4 
+  arrow              conda-forge/noarch::arrow-1.3.0-pyhd8ed1ab_0 
+  asttokens          conda-forge/noarch::asttokens-2.4.1-pyhd8ed1ab_0 
+  async-lru          conda-forge/noarch::async-lru-2.0.4-pyhd8ed1ab_0 
+  attrs              conda-forge/noarch::attrs-23.2.0-pyh71513ae_0 
+  babel              conda-forge/noarch::babel-2.14.0-pyhd8ed1ab_0 
+  beautifulsoup4     conda-forge/noarch::beautifulsoup4-4.12.3-pyha770c72_0 
+  bleach             conda-forge/noarch::bleach-6.1.0-pyhd8ed1ab_0 
+  brotli-python      conda-forge/linux-64::brotli-python-1.1.0-py310hc6cd4ac_1 
+  cached-property    conda-forge/noarch::cached-property-1.5.2-hd8ed1ab_1 
+  cached_property    conda-forge/noarch::cached_property-1.5.2-pyha770c72_1 
+  cffi               conda-forge/linux-64::cffi-1.16.0-py310h2fee648_0 
+  charset-normalizer conda-forge/noarch::charset-normalizer-3.3.2-pyhd8ed1ab_0 
+  comm               conda-forge/noarch::comm-0.2.2-pyhd8ed1ab_0 
+  debugpy            conda-forge/linux-64::debugpy-1.8.1-py310hc6cd4ac_0 
+  decorator          conda-forge/noarch::decorator-5.1.1-pyhd8ed1ab_0 
+  defusedxml         conda-forge/noarch::defusedxml-0.7.1-pyhd8ed1ab_0 
+  entrypoints        conda-forge/noarch::entrypoints-0.4-pyhd8ed1ab_0 
+  exceptiongroup     conda-forge/noarch::exceptiongroup-1.2.0-pyhd8ed1ab_2 
+  executing          conda-forge/noarch::executing-2.0.1-pyhd8ed1ab_0 
+  fqdn               conda-forge/noarch::fqdn-1.5.1-pyhd8ed1ab_0 
+  h11                conda-forge/noarch::h11-0.14.0-pyhd8ed1ab_0 
+  h2                 conda-forge/noarch::h2-4.1.0-pyhd8ed1ab_0 
+  hpack              conda-forge/noarch::hpack-4.0.0-pyh9f0ad1d_0 
+  httpcore           conda-forge/noarch::httpcore-1.0.4-pyhd8ed1ab_0 
+  httpx              conda-forge/noarch::httpx-0.27.0-pyhd8ed1ab_0 
+  hyperframe         conda-forge/noarch::hyperframe-6.0.1-pyhd8ed1ab_0 
+  idna               conda-forge/noarch::idna-3.6-pyhd8ed1ab_0 
+  importlib-metadata conda-forge/noarch::importlib-metadata-7.0.2-pyha770c72_0 
+  importlib_metadata conda-forge/noarch::importlib_metadata-7.0.2-hd8ed1ab_0 
+  importlib_resourc~ conda-forge/noarch::importlib_resources-6.3.1-pyhd8ed1ab_0 
+  ipykernel          conda-forge/noarch::ipykernel-6.29.3-pyhd33586a_0 
+  ipython            conda-forge/noarch::ipython-8.22.2-pyh707e725_0 
+  isoduration        conda-forge/noarch::isoduration-20.11.0-pyhd8ed1ab_0 
+  jedi               conda-forge/noarch::jedi-0.19.1-pyhd8ed1ab_0 
+  jinja2             conda-forge/noarch::jinja2-3.1.3-pyhd8ed1ab_0 
+  json5              conda-forge/noarch::json5-0.9.24-pyhd8ed1ab_0 
+  jsonpointer        conda-forge/linux-64::jsonpointer-2.4-py310hff52083_3 
+  jsonschema         conda-forge/noarch::jsonschema-4.21.1-pyhd8ed1ab_0 
+  jsonschema-specif~ conda-forge/noarch::jsonschema-specifications-2023.12.1-pyhd8ed1ab_0 
+  jsonschema-with-f~ conda-forge/noarch::jsonschema-with-format-nongpl-4.21.1-pyhd8ed1ab_0 
+  jupyter-lsp        conda-forge/noarch::jupyter-lsp-2.2.4-pyhd8ed1ab_0 
+  jupyter_client     conda-forge/noarch::jupyter_client-8.6.1-pyhd8ed1ab_0 
+  jupyter_core       conda-forge/linux-64::jupyter_core-5.7.2-py310hff52083_0 
+  jupyter_events     conda-forge/noarch::jupyter_events-0.10.0-pyhd8ed1ab_0 
+  jupyter_server     conda-forge/noarch::jupyter_server-2.13.0-pyhd8ed1ab_0 
+  jupyter_server_te~ conda-forge/noarch::jupyter_server_terminals-0.5.3-pyhd8ed1ab_0 
+  jupyterlab         conda-forge/noarch::jupyterlab-4.1.5-pyhd8ed1ab_0 
+  jupyterlab_pygmen~ conda-forge/noarch::jupyterlab_pygments-0.3.0-pyhd8ed1ab_1 
+  jupyterlab_server  conda-forge/noarch::jupyterlab_server-2.25.4-pyhd8ed1ab_0 
+  libsodium          conda-forge/linux-64::libsodium-1.0.18-h36c2ea0_1 
+  markupsafe         conda-forge/linux-64::markupsafe-2.1.5-py310h2372a71_0 
+  matplotlib-inline  conda-forge/noarch::matplotlib-inline-0.1.6-pyhd8ed1ab_0 
+  mistune            conda-forge/noarch::mistune-3.0.2-pyhd8ed1ab_0 
+  nbclient           conda-forge/noarch::nbclient-0.10.0-pyhd8ed1ab_0 
+  nbconvert-core     conda-forge/noarch::nbconvert-core-7.16.2-pyhd8ed1ab_0 
+  nbformat           conda-forge/noarch::nbformat-5.10.3-pyhd8ed1ab_0 
+  nest-asyncio       conda-forge/noarch::nest-asyncio-1.6.0-pyhd8ed1ab_0 
+  notebook-shim      conda-forge/noarch::notebook-shim-0.2.4-pyhd8ed1ab_0 
+  overrides          conda-forge/noarch::overrides-7.7.0-pyhd8ed1ab_0 
+  pandocfilters      conda-forge/noarch::pandocfilters-1.5.0-pyhd8ed1ab_0 
+  parso              conda-forge/noarch::parso-0.8.3-pyhd8ed1ab_0 
+  pexpect            conda-forge/noarch::pexpect-4.9.0-pyhd8ed1ab_0 
+  pickleshare        conda-forge/noarch::pickleshare-0.7.5-py_1003 
+  pkgutil-resolve-n~ conda-forge/noarch::pkgutil-resolve-name-1.3.10-pyhd8ed1ab_1 
+  platformdirs       conda-forge/noarch::platformdirs-4.2.0-pyhd8ed1ab_0 
+  prometheus_client  conda-forge/noarch::prometheus_client-0.20.0-pyhd8ed1ab_0 
+  prompt-toolkit     conda-forge/noarch::prompt-toolkit-3.0.42-pyha770c72_0 
+  psutil             conda-forge/linux-64::psutil-5.9.8-py310h2372a71_0 
+  ptyprocess         conda-forge/noarch::ptyprocess-0.7.0-pyhd3deb0d_0 
+  pure_eval          conda-forge/noarch::pure_eval-0.2.2-pyhd8ed1ab_0 
+  pycparser          conda-forge/noarch::pycparser-2.21-pyhd8ed1ab_0 
+  pygments           conda-forge/noarch::pygments-2.17.2-pyhd8ed1ab_0 
+  pysocks            conda-forge/noarch::pysocks-1.7.1-pyha2e5f31_6 
+  python-fastjsonsc~ conda-forge/noarch::python-fastjsonschema-2.19.1-pyhd8ed1ab_0 
+  python-json-logger conda-forge/noarch::python-json-logger-2.0.7-pyhd8ed1ab_0 
+  pyyaml             conda-forge/linux-64::pyyaml-6.0.1-py310h2372a71_1 
+  pyzmq              conda-forge/linux-64::pyzmq-25.1.2-py310h795f18f_0 
+  referencing        conda-forge/noarch::referencing-0.34.0-pyhd8ed1ab_0 
+  requests           conda-forge/noarch::requests-2.31.0-pyhd8ed1ab_0 
+  rfc3339-validator  conda-forge/noarch::rfc3339-validator-0.1.4-pyhd8ed1ab_0 
+  rfc3986-validator  conda-forge/noarch::rfc3986-validator-0.1.1-pyh9f0ad1d_0 
+  rpds-py            conda-forge/linux-64::rpds-py-0.18.0-py310hcb5633a_0 
+  send2trash         conda-forge/noarch::send2trash-1.8.2-pyh41d4057_0 
+  sniffio            conda-forge/noarch::sniffio-1.3.1-pyhd8ed1ab_0 
+  soupsieve          conda-forge/noarch::soupsieve-2.5-pyhd8ed1ab_1 
+  stack_data         conda-forge/noarch::stack_data-0.6.2-pyhd8ed1ab_0 
+  terminado          conda-forge/noarch::terminado-0.18.1-pyh0d859eb_0 
+  tinycss2           conda-forge/noarch::tinycss2-1.2.1-pyhd8ed1ab_0 
+  tomli              conda-forge/noarch::tomli-2.0.1-pyhd8ed1ab_0 
+  tornado            conda-forge/linux-64::tornado-6.4-py310h2372a71_0 
+  traitlets          conda-forge/noarch::traitlets-5.14.2-pyhd8ed1ab_0 
+  types-python-date~ conda-forge/noarch::types-python-dateutil-2.9.0.20240316-pyhd8ed1ab_0 
+  typing_utils       conda-forge/noarch::typing_utils-0.1.0-pyhd8ed1ab_0 
+  uri-template       conda-forge/noarch::uri-template-1.3.0-pyhd8ed1ab_0 
+  urllib3            conda-forge/noarch::urllib3-2.2.1-pyhd8ed1ab_0 
+  wcwidth            conda-forge/noarch::wcwidth-0.2.13-pyhd8ed1ab_0 
+  webcolors          conda-forge/noarch::webcolors-1.13-pyhd8ed1ab_0 
+  webencodings       conda-forge/noarch::webencodings-0.5.1-pyhd8ed1ab_2 
+  websocket-client   conda-forge/noarch::websocket-client-1.7.0-pyhd8ed1ab_0 
+  yaml               conda-forge/linux-64::yaml-0.2.5-h7f98852_2 
+  zeromq             conda-forge/linux-64::zeromq-4.3.5-h59595ed_1 
+  zipp               conda-forge/noarch::zipp-3.17.0-pyhd8ed1ab_0 
+
+
+Proceed ([y]/n)? y
+
+
+Downloading and Extracting Packages:
+
+Preparing transaction: done
+Verifying transaction: done
+Executing transaction: done
+(rdkit-latest) deanelzinga@cde-ubuntu-g5-3:~/phillipdowney/paccmann_rl$ ipython
+Python 3.10.0 | packaged by conda-forge | (default, Nov 20 2021, 02:24:10) [GCC 9.4.0]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 8.22.2 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: from rdkit import Chem
+
+In [2]: Chem.MolFromSmiles('CCOC(=O)CC(OC1OC2OC3(C)CCC4C(C)CCC(C1C)C24OO3)c1ccc(cc1)N(=O)=O')
+Out[2]: <rdkit.Chem.rdchem.Mol at 0x7f71f16a6d50>
+
+In [3]: m = Chem.MolFromSmiles('CCOC(=O)CC(OC1OC2OC3(C)CCC4C(C)CCC(C1C)C24OO3)c1ccc(cc1)N(=O)=O', sanitize=False)
+
+In [4]: problems = Chem.DetectChemistryProblems(m)
+
+In [5]: problems
+Out[5]: ()
+
+In [6]: m = Chem.MolFromSmiles('CCOC(=O)CC(OC1OC2OC3(C)CCC4C(C)CCC(C1C)C24OO3)c1ccc(cc1)N(=O)=O', sanitize=True)
+
+In [7]:                                                                                                                                                                                                                                                                                                                     
+Do you really want to exit ([y]/n)? y
+(rdkit-latest) deanelzinga@cde-ubuntu-g5-3:~/phillipdowney/paccmann_rl$ conda deactivate
+(openad-train) deanelzinga@cde-ubuntu-g5-3:~/phillipdowney/paccmann_rl$ /opt/conda/envs/openad-train/bin/python /home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_chemistry/examples/do_train_vae_as_svae.py
+2024-03-20 00:55:06.847234: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-20 00:55:06.996355: E tensorflow/stream_executor/cuda/cuda_blas.cc:2981] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2024-03-20 00:55:07.476303: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer.so.7'; dlerror: libnvinfer.so.7: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /usr/local/cuda-11/lib64:/opt/amazon/efa/lib:/opt/amazon/openmpi/lib:/usr/local/cuda/efa/lib:/usr/local/cuda/lib:/usr/local/cuda:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:/usr/local/cuda/targets/x86_64-linux/lib:/usr/local/lib:/usr/lib:
+2024-03-20 00:55:07.476412: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer_plugin.so.7'; dlerror: libnvinfer_plugin.so.7: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /usr/local/cuda-11/lib64:/opt/amazon/efa/lib:/opt/amazon/openmpi/lib:/usr/local/cuda/efa/lib:/usr/local/cuda/lib:/usr/local/cuda:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:/usr/local/cuda/targets/x86_64-linux/lib:/usr/local/lib:/usr/lib:
+2024-03-20 00:55:07.476429: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+INFO:training_vae:Model with name svae starts.
+/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_datasets/pytoda/smiles/smiles_language.py:179: FutureWarning: Loading languages will use a text files in the future
+  warnings.warn(
+INFO:training_vae:Smiles filepath: ./data/splitted_data/train_chembl_22_clean_1576904_sorted_std_final-filt.smi
+ERROR:pytoda.datasets.smiles_dataset:Since you provided a smiles_language, the following parameters to this class will be ignored: canonical, augment, kekulize, all_bonds_explicit, selfies, sanitize, all_hs_explicit, remove_bonddir, remove_chirality, randomize, add_start_and_stop, padding, padding_length.
+Here are the problems:
+ERROR:pytoda.datasets.smiles_dataset:Looking great, no problems found!
+WARNING:pytoda.smiles.smiles_language:NOTE: We found 3 smiles that failed to be transformed (excluding invalid smiles). Inspect the attribute `failed_transform_smiles`.
+WARNING:pytoda.smiles.smiles_language:74 new token(s) were added to SMILES language.
+ERROR:pytoda.datasets.smiles_dataset:Since you provided a smiles_language, the following parameters to this class will be ignored: canonical, augment, kekulize, all_bonds_explicit, selfies, sanitize, all_hs_explicit, remove_bonddir, remove_chirality, randomize, add_start_and_stop, padding, padding_length.
+Here are the problems:
+ERROR:pytoda.datasets.smiles_dataset:Looking great, no problems found!
+WARNING:pytoda.smiles.smiles_language:NOTE: We found 1 smiles that failed to be transformed (excluding invalid smiles). Inspect the attribute `failed_transform_smiles`.
+/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_datasets/pytoda/smiles/smiles_language.py:214: FutureWarning: Saving languages will only store a text files in the future
+  warnings.warn(
+INFO:training_vae:
+****MODEL SUMMARY***
+
+INFO:training_vae:Param encoder.stack_controls_layer.weight, shape:     torch.Size([3, 512])
+INFO:training_vae:Param encoder.stack_controls_layer.bias, shape:       torch.Size([3])
+INFO:training_vae:Param encoder.stack_input_layer.weight, shape:        torch.Size([50, 512])
+INFO:training_vae:Param encoder.stack_input_layer.bias, shape:  torch.Size([50])
+INFO:training_vae:Param encoder.embedding.weight, shape:        torch.Size([161, 161])
+INFO:training_vae:Param encoder.gru.weight_ih_l0, shape:        torch.Size([1536, 211])
+INFO:training_vae:Param encoder.gru.weight_hh_l0, shape:        torch.Size([1536, 512])
+INFO:training_vae:Param encoder.gru.bias_ih_l0, shape:  torch.Size([1536])
+INFO:training_vae:Param encoder.gru.bias_hh_l0, shape:  torch.Size([1536])
+INFO:training_vae:Param encoder.gru.weight_ih_l1, shape:        torch.Size([1536, 512])
+INFO:training_vae:Param encoder.gru.weight_hh_l1, shape:        torch.Size([1536, 512])
+INFO:training_vae:Param encoder.gru.bias_ih_l1, shape:  torch.Size([1536])
+INFO:training_vae:Param encoder.gru.bias_hh_l1, shape:  torch.Size([1536])
+INFO:training_vae:Param encoder.hidden_to_mu.weight, shape:     torch.Size([256, 512])
+INFO:training_vae:Param encoder.hidden_to_mu.bias, shape:       torch.Size([256])
+INFO:training_vae:Param encoder.hidden_to_logvar.weight, shape: torch.Size([256, 512])
+INFO:training_vae:Param encoder.hidden_to_logvar.bias, shape:   torch.Size([256])
+INFO:training_vae:Param decoder.stack_controls_layer.weight, shape:     torch.Size([3, 512])
+INFO:training_vae:Param decoder.stack_controls_layer.bias, shape:       torch.Size([3])
+INFO:training_vae:Param decoder.stack_input_layer.weight, shape:        torch.Size([50, 512])
+INFO:training_vae:Param decoder.stack_input_layer.bias, shape:  torch.Size([50])
+INFO:training_vae:Param decoder.embedding.weight, shape:        torch.Size([161, 161])
+INFO:training_vae:Param decoder.gru.weight_ih_l0, shape:        torch.Size([1536, 211])
+INFO:training_vae:Param decoder.gru.weight_hh_l0, shape:        torch.Size([1536, 512])
+INFO:training_vae:Param decoder.gru.bias_ih_l0, shape:  torch.Size([1536])
+INFO:training_vae:Param decoder.gru.bias_hh_l0, shape:  torch.Size([1536])
+INFO:training_vae:Param decoder.gru.weight_ih_l1, shape:        torch.Size([1536, 512])
+INFO:training_vae:Param decoder.gru.weight_hh_l1, shape:        torch.Size([1536, 512])
+INFO:training_vae:Param decoder.gru.bias_ih_l1, shape:  torch.Size([1536])
+INFO:training_vae:Param decoder.gru.bias_hh_l1, shape:  torch.Size([1536])
+INFO:training_vae:Param decoder.latent_to_hidden.weight, shape: torch.Size([512, 256])
+INFO:training_vae:Param decoder.latent_to_hidden.bias, shape:   torch.Size([512])
+INFO:training_vae:Param decoder.output_layer.weight, shape:     torch.Size([161, 512])
+INFO:training_vae:Param decoder.output_layer.bias, shape:       torch.Size([161])
+INFO:training_vae:Total # params: 5962125
+INFO:training_vae:Model creation and data processing done, Training starts.
+{'add_start_stop_token': True,
+ 'batch_mode': 'packed',
+ 'batch_size': 256,
+ 'bidirectional': False,
+ 'decoder_search': 'sampling',
+ 'dropout': 0.2,
+ 'embedding': 'one_hot',
+ 'embedding_size': 161,
+ 'end_index': 3,
+ 'epochs': 50,
+ 'eval_interval': 500,
+ 'generate_len': 100,
+ 'input_keep': 0.85,
+ 'kl_growth': 0.003,
+ 'latent_dim': 256,
+ 'learning_rate': 0.0005,
+ 'log_interval': 100,
+ 'n_layers': 2,
+ 'num_workers': 0,
+ 'optimizer': 'adam',
+ 'pad_index': 0,
+ 'pin_memory': False,
+ 'rnn_cell_size': 512,
+ 'save_interval': 1000,
+ 'selfies': True,
+ 'stack_depth': 50,
+ 'stack_width': 50,
+ 'start_index': 2,
+ 'temperature': 0.8,
+ 'test_input_keep': 1.0,
+ 'training_name': 'svae',
+ 'vocab_size': 161}
+INFO:training_vae:***TRAINING***         Epoch: 0, step 100/5539.       Loss: 781.6260, time spent: 167.745671749115
+INFO:training_vae:Sample input:
+         COC1=CC=C(Cl)C=C1NC(=O)CSC2=NC(=NS2)C3=CC=CC=C3Cl, model reconstructed:
+         CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+INFO:training_vae:***TRAINING***         Epoch: 0, step 200/5539.       Loss: 649.5419, time spent: 156.54849290847778
+INFO:training_vae:Sample input:
+         CC(C)C1=CC=CC=C1NC(=O)C2=CC(=O)C3=CC=CC(NS(C)(=O)=O)=C3N2, model reconstructed:
+         CCCCCCCCCC=CC=CCCCC=CCCC=CC=CC=CC=CC=CCCCCC=CCC=CCCCCCCCCC
+INFO:training_vae:***TRAINING***         Epoch: 0, step 300/5539.       Loss: 604.8237, time spent: 167.60946130752563
+INFO:training_vae:Sample input:
+         CC1=CC=C(C)C(NC(=O)CCCCCCCCCCC2COCCO2)=C1, model reconstructed:
+         CCCC=CCCCCCC(C)CC=O
+INFO:training_vae:***TRAINING***         Epoch: 0, step 400/5539.       Loss: 552.7370, time spent: 175.03138160705566
+INFO:training_vae:Sample input:
+         ClC1=CC=C(CN2CCN(CC2)C3C(=O)NC4=CC=CC=C34)C=C1, model reconstructed:
+         CC=CC=CC=CC=CCCCCCC(=C)CC=O
+INFO:training_vae:***TRAINING***         Epoch: 0, step 500/5539.       Loss: 379.0675, time spent: 144.14080238342285
+INFO:training_vae:Sample input:
+         O=C1OCCC2=C1[NH1]C=C3N=C4C=CC=CC4=C23, model reconstructed:
+         C=1CCC=CCCC(C)CC=C=1
+WARNING:pytoda.smiles.smiles_language:Could not convert SELFIES [NH1+1]C[I+1][P+1][Branch1][#C][C][C][=C][C][=C][N][C][Branch1][C][O][=O][C][=Branch1][C][=O][N][C][Branch1][#Branch1][C][C][Branch1][C][C][O][N][C][=Branch1][C][=O][N][C][=Branch1][C][=O][C][C][Branch1][Branch2][C][C][C][C][N][C][=Branch1][C][=O][C][Branch1][Branch2][C][C][C][=C][C][=C][Ring1][Branch1][N][C][=Branch1][C][=O][N][C][Branch1][#Branch1][C][C][C][C][N][N][C][C][C][=O][=Branch1][C][=O][N][C][Branch1][C][C][C][N][C][=Branch1][C][=O][C][C] to SMILES, returning the SELFIES instead
+INFO:training_vae:
+Sample Generated Molecule:
+[NH1+1]C[I+1][P+1][Branch1][#C][C][C][=C][C][=C][N][C][Branch1][C][O][=O][C][=Branch1][C][=O][N][C][Branch1][#Branch1][C][C][Branch1][C][C][O][N][C][=Branch1][C][=O][N][C][=Branch1][C][=O][C][C][Branch1][Branch2][C][C][C][C][N][C][=Branch1][C][=O][C][Branch1][Branch2][C][C][C][=C][C][=C][Ring1][Branch1][N][C][=Branch1][C][=O][N][C][Branch1][#Branch1][C][C][C][C][N][N][C][C][C][=O][=Branch1][C][=O][N][C][Branch1][C][C][C][N][C][=Branch1][C][=O][C][C]
+ERROR:training_vae:Exception occurred while running train_vae.py.
+Traceback (most recent call last):
+  File "/opt/conda/envs/openad-train/lib/python3.10/site-packages/selfies/encoder.py", line 65, in encoder
+    mol = smiles_to_mol(smiles, attributable=attribute)
+  File "/opt/conda/envs/openad-train/lib/python3.10/site-packages/selfies/utils/smiles_utils.py", line 217, in smiles_to_mol
+    i = _derive_mol_from_tokens(mol, smiles, tokens, i)
+  File "/opt/conda/envs/openad-train/lib/python3.10/site-packages/selfies/utils/smiles_utils.py", line 293, in _derive_mol_from_tokens
+    raise SMILESParserError(smiles, err_msg, tok.start_idx)
+selfies.exceptions.SMILESParserError: 
+        SMILES: CN(C)CCN(C)P123Oc4ccccc4O1.Clc1c(O2)c(O3)c(Cl)c(Cl)c1Cl
+                              ^
+        Index:  14
+        Reason: hanging ring number '3'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_chemistry/examples/train_vae.py", line 314, in main
+    loss_tracker = train_vae(
+  File "/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_chemistry/paccmann_chemistry/models/training.py", line 267, in train_vae
+    test_loss, test_rec, test_kld = test_vae(
+  File "/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_chemistry/paccmann_chemistry/models/training.py", line 40, in test_vae
+    for _iter, batch in enumerate(dataloader):
+  File "/opt/conda/envs/openad-train/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 631, in __next__
+    data = self._next_data()
+  File "/opt/conda/envs/openad-train/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 675, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "/opt/conda/envs/openad-train/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 51, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/opt/conda/envs/openad-train/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 51, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_datasets/pytoda/datasets/smiles_dataset.py", line 236, in __getitem__
+    return self.smiles_language.smiles_to_token_indexes(self.dataset[index])
+  File "/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_datasets/pytoda/smiles/smiles_language.py", line 609, in smiles_to_token_indexes
+    for token in self.smiles_tokenizer(self.transform_smiles(smiles))
+  File "/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_datasets/pytoda/transforms.py", line 251, in __call__
+    sample = transform(sample)
+  File "/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_datasets/pytoda/smiles/transforms.py", line 542, in __call__
+    return selfies_encoder(smiles)
+  File "/opt/conda/envs/openad-train/lib/python3.10/site-packages/selfies/encoder.py", line 68, in encoder
+    raise EncoderError(err_msg) from err
+selfies.exceptions.EncoderError: failed to parse input
+        SMILES: CN(C)CCN(C)P123Oc4ccccc4O1.Clc1c(O2)c(O3)c(Cl)c(Cl)c1Cl
+(openad-train) deanelzinga@cde-ubuntu-g5-3:~/phillipdowney/paccmann_rl$ grep -R -F 'CN(C)CCN(C)P123Oc4ccccc4O1.Clc1c(O2)c(O3)c(Cl)c(Cl)c1Cl' data
+data/smiles/chembl_cleaned.smi:CN(C)CCN(C)P123Oc4ccccc4O1.Clc1c(O2)c(O3)c(Cl)c(Cl)c1Cl  CHEMBL1975422
+data/smiles/chembl_22_clean_1576904_sorted_std_final.smi:CN(C)CCN(C)P123Oc4ccccc4O1.Clc1c(O2)c(O3)c(Cl)c(Cl)c1Cl        CHEMBL1975422
+data/splitted_data/test_chembl_22_clean_1576904_sorted_std_final.smi:CN(C)CCN(C)P123Oc4ccccc4O1.Clc1c(O2)c(O3)c(Cl)c(Cl)c1Cl    CHEMBL1975422
+data/splitted_data/test_chembl_22_clean_1576904_sorted_std_final-filt2.smi:CN(C)CCN(C)P123Oc4ccccc4O1.Clc1c(O2)c(O3)c(Cl)c(Cl)c1Cl      CHEMBL1975422
+data/splitted_data/test_chembl_22_clean_1576904_sorted_std_final-filt.smi:CN(C)CCN(C)P123Oc4ccccc4O1.Clc1c(O2)c(O3)c(Cl)c(Cl)c1Cl       CHEMBL1975422
+(openad-train) deanelzinga@cde-ubuntu-g5-3:~/phillipdowney/paccmann_rl$ ls data/splitted_data/test_chembl_22_clean_1576904_sorted_std_final-filt*
+data/splitted_data/test_chembl_22_clean_1576904_sorted_std_final-filt-self.smi  data/splitted_data/test_chembl_22_clean_1576904_sorted_std_final-filt.smi  data/splitted_data/test_chembl_22_clean_1576904_sorted_std_final-filt2.smi
+(openad-train) deanelzinga@cde-ubuntu-g5-3:~/phillipdowney/paccmann_rl$ ls models/
+paccmann  paccmann_v2  paccmann_v2_20240317_1043  pvae  svae
+(openad-train) deanelzinga@cde-ubuntu-g5-3:~/phillipdowney/paccmann_rl$ cd models/svae
+(openad-train) deanelzinga@cde-ubuntu-g5-3:~/phillipdowney/paccmann_rl/models/svae$ ls
+logs  loss_tracker.json  model_params.json  results  smiles_language_chembl_gdsc_ccle.pkl  weights
+(openad-train) deanelzinga@cde-ubuntu-g5-3:~/phillipdowney/paccmann_rl/models/svae$ tree
+.
+├── logs
+│   └── val_logs
+├── loss_tracker.json
+├── model_params.json
+├── results
+├── smiles_language_chembl_gdsc_ccle.pkl
+└── weights
+    └── best_rec.pt
+
+4 directories, 4 files
+(openad-train) deanelzinga@cde-ubuntu-g5-3:~/phillipdowney/paccmann_rl/models/svae$ cd ..
+(openad-train) deanelzinga@cde-ubuntu-g5-3:~/phillipdowney/paccmann_rl/models$ mv svae svae-20240320-005506
+(openad-train) deanelzinga@cde-ubuntu-g5-3:~/phillipdowney/paccmann_rl/models$ cd ..
+(openad-train) deanelzinga@cde-ubuntu-g5-3:~/phillipdowney/paccmann_rl$ /opt/conda/envs/openad-train/bin/python /home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_chemistry/examples/do_train_vae_as_svae.py
+2024-03-20 01:51:21.971357: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-03-20 01:51:22.121851: E tensorflow/stream_executor/cuda/cuda_blas.cc:2981] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2024-03-20 01:51:22.611572: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer.so.7'; dlerror: libnvinfer.so.7: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /usr/local/cuda-11/lib64:/opt/amazon/efa/lib:/opt/amazon/openmpi/lib:/usr/local/cuda/efa/lib:/usr/local/cuda/lib:/usr/local/cuda:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:/usr/local/cuda/targets/x86_64-linux/lib:/usr/local/lib:/usr/lib:
+2024-03-20 01:51:22.611673: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer_plugin.so.7'; dlerror: libnvinfer_plugin.so.7: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /usr/local/cuda-11/lib64:/opt/amazon/efa/lib:/opt/amazon/openmpi/lib:/usr/local/cuda/efa/lib:/usr/local/cuda/lib:/usr/local/cuda:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:/usr/local/cuda/targets/x86_64-linux/lib:/usr/local/lib:/usr/lib:
+2024-03-20 01:51:22.611690: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+INFO:training_vae:Model with name svae starts.
+/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_datasets/pytoda/smiles/smiles_language.py:179: FutureWarning: Loading languages will use a text files in the future
+  warnings.warn(
+INFO:training_vae:Smiles filepath: ./data/splitted_data/train_chembl_22_clean_1576904_sorted_std_final-filt-self.smi
+ERROR:pytoda.datasets.smiles_dataset:Since you provided a smiles_language, the following parameters to this class will be ignored: canonical, augment, kekulize, all_bonds_explicit, selfies, sanitize, all_hs_explicit, remove_bonddir, remove_chirality, randomize, add_start_and_stop, padding, padding_length.
+Here are the problems:
+ERROR:pytoda.datasets.smiles_dataset:Looking great, no problems found!
+WARNING:pytoda.smiles.smiles_language:68 new token(s) were added to SMILES language.
+ERROR:pytoda.datasets.smiles_dataset:Since you provided a smiles_language, the following parameters to this class will be ignored: canonical, augment, kekulize, all_bonds_explicit, selfies, sanitize, all_hs_explicit, remove_bonddir, remove_chirality, randomize, add_start_and_stop, padding, padding_length.
+Here are the problems:
+ERROR:pytoda.datasets.smiles_dataset:Looking great, no problems found!
+/home/deanelzinga/phillipdowney/paccmann_rl/code/paccmann_datasets/pytoda/smiles/smiles_language.py:214: FutureWarning: Saving languages will only store a text files in the future
+  warnings.warn(
+INFO:training_vae:
+****MODEL SUMMARY***
+
+INFO:training_vae:Param encoder.stack_controls_layer.weight, shape:     torch.Size([3, 512])
+INFO:training_vae:Param encoder.stack_controls_layer.bias, shape:       torch.Size([3])
+INFO:training_vae:Param encoder.stack_input_layer.weight, shape:        torch.Size([50, 512])
+INFO:training_vae:Param encoder.stack_input_layer.bias, shape:  torch.Size([50])
+INFO:training_vae:Param encoder.embedding.weight, shape:        torch.Size([155, 155])
+INFO:training_vae:Param encoder.gru.weight_ih_l0, shape:        torch.Size([1536, 205])
+INFO:training_vae:Param encoder.gru.weight_hh_l0, shape:        torch.Size([1536, 512])
+INFO:training_vae:Param encoder.gru.bias_ih_l0, shape:  torch.Size([1536])
+INFO:training_vae:Param encoder.gru.bias_hh_l0, shape:  torch.Size([1536])
+INFO:training_vae:Param encoder.gru.weight_ih_l1, shape:        torch.Size([1536, 512])
+INFO:training_vae:Param encoder.gru.weight_hh_l1, shape:        torch.Size([1536, 512])
+INFO:training_vae:Param encoder.gru.bias_ih_l1, shape:  torch.Size([1536])
+INFO:training_vae:Param encoder.gru.bias_hh_l1, shape:  torch.Size([1536])
+INFO:training_vae:Param encoder.hidden_to_mu.weight, shape:     torch.Size([256, 512])
+INFO:training_vae:Param encoder.hidden_to_mu.bias, shape:       torch.Size([256])
+INFO:training_vae:Param encoder.hidden_to_logvar.weight, shape: torch.Size([256, 512])
+INFO:training_vae:Param encoder.hidden_to_logvar.bias, shape:   torch.Size([256])
+INFO:training_vae:Param decoder.stack_controls_layer.weight, shape:     torch.Size([3, 512])
+INFO:training_vae:Param decoder.stack_controls_layer.bias, shape:       torch.Size([3])
+INFO:training_vae:Param decoder.stack_input_layer.weight, shape:        torch.Size([50, 512])
+INFO:training_vae:Param decoder.stack_input_layer.bias, shape:  torch.Size([50])
+INFO:training_vae:Param decoder.embedding.weight, shape:        torch.Size([155, 155])
+INFO:training_vae:Param decoder.gru.weight_ih_l0, shape:        torch.Size([1536, 205])
+INFO:training_vae:Param decoder.gru.weight_hh_l0, shape:        torch.Size([1536, 512])
+INFO:training_vae:Param decoder.gru.bias_ih_l0, shape:  torch.Size([1536])
+INFO:training_vae:Param decoder.gru.bias_hh_l0, shape:  torch.Size([1536])
+INFO:training_vae:Param decoder.gru.weight_ih_l1, shape:        torch.Size([1536, 512])
+INFO:training_vae:Param decoder.gru.weight_hh_l1, shape:        torch.Size([1536, 512])
+INFO:training_vae:Param decoder.gru.bias_ih_l1, shape:  torch.Size([1536])
+INFO:training_vae:Param decoder.gru.bias_hh_l1, shape:  torch.Size([1536])
+INFO:training_vae:Param decoder.latent_to_hidden.weight, shape: torch.Size([512, 256])
+INFO:training_vae:Param decoder.latent_to_hidden.bias, shape:   torch.Size([512])
+INFO:training_vae:Param decoder.output_layer.weight, shape:     torch.Size([155, 512])
+INFO:training_vae:Param decoder.output_layer.bias, shape:       torch.Size([155])
+INFO:training_vae:Total # params: 5936823
+INFO:training_vae:Model creation and data processing done, Training starts.
+{'add_start_stop_token': True,
+ 'batch_mode': 'packed',
+ 'batch_size': 256,
+ 'bidirectional': False,
+ 'decoder_search': 'sampling',
+ 'dropout': 0.2,
+ 'embedding': 'one_hot',
+ 'embedding_size': 155,
+ 'end_index': 3,
+ 'epochs': 50,
+ 'eval_interval': 500,
+ 'generate_len': 100,
+ 'input_keep': 0.85,
+ 'kl_growth': 0.003,
+ 'latent_dim': 256,
+ 'learning_rate': 0.0005,
+ 'log_interval': 100,
+ 'n_layers': 2,
+ 'num_workers': 0,
+ 'optimizer': 'adam',
+ 'pad_index': 0,
+ 'pin_memory': False,
+ 'rnn_cell_size': 512,
+ 'save_interval': 1000,
+ 'selfies': True,
+ 'stack_depth': 50,
+ 'stack_width': 50,
+ 'start_index': 2,
+ 'temperature': 0.8,
+ 'test_input_keep': 1.0,
+ 'training_name': 'svae',
+ 'vocab_size': 155}
+INFO:training_vae:***TRAINING***         Epoch: 0, step 100/5322.       Loss: 771.7412, time spent: 165.6375060081482
+INFO:training_vae:Sample input:
+         COC1=CC(=CC=C1N2C=NC(C)=C2)C(=O)NC3COC4=C3C=CC=C4Cl, model reconstructed:
+         CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+INFO:training_vae:***TRAINING***         Epoch: 0, step 200/5322.       Loss: 708.6385, time spent: 168.4475302696228
+INFO:training_vae:Sample input:
+         CC1=CC(NC(=O)CSC2=NN=CN2C3=CC=CC=C3)=NO1, model reconstructed:
+         CCCC=CCCCC=CC=CCCCCCCCCCCCC=CC=CC=CCCCCCC
+INFO:training_vae:***TRAINING***         Epoch: 0, step 300/5322.       Loss: 565.9760, time spent: 162.51980900764465
+INFO:training_vae:Sample input:
+         CC1=CN=CC(OC2=CC=C(NC(=O)NC3=CC(C)=NC4=CC=CC=C34)C=C2)=N1, model reconstructed:
+         CC=CCCC=CC=CCCCC=CC=C(C)CC=O
+INFO:training_vae:***TRAINING***         Epoch: 0, step 400/5322.       Loss: 521.1083, time spent: 171.3530240058899
+INFO:training_vae:Sample input:
+         COC(=O)C(=C(C)C1=CC=CO1)P(=O)(OC)OC, model reconstructed:
+         CCCCC=CC=CCCCCCCCC=CC#CCC=O
+INFO:training_vae:***TRAINING***         Epoch: 0, step 500/5322.       Loss: 436.1350, time spent: 163.5305314064026
+INFO:training_vae:Sample input:
+         CCCOC1=CC=C(C=C1)C(=O)NCC2OCCC3=CC=CC=C23, model reconstructed:
+         CC=C=CC=CC=CC=CC=CC(O)CC=CCCCC1CC=CC=C1C
+WARNING:pytoda.smiles.smiles_language:Could not convert SELFIES [/C][P+1]%22[CH1][N][S][Branch1][C][C][=Branch1][C][=O][N][Branch1][Branch1][C][C][C][Branch1][C][N][=O] to SMILES, returning the SELFIES instead
+INFO:training_vae:
+Sample Generated Molecule:
+[/C][P+1]%22[CH1][N][S][Branch1][C][C][=Branch1][C][=O][N][Branch1][Branch1][C][C][C][Branch1][C][N][=O]
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 0, test loss = 133000.6119, reconstruction = 384.3729, KL = 132616.2385.
+INFO:training_vae:Epoch 0. NEW best reconstruction loss = 384.3729       (Loss = 133000.6119, KLD = 132616.2385)
+INFO:training_vae:***TRAINING***         Epoch: 0, step 600/5322.       Loss: 446.7892, time spent: 518.5218877792358
+INFO:training_vae:Sample input:
+         CC(=O)OC1=CC=C(C=CS(=O)(=O)NCC2=CC=C(F)C=C2)C=C1OC(C)=O, model reconstructed:
+         CCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 0, step 700/5322.       Loss: 400.2581, time spent: 166.30594205856323
+INFO:training_vae:Sample input:
+         COC1=CC=C(C=C1OC)C2(CCCC2)C(=O)NC3=CC=C(C=C3)S(=O)(=O)NC4=NC(C)=CC(C)=N4, model reconstructed:
+         CCC=CC=CCCC=CCC=CCCCC=CCCCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 0, step 800/5322.       Loss: 378.2390, time spent: 174.87099766731262
+INFO:training_vae:Sample input:
+         CCCCCC1=C(OC2=CC(OC)=CC3=C2C(=O)OC3(CCCC)OC)C(O)=CC(O)=C1C(O)=O, model reconstructed:
+         CCCCCCC1C=C(C)C=CCCCCC=CC=C1C=CCCCCCCC2CCCCCCCC3CC3COC2OCCOC
+INFO:training_vae:***TRAINING***         Epoch: 0, step 900/5322.       Loss: 371.8415, time spent: 173.55537033081055
+INFO:training_vae:Sample input:
+         CC1=CC=C(OCCSC2=NC=CC=N2)C(C)=C1, model reconstructed:
+         C1CCC=CC(C=C)CCCC=C1C(=C)CCCC
+INFO:training_vae:***TRAINING***         Epoch: 0, step 1000/5322.      Loss: 371.0686, time spent: 175.89507150650024
+INFO:training_vae:Sample input:
+         OC(CNCC1=CC=C2C=CC3=CC=CC4=CC=C1C2=C34)C5=CC=CC=C5, model reconstructed:
+         C=1CCCC=CCC=CC=C=1
+INFO:training_vae:***SAVING***   Epoch 0, saved model.
+INFO:training_vae:
+Sample Generated Molecule:
+C(CC1=CN=C(N)N)C1=O
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 0, test loss = 60320.8319, reconstruction = 279.5970, KL = 60041.2349.
+INFO:training_vae:Epoch 0. NEW best test loss = 60320.8319      (Rec = 279.5970, KLD = 60041.2349).
+INFO:training_vae:Epoch 0. NEW best reconstruction loss = 279.5970       (Loss = 60320.8319, KLD = 60041.2349)
+INFO:training_vae:Epoch 0. NEW best KLD = 60041.2349     (loss = 60320.8319, Reconstruction = 279.5970).
+INFO:training_vae:***TRAINING***         Epoch: 0, step 1100/5322.      Loss: 324.2024, time spent: 510.8809792995453
+INFO:training_vae:Sample input:
+         FC(F)(F)C1(CC(CCCO1)=CCC2=CC=CC=C2)C(=O)NCC3=CC=CC=C3, model reconstructed:
+         FC=CCF
+INFO:training_vae:***TRAINING***         Epoch: 0, step 1200/5322.      Loss: 298.7890, time spent: 165.96025776863098
+INFO:training_vae:Sample input:
+         OC1=C(Br)C=C2C(OC3=C(Br)C(O)=C(Br)C=C3C24OC(=O)C5=C4C(Cl)=C(Cl)C(Cl)=C5Cl)=C1Br, model reconstructed:
+         CC=CC1CCCCC=C1CCCCCCC=CCF
+INFO:training_vae:***TRAINING***         Epoch: 0, step 1300/5322.      Loss: 287.3422, time spent: 157.0168604850769
+INFO:training_vae:Sample input:
+         BrC1=CC=C(OCC(=O)NCC2=CN3C=CC=CC3=N2)C=C1, model reconstructed:
+         FC=CC=C(C)C(C)OCCCCC=C1CC=CC=C1CC
+INFO:training_vae:***TRAINING***         Epoch: 0, step 1400/5322.      Loss: 284.8253, time spent: 163.63402557373047
+INFO:training_vae:Sample input:
+         COC1=CC=C(Br)C=C1CN(C)C(C)C(=O)NC2=CC=CC(=C2)C(C)=O, model reconstructed:
+         CCC=CC=CCCCC=CCCCCCCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 0, step 1500/5322.      Loss: 291.8208, time spent: 161.57727193832397
+INFO:training_vae:Sample input:
+         CN(CC1=CN=C2N=C(N)N=C(N)C2=N1)C3=CC=C(C=C3)C(=O)NC(CCCCNC(=O)CBr)C(O)=O, model reconstructed:
+         CC=C1CCCC2=C1CCC=C2C(=C)C=CC=CC(O)NCCCCC=CCCC(=O)NCC=CCCC
+INFO:training_vae:
+Sample Generated Molecule:
+NCCOC(=O)NC(CCC(N)=O)C(N)=O
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 0, test loss = 34066.2197, reconstruction = 249.5148, KL = 33816.7049.
+INFO:training_vae:Epoch 0. NEW best test loss = 34066.2197      (Rec = 249.5148, KLD = 33816.7049).
+INFO:training_vae:Epoch 0. NEW best reconstruction loss = 249.5148       (Loss = 34066.2197, KLD = 33816.7049)
+INFO:training_vae:Epoch 0. NEW best KLD = 33816.7049     (loss = 34066.2197, Reconstruction = 249.5148).
+INFO:training_vae:***TRAINING***         Epoch: 0, step 1600/5322.      Loss: 283.4491, time spent: 512.2253549098969
+INFO:training_vae:Sample input:
+         O=C(NC(CC1=CC=CS1)C(=O)NC2C3N(CCS3(=O)=O)C2=O)OCC4=CC=CC=C4, model reconstructed:
+         O=C(NCC)CCCCC=CC(C)OCCC=CCC1=CC=CC=C1C
+INFO:training_vae:***TRAINING***         Epoch: 0, step 1700/5322.      Loss: 298.8871, time spent: 166.86608362197876
+INFO:training_vae:Sample input:
+         CC(O)(CC1=CC=NC(NC(N)=O)=C1)C2=CC=CC=C2, model reconstructed:
+         C1C2CC=CC2CCCC=CN=C1C(O)OCC(=C)C=C
+INFO:training_vae:***TRAINING***         Epoch: 0, step 1800/5322.      Loss: 276.8854, time spent: 161.6339123249054
+INFO:training_vae:Sample input:
+         CC1=CC=C(CNC(=O)CN2C(=O)NC(C)(C2=O)C3=CC=C(Cl)C=C3)C=C1, model reconstructed:
+         CC=CC=C(C)CC(=O)C=CC(=O)CCCCCCCCC(C)CC=CCCF
+INFO:training_vae:***TRAINING***         Epoch: 0, step 1900/5322.      Loss: 289.1581, time spent: 171.98312139511108
+INFO:training_vae:Sample input:
+         CC1=CN(C2CC(O)C(CNC(=S)NC3=CC=C(OCC4=CC=CC=C4)C=C3)O2)C(=O)NC1=O, model reconstructed:
+         CC1CC=C1CCCCCCCCCCCCC(O)CCCC=C(O2)C=C2CC=CC=CC=CCCC=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 0, step 2000/5322.      Loss: 263.6919, time spent: 166.8721923828125
+INFO:training_vae:Sample input:
+         CCC(C)C1NC(=O)C(CCCN=C(N)N)NC(=O)C(CC(O)=O)NC(=O)C(NC(=O)C(CCCN=C(N)N)NC(=O)CNC(=O)CNC(=O)C(CC2=CC=CC=C2)NC(=O)C(CSSCC(NC(=O)C(CC(C)C)NC(=O)CNC(=O)C(CO)NC(=O)C(CCC(N)=O)NC(=O)C(C)NC(=O)CNC1=O)C(=O)NC(C)C(=O)NC(CC(N)=O)C(=O)NC(CO)C(=O)NC(CC3=CC=CC=C3)C(=O)NC(CCCN=C(N)N)C(N)=O)NC(=O)C(CO)NC(=O)C(N)CO)C(C)CC, model reconstructed:
+         CCCCCCCCC(=O)C(CCCNCN)NNC(=O)C(CC(C)=O)C=O
+INFO:training_vae:***SAVING***   Epoch 0, saved model.
+WARNING:pytoda.smiles.smiles_language:Could not convert SELFIES 9%24[\C]%19[=S+1]%10[=Ring3][S+][=S][Cl][C][Branch1][C][N][=N] to SMILES, returning the SELFIES instead
+INFO:training_vae:
+Sample Generated Molecule:
+9%24[\C]%19[=S+1]%10[=Ring3][S+][=S][Cl][C][Branch1][C][N][=N]
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 0, test loss = 10913.5278, reconstruction = 225.9410, KL = 10687.5869.
+INFO:training_vae:Epoch 0. NEW best test loss = 10913.5278      (Rec = 225.9410, KLD = 10687.5869).
+INFO:training_vae:Epoch 0. NEW best reconstruction loss = 225.9410       (Loss = 10913.5278, KLD = 10687.5869)
+INFO:training_vae:Epoch 0. NEW best KLD = 10687.5869     (loss = 10913.5278, Reconstruction = 225.9410).
+INFO:training_vae:***TRAINING***         Epoch: 0, step 2100/5322.      Loss: 275.7395, time spent: 521.5917387008667
+INFO:training_vae:Sample input:
+         S=C(NCC1=CC2=CC=CC=C2[NH1]1)SCC3=CC=CC=C3, model reconstructed:
+         O1CCCCCCCC=CC=C1C(C)NC(=C)C=CC=C
+INFO:training_vae:***TRAINING***         Epoch: 0, step 2200/5322.      Loss: 278.2868, time spent: 166.25334072113037
+INFO:training_vae:Sample input:
+         CC(C)C(NC(=O)CN1CCC(=O)N(CC(O)=O)C1=O)C(=O)N2CCCC2C(=O)NC(C(C)C)C(=O)C3=NC4=CC=CC=C4O3, model reconstructed:
+         C1CCCCCC1CC(C)C=CC(C)C=O
+INFO:training_vae:***TRAINING***         Epoch: 0, step 2300/5322.      Loss: 256.8673, time spent: 161.54841232299805
+INFO:training_vae:Sample input:
+         CC1CCCC(C)N1C(=O)C2=CC3=C(C=N2)SC4=CC=CC=C34, model reconstructed:
+         CCCCCCCCCCC(C)C=O
+INFO:training_vae:***TRAINING***         Epoch: 0, step 2400/5322.      Loss: 257.9694, time spent: 164.7549650669098
+INFO:training_vae:Sample input:
+         COC1=CC(OC)=C(N2C(=O)C3=CC=CC=C3C4=CC=CC=C4C2=O)C(OC)=C1, model reconstructed:
+         COC=CC=CCOCCCC1C(=O)C2=CC=CC=C2C3=CC=CC=C3CCCC=C1
+INFO:training_vae:***TRAINING***         Epoch: 0, step 2500/5322.      Loss: 270.5783, time spent: 168.27957773208618
+INFO:training_vae:Sample input:
+         IC1=CC=C(CN(C2CNCC2N(CC3=CC=C(I)C=C3)S(=O)(=O)C4=CC=CC=C4)S(=O)(=O)C5=CC=CC=C5)C=C1, model reconstructed:
+         OC=CC=C=CC1CC1CCCC(C)(CCC2=CC=CO)C=C2CCC=O
+INFO:training_vae:
+Sample Generated Molecule:
+C1=CC(N)=NC1=O
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 0, test loss = 4719.3360, reconstruction = 217.0508, KL = 4502.2852.
+INFO:training_vae:Epoch 0. NEW best test loss = 4719.3360       (Rec = 217.0508, KLD = 4502.2852).
+INFO:training_vae:Epoch 0. NEW best reconstruction loss = 217.0508       (Loss = 4719.3360, KLD = 4502.2852)
+INFO:training_vae:Epoch 0. NEW best KLD = 4502.2852      (loss = 4719.3360, Reconstruction = 217.0508).
+INFO:training_vae:***TRAINING***         Epoch: 0, step 2600/5322.      Loss: 268.4764, time spent: 511.6313753128052
+INFO:training_vae:Sample input:
+         OC1=NC2=CC=CC=C2C(=O)N1CCN3CCC(CC4=C[NH1]C5=CC=C(F)C=C45)CC3, model reconstructed:
+         OC(=C)C=CC=CCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 0, step 2700/5322.      Loss: 259.7353, time spent: 163.12478804588318
+INFO:training_vae:Sample input:
+         COC(=O)CCC1=C(C)C(C(=O)C2=CC=CO2)=C3C=CC=CN13, model reconstructed:
+         COC=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 0, step 2800/5322.      Loss: 262.6762, time spent: 175.8169732093811
+INFO:training_vae:Sample input:
+         NCC1(CC2=NOC(=O)N2)CCCCCC1, model reconstructed:
+         NC=CCCCCCCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 0, step 2900/5322.      Loss: 249.3574, time spent: 167.0457420349121
+INFO:training_vae:Sample input:
+         COC1=CC=C(C=C1)S(=O)(=O)NC(CNC(C)C2=CC=CC(OC)=C2)CC3=CC=CC=C3, model reconstructed:
+         COC=CC=CC(C)C(=O)C=O
+INFO:training_vae:***TRAINING***         Epoch: 0, step 3000/5322.      Loss: 252.3949, time spent: 164.08252382278442
+INFO:training_vae:Sample input:
+         CCN1N=C(NS(=O)(=O)C2=CC=C(C)C=C2)C3=CC4=CC=CC=C4N=C13, model reconstructed:
+         COCC=C=CCC(=O)C=O
+INFO:training_vae:***SAVING***   Epoch 0, saved model.
+INFO:training_vae:
+Sample Generated Molecule:
+C1OC(N)=C1C
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 0, test loss = 1390.2368, reconstruction = 212.2829, KL = 1177.9539.
+INFO:training_vae:Epoch 0. NEW best test loss = 1390.2368       (Rec = 212.2829, KLD = 1177.9539).
+INFO:training_vae:Epoch 0. NEW best reconstruction loss = 212.2829       (Loss = 1390.2368, KLD = 1177.9539)
+INFO:training_vae:Epoch 0. NEW best KLD = 1177.9539      (loss = 1390.2368, Reconstruction = 212.2829).
+INFO:training_vae:***TRAINING***         Epoch: 0, step 3100/5322.      Loss: 255.4105, time spent: 518.6011064052582
+INFO:training_vae:Sample input:
+         CCNC1CCC2=CC(OC)=C(OC)C(OC)=C2C3=CC=C(SC)C(=O)C=C13, model reconstructed:
+         CCCC(C)CC=CCOC=CCCOCC=CCOC=CC=CC=CCCOC1C=C1CC=C
+INFO:training_vae:***TRAINING***         Epoch: 0, step 3200/5322.      Loss: 244.4029, time spent: 158.75163054466248
+INFO:training_vae:Sample input:
+         CC(=O)NC1=CC=C(NC(=O)CC=2SC(C)=NC=2C3=CC=C(C)C=C3)C=C1, model reconstructed:
+         CCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 0, step 3300/5322.      Loss: 244.0501, time spent: 165.29013013839722
+INFO:training_vae:Sample input:
+         CCN(CC)CC(N1CCN(C)CC1)C2=CC=CC=C2, model reconstructed:
+         CCCCCCCCCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 0, step 3400/5322.      Loss: 257.6728, time spent: 169.18083786964417
+INFO:training_vae:Sample input:
+         CCCCC1=NC(Cl)=C(CO)N1CC2=CC=C(C=C2)C3=CC=CC=C3NS(=O)(=O)C(F)(F)F, model reconstructed:
+         CCCCCCC=CCC#COCCC1(CC=C(C2)C1CC)C=C2CC=O
+INFO:training_vae:***TRAINING***         Epoch: 0, step 3500/5322.      Loss: 248.3699, time spent: 173.86384749412537
+INFO:training_vae:Sample input:
+         NC1=NC(=O)C=2N=CN(C3OC(COP(O)(=O)OP(O)(=O)OCC4=CN(CCCC(=O)NC(CC5=CC=CC=C5)C6=CC=CC=C6)N=N4)C(O)C3O)C=2N1, model reconstructed:
+         CC(=C)C=O
+INFO:training_vae:
+Sample Generated Molecule:
+COC1=CC=CC=C1OCCC(C)C2=NC=C(C=C2)NC3CCCCC3
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 0, test loss = 340.9467, reconstruction = 203.9632, KL = 136.9835.
+INFO:training_vae:Epoch 0. NEW best test loss = 340.9467        (Rec = 203.9632, KLD = 136.9835).
+INFO:training_vae:Epoch 0. NEW best reconstruction loss = 203.9632       (Loss = 340.9467, KLD = 136.9835)
+INFO:training_vae:Epoch 0. NEW best KLD = 136.9835       (loss = 340.9467, Reconstruction = 203.9632).
+INFO:training_vae:***TRAINING***         Epoch: 0, step 3600/5322.      Loss: 247.8654, time spent: 519.174617767334
+INFO:training_vae:Sample input:
+         CC(NC(=O)CN1N=C(C)N=C1C2=CC=CC=C2)C3CC3, model reconstructed:
+         C1C=C1CCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 0, step 3700/5322.      Loss: 249.4322, time spent: 171.11648178100586
+INFO:training_vae:Sample input:
+         NC1=NC(=O)N(C=C1)C2COC(CO)O2, model reconstructed:
+         CCCC=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 0, step 3800/5322.      Loss: 252.3204, time spent: 169.7695209980011
+INFO:training_vae:Sample input:
+         CC(C)(C)C1=CC(=C(O)C=2OC(=O)SC1=2)C(C)(C)C, model reconstructed:
+         CC(C)CCCCCCCC=CCCCC=CC(C1)C1CCOCCCC
+INFO:training_vae:***TRAINING***         Epoch: 0, step 3900/5322.      Loss: 229.9622, time spent: 161.4897747039795
+INFO:training_vae:Sample input:
+         CC1=CC(=O)C(O)C2(C)C1CC3OC(=O)C(O)C4(O)C5(CO)OCC34C2C(O)C5O, model reconstructed:
+         CCCC=CC=CC=CCCCCCOCC(C)C(=O)CCCCC(C)C(C)OC=C(CCCCCCC)CC
+INFO:training_vae:***TRAINING***         Epoch: 0, step 4000/5322.      Loss: 233.4819, time spent: 158.08724999427795
+INFO:training_vae:Sample input:
+         COC1=CC=C(C=C1)C(=O)N=C2CCC(C#N)=C3N2CCC4=CC(OC)=C(OC)C=C34, model reconstructed:
+         CC1C=CC=CC1(C)C2=CC=CNC=CCCCCC3CC23C=CCC=CC=CC=CCCCC=C=CCC
+INFO:training_vae:***SAVING***   Epoch 0, saved model.
+INFO:training_vae:
+Sample Generated Molecule:
+S1C=CC=C(C=CC=CC=C(C=C1C)C2=CC=CC=C2)C#N
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 0, test loss = 213.6799, reconstruction = 199.5729, KL = 14.1070.
+INFO:training_vae:Epoch 0. NEW best test loss = 213.6799        (Rec = 199.5729, KLD = 14.1070).
+INFO:training_vae:Epoch 0. NEW best reconstruction loss = 199.5729       (Loss = 213.6799, KLD = 14.1070)
+INFO:training_vae:Epoch 0. NEW best KLD = 14.1070        (loss = 213.6799, Reconstruction = 199.5729).
+INFO:training_vae:***TRAINING***         Epoch: 0, step 4100/5322.      Loss: 243.0169, time spent: 512.3017318248749
+INFO:training_vae:Sample input:
+         CC1=CC(OCC[N+1]2(C)CCCCC2)=NC3=CC=CC=C13, model reconstructed:
+         CCCC=CCCC=CC(C)CCCCCCCCC1=CC=C2C=C21
+INFO:training_vae:***TRAINING***         Epoch: 0, step 4200/5322.      Loss: 236.7693, time spent: 167.34347987174988
+INFO:training_vae:Sample input:
+         CCCCCCCCCCCCCCCC(=O)NC(CC(F)P(O)(O)=O)CC1=CC=C(OCC2=CC(OCC(F)(F)F)=CC=N2)C=C1, model reconstructed:
+         CCCCCCCCCCCCCCCCCCCCCCCCC=CCC(C)OCCF
+INFO:training_vae:***TRAINING***         Epoch: 0, step 4300/5322.      Loss: 233.7151, time spent: 160.95877194404602
+INFO:training_vae:Sample input:
+         CNC(=NS(=O)(=O)C1=CC=C(F)C=C1)C2=NN(C(C2)C3=CC=CC=C3)C4=CC=C(Cl)C=C4, model reconstructed:
+         C1CCC1=CCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 0, step 4400/5322.      Loss: 233.8771, time spent: 160.5366654396057
+INFO:training_vae:Sample input:
+         CCC12CCCN3CCC4(O)C5=CC=CC=C5N(C(=O)CC1)C234, model reconstructed:
+         CCCCCCCCCCCC1CC(C)C=C1C=CCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 0, step 4500/5322.      Loss: 240.8968, time spent: 172.21523523330688
+INFO:training_vae:Sample input:
+         FC1=CC=C(CN2N=C3C(=CN(CC4=CC=CC=C4)C5=CC=CC=C35)C2=O)C=C1, model reconstructed:
+         CCCC1CC#CCC1=C
+INFO:training_vae:
+Sample Generated Molecule:
+CCOC1=CC=C(C=C1)C=NN=CS(C)(=O)=O
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 0, test loss = 195.1944, reconstruction = 193.5240, KL = 1.6704.
+INFO:training_vae:Epoch 0. NEW best test loss = 195.1944        (Rec = 193.5240, KLD = 1.6704).
+INFO:training_vae:Epoch 0. NEW best reconstruction loss = 193.5240       (Loss = 195.1944, KLD = 1.6704)
+INFO:training_vae:Epoch 0. NEW best KLD = 1.6704         (loss = 195.1944, Reconstruction = 193.5240).
+INFO:training_vae:***TRAINING***         Epoch: 0, step 4600/5322.      Loss: 236.3062, time spent: 522.3272933959961
+INFO:training_vae:Sample input:
+         O=C(CSCC1=NC2=CC=CC=C2[NH1]1)NC3=CC=CC=C3, model reconstructed:
+         CCC=CN=CCC=O
+INFO:training_vae:***TRAINING***         Epoch: 0, step 4700/5322.      Loss: 231.1556, time spent: 164.73333024978638
+INFO:training_vae:Sample input:
+         CC1=CCC2CC1C2(C)C, model reconstructed:
+         CCCC=CCCC(C)CCCCC
+INFO:training_vae:***TRAINING***         Epoch: 0, step 4800/5322.      Loss: 238.4253, time spent: 171.7099678516388
+INFO:training_vae:Sample input:
+         OCC(NC(=O)NC1=CC=C(C=C1)C=2C=N[NH1]C=2)C3=CC=CC=C3, model reconstructed:
+         CC=C=CCC(=O)CCCC1=CCCC=C1C=CC2C#CCCC=CC=C2C
+INFO:training_vae:***TRAINING***         Epoch: 0, step 4900/5322.      Loss: 234.6712, time spent: 167.31325554847717
+INFO:training_vae:Sample input:
+         OC(=O)C1CCCCC1C(=O)NC2=NC3=CC=CC=C3[NH1]2, model reconstructed:
+         CC=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 0, step 5000/5322.      Loss: 227.2649, time spent: 165.924898147583
+INFO:training_vae:Sample input:
+         COC(=O)C1C(CC(O)C1(C)O)C(=C)C=O, model reconstructed:
+         CCC=CC=O
+INFO:training_vae:***SAVING***   Epoch 0, saved model.
+INFO:training_vae:
+Sample Generated Molecule:
+NC(=O)C1=CC=C(Cl)C=C1NCCC(=O)NCC2=CC=C(F)C=C2F
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 0, test loss = 194.0857, reconstruction = 193.4099, KL = 0.6758.
+INFO:training_vae:Epoch 0. NEW best test loss = 194.0857        (Rec = 193.4099, KLD = 0.6758).
+INFO:training_vae:Epoch 0. NEW best reconstruction loss = 193.4099       (Loss = 194.0857, KLD = 0.6758)
+INFO:training_vae:Epoch 0. NEW best KLD = 0.6758         (loss = 194.0857, Reconstruction = 193.4099).
+INFO:training_vae:***TRAINING***         Epoch: 0, step 5100/5322.      Loss: 225.8236, time spent: 514.007922410965
+INFO:training_vae:Sample input:
+         NC1=NC(=O)C=2[NH1]C=C(CC3CCCNC3)C=2N1, model reconstructed:
+         CC(=C)C=O
+INFO:training_vae:***TRAINING***         Epoch: 0, step 5200/5322.      Loss: 245.0755, time spent: 177.04774737358093
+INFO:training_vae:Sample input:
+         CC1=CSC(NC(=O)CSC2=NN=C(C)C(=O)N2N)=N1, model reconstructed:
+         CCCC=CC(=O)C=CCCC(=C)CC=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 0, step 5300/5322.      Loss: 227.2456, time spent: 163.70976948738098
+INFO:training_vae:Sample input:
+         NC(=O)C1=CC=CC=C1NC2=CC=CC(OCCC3=CC=CC(F)=C3)=C2, model reconstructed:
+         CC(=O)C=CC=C1C=CC(C)C=C1CNC=C=CCC=CC=CC=C=C
+INFO:training_vae:Epoch 0 finished,      Training Loss = 205.4063,Reconstruction = 204.9214, KL = 0.48486328
+INFO:training_vae:Epoch 0, took 12360.7.
+INFO:training_vae:***TRAINING***         Epoch: 1, step 100/5322.       Loss: 230.9132, time spent: 153.63608765602112
+INFO:training_vae:Sample input:
+         COC12CC3CC(C1)C(OC4=CC(F)=C(C=C4C5CC5)C(=O)NS(=O)(=O)N6CCC6)C(C3)C2, model reconstructed:
+         CCC=CC1CCCCC1CC=CC=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 1, step 200/5322.       Loss: 240.8980, time spent: 177.11443614959717
+INFO:training_vae:Sample input:
+         CCOC(=O)C1(CC1C2=CC(OC)=C(OC)C(OC)=C2)C(=O)NCC3=CC=C(C)C=C3, model reconstructed:
+         CCCC(=O)C=CC(C)C(=C)C=O
+INFO:training_vae:***TRAINING***         Epoch: 1, step 300/5322.       Loss: 228.7427, time spent: 172.06526803970337
+INFO:training_vae:Sample input:
+         OC(CN1CCN(CC1)C(=O)C2=CC=C(Cl)C=C2)(CN3C=NC=N3)C4=CC=C(F)C=C4F, model reconstructed:
+         CC1(C)CCCC1(C)C=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 1, step 400/5322.       Loss: 222.4595, time spent: 167.11154890060425
+INFO:training_vae:Sample input:
+         ClC1=CC=C(C=CC(=O)C2=CC=C(OCC3=CN(N=N3)C4CC5C6CCCN7CCCC(CN5C(=O)C4)C67)C=C2)C=C1Cl, model reconstructed:
+         C1C2=CC=C1CC2C=O
+INFO:training_vae:***TRAINING***         Epoch: 1, step 500/5322.       Loss: 221.1784, time spent: 167.9538073539734
+INFO:training_vae:Sample input:
+         CCC(CC1=CC=C(OC)C(=C1)C(=O)NCC2=CC=CC(OC3=CC=CC=C3)=C2)C(O)=O, model reconstructed:
+         C1CC=C1NCCCC(C2CC=C)C=C2C=CC=O
+INFO:training_vae:
+Sample Generated Molecule:
+CCCNC1=NC(N)=CC=C1NCC2=CC3=C(C=C2)C=CC=CC(C3=O)C(=O)C4=CC=CC=N4
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 1, test loss = 184.0720, reconstruction = 184.0625, KL = 0.0095.
+INFO:training_vae:Epoch 1. NEW best test loss = 184.0720        (Rec = 184.0625, KLD = 0.0095).
+INFO:training_vae:Epoch 1. NEW best reconstruction loss = 184.0625       (Loss = 184.0720, KLD = 0.0095)
+INFO:training_vae:Epoch 1. NEW best KLD = 0.0095         (loss = 184.0720, Reconstruction = 184.0625).
+INFO:training_vae:***TRAINING***         Epoch: 1, step 600/5322.       Loss: 215.3818, time spent: 515.0074796676636
+INFO:training_vae:Sample input:
+         CC1=NN(C2=CC=CC=C2)C3=CC(=CC=C13)N4CCC(CC4)N5CCNCC5, model reconstructed:
+         CCCC1=CC=CC=C1CCC2=CC=CC=C2
+INFO:training_vae:***TRAINING***         Epoch: 1, step 700/5322.       Loss: 222.4973, time spent: 167.3465759754181
+INFO:training_vae:Sample input:
+         CC(C)N1CCC(CNC(=O)NC=2C=C(C)ON=2)C1, model reconstructed:
+         CCCCCCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 1, step 800/5322.       Loss: 214.7819, time spent: 162.4626965522766
+INFO:training_vae:Sample input:
+         CC(C=NNC(=O)C(O)C1=CC=CC=C1)=CC2=CC=CC=C2, model reconstructed:
+         CC=CCCCC(=O)C=CCCC1CC=CC=C1CC=CC=CC
+INFO:training_vae:***TRAINING***         Epoch: 1, step 900/5322.       Loss: 216.2818, time spent: 161.8934290409088
+INFO:training_vae:Sample input:
+         C#CCOC1CNC=NC1, model reconstructed:
+         CCC=CC=CCCC
+INFO:training_vae:***TRAINING***         Epoch: 1, step 1000/5322.      Loss: 210.4924, time spent: 153.67025113105774
+INFO:training_vae:Sample input:
+         COC(=O)C1OC(CO)C(O)C(O)C1O, model reconstructed:
+         CCC=CC=O
+INFO:training_vae:***SAVING***   Epoch 1, saved model.
+INFO:training_vae:
+Sample Generated Molecule:
+CCCC1CCCC1N2CCN(CC2)C(C)C(=O)NCC3=C(F)C=CC=C3C4=CC=CC=C4
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 1, test loss = 184.4429, reconstruction = 184.4327, KL = 0.0103.
+INFO:training_vae:***TRAINING***         Epoch: 1, step 1100/5322.      Loss: 219.3831, time spent: 518.0857965946198
+INFO:training_vae:Sample input:
+         CC(C)(C)C1=CC=C(CN2CCN(CC2)C(=O)CCC=3C=C(C4=CC=C(C=C4)C(F)(F)F)N(N=3)C5=CC=CC=C5)C=C1, model reconstructed:
+         CCCCCCCCCC1C#CC(CC1)C=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 1, step 1200/5322.      Loss: 230.4959, time spent: 174.37187504768372
+INFO:training_vae:Sample input:
+         CS(=O)(=O)N1CCN(CC1)C2=CC=CC(Cl)=N2, model reconstructed:
+         CCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 1, step 1300/5322.      Loss: 204.6191, time spent: 155.48032140731812
+INFO:training_vae:Sample input:
+         CC(=O)OCC(=O)C1(O)CCC2C3CCC4CC(CCC4(C)C3C(=O)CC12C)OC(C)=O, model reconstructed:
+         CCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 1, step 1400/5322.      Loss: 226.1823, time spent: 168.48566031455994
+INFO:training_vae:Sample input:
+         CCN(CC)S(=O)(=O)C1=CC=C(N2CCOCC2)C(NC(=O)CSCC=3C(C)=NOC=3C)=C1, model reconstructed:
+         C=CC=C(O)C=O
+INFO:training_vae:***TRAINING***         Epoch: 1, step 1500/5322.      Loss: 206.5379, time spent: 160.83604335784912
+INFO:training_vae:Sample input:
+         COC1=CC=CC(NC(=O)NC2=CC=C3CCCC3=C2)=C1, model reconstructed:
+         CCC=CC=CCC(=O)CC=CC=CC=C=C(C1)C1
+INFO:training_vae:
+Sample Generated Molecule:
+C12NC(=O)CCCCCC3CCCCNC4CN1C5CCC5CCC4(C)C3C=C2CC
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 1, test loss = 179.9065, reconstruction = 179.2901, KL = 0.6164.
+INFO:training_vae:Epoch 1. NEW best test loss = 179.9065        (Rec = 179.2901, KLD = 0.6164).
+INFO:training_vae:Epoch 1. NEW best reconstruction loss = 179.2901       (Loss = 179.9065, KLD = 0.6164)
+INFO:training_vae:***TRAINING***         Epoch: 1, step 1600/5322.      Loss: 243.2814, time spent: 535.5211520195007
+INFO:training_vae:Sample input:
+         NC1=C(C(=O)NCC=C)C2=NC3=CC=CC=C3N=C2N1C4=CC=C5OCOC5=C4, model reconstructed:
+         CC=NCCC=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 1, step 1700/5322.      Loss: 224.7926, time spent: 175.09705924987793
+INFO:training_vae:Sample input:
+         COC1CC(C)CC2=C(NCCF)C(=O)C=C(NC(=O)C(C)=CC=CC(OC)C(OC(N)=O)C(C)=CC(C)C1=O)C2=O, model reconstructed:
+         CCC=CCCCCCCCCCC#N
+INFO:training_vae:***TRAINING***         Epoch: 1, step 1800/5322.      Loss: 207.1786, time spent: 153.28415846824646
+INFO:training_vae:Sample input:
+         CCCC(NC(=O)C1(CCCCC1)NC(=O)C2=CC=C(C=C2)N(C)C)C(=O)C3=NN=C(O3)C4=CC=CO4, model reconstructed:
+         CCCC=CCC(=O)C1=CCCCC1CC(=O)C(C)(C)CCCCCCC(=O)NC
+INFO:training_vae:***TRAINING***         Epoch: 1, step 1900/5322.      Loss: 207.7860, time spent: 166.41478371620178
+INFO:training_vae:Sample input:
+         O=C(NC1CCC(CN2CCC(CC2)C3=C[NH1]C4=CC=CC=C34)CC1)C5=CC6=CC=CC=C6O5, model reconstructed:
+         C#CCCCC=CC1CCCCC1(C)C2=CCC3=CC=CC=C23
+INFO:training_vae:***TRAINING***         Epoch: 1, step 2000/5322.      Loss: 203.8946, time spent: 155.37333583831787
+INFO:training_vae:Sample input:
+         CCC(C)C(NC(=O)N(CC1=CC=C(F)C=C1)C2=CC=CC(NC(=O)C(CCCCN)NC(=O)OC(C)(C)C)=C2)C(=O)NC(CC(C)C)C(O)=O, model reconstructed:
+         CCCCC1CCC1NC(=O)CCCCC=CC2=CCCOC3=C2C(=C)C=C3CC(=O)C(C)(C)NNC(=O)CCCCCCC(C)C=O
+INFO:training_vae:***SAVING***   Epoch 1, saved model.
+INFO:training_vae:
+Sample Generated Molecule:
+CCCN(C)C=CCCC1(C)C=C2C=CC(C)NC2=C1
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 1, test loss = 179.3180, reconstruction = 178.8919, KL = 0.4261.
+INFO:training_vae:Epoch 1. NEW best test loss = 179.3180        (Rec = 178.8919, KLD = 0.4261).
+INFO:training_vae:Epoch 1. NEW best reconstruction loss = 178.8919       (Loss = 179.3180, KLD = 0.4261)
+INFO:training_vae:***TRAINING***         Epoch: 1, step 2100/5322.      Loss: 214.1417, time spent: 513.6170172691345
+INFO:training_vae:Sample input:
+         COC1=CC=C(C=C2CCN=C2C3=CC=CN=C3)C(OC)=C1, model reconstructed:
+         C1CC=CC=CC=CC=C1C(C2=CC)=CC=C2C=C3C=CC=CC3
+INFO:training_vae:***TRAINING***         Epoch: 1, step 2200/5322.      Loss: 218.3289, time spent: 178.1681830883026
+INFO:training_vae:Sample input:
+         CNC(=O)CN1C(=O)COC2=CC=C(C=C12)S(=O)(=O)N3CCCCCC3, model reconstructed:
+         CCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 1, step 2300/5322.      Loss: 221.5721, time spent: 173.57516431808472
+INFO:training_vae:Sample input:
+         CC1=CC=C(C(Cl)=C1)N2N=CC=C2OCC(=O)NC3=CC=C(C=C3Cl)C4=CC=C(CC(O)=O)C=C4, model reconstructed:
+         CCCC1=CC(C)CC=C1CCCC=C(CCC=C)C=O
+INFO:training_vae:***TRAINING***         Epoch: 1, step 2400/5322.      Loss: 216.3933, time spent: 161.33523631095886
+INFO:training_vae:Sample input:
+         CCC1CN(C(=O)N2CCC(CC2)C(=O)NC3=CC=C(CC)C=C3)C4=CC=CC=C4O1, model reconstructed:
+         CCCCC(CCCC)=O
+INFO:training_vae:***TRAINING***         Epoch: 1, step 2500/5322.      Loss: 222.1309, time spent: 170.00222420692444
+INFO:training_vae:Sample input:
+         NC(CC1=CC=C(O)C=C1)C(=O)N2CCCC2C(=O)NC(CC(=O)NCC(CC3=CC=CC=C3)C(N)=O)CC4=CC=CC=C4, model reconstructed:
+         CCC(=C)C=C(Cl)C=CC(=O)NCC=CCC(C)=O
+INFO:training_vae:
+Sample Generated Molecule:
+CC=CC=C(N1CCN(CC1)S(=O)(=O)NC2=CC=CC=C2)C3=CC=CC=C3C(N)=O
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 1, test loss = 178.4874, reconstruction = 178.3263, KL = 0.1611.
+INFO:training_vae:Epoch 1. NEW best test loss = 178.4874        (Rec = 178.3263, KLD = 0.1611).
+INFO:training_vae:Epoch 1. NEW best reconstruction loss = 178.3263       (Loss = 178.4874, KLD = 0.1611)
+INFO:training_vae:***TRAINING***         Epoch: 1, step 2600/5322.      Loss: 200.8215, time spent: 513.5533721446991
+INFO:training_vae:Sample input:
+         FC1=CC=C(NC(=O)C(N2CCN(CC(=O)N3CCCC3)CC2)C4=CC5=CC=CC=C5O4)C=C1, model reconstructed:
+         C12C=C3C=CC3CC(=O)CC1CC(CC=CC4)ON5CCCC5C=C6C=NC=C2C46C=C
+INFO:training_vae:***TRAINING***         Epoch: 1, step 2700/5322.      Loss: 212.5884, time spent: 162.19903707504272
+INFO:training_vae:Sample input:
+         COC(=O)C(C)NP(=O)(OCC1OC(O)C(NC(C)=O)C(O)C1O)OC2=CC=C(OC)C=C2, model reconstructed:
+         CCC=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 1, step 2800/5322.      Loss: 214.4192, time spent: 169.52588748931885
+INFO:training_vae:Sample input:
+         CNC1CCN(C1)C2=NC(N)=NC3=C2CCCC34CCCC4, model reconstructed:
+         CC1CCCC(C1C)(C)CC=NC=CC(=C)CCC(C)CCC
+INFO:training_vae:***TRAINING***         Epoch: 1, step 2900/5322.      Loss: 213.4082, time spent: 163.16358184814453
+INFO:training_vae:Sample input:
+         CC1(CN2CCCC2C3=CC=CC=C13)C4=CC=CC=C4, model reconstructed:
+         C1CC1NCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 1, step 3000/5322.      Loss: 200.2243, time spent: 159.9538357257843
+INFO:training_vae:Sample input:
+         CC(=O)OC1OC(COC2=C(C=CC(SC(C)(C)SC3=CC(=C(O)C(=C3)C(C)(C)C)C(C)(C)C)=C2C(C)(C)C)C(C)(C)C)C(OC(C)=O)C(OC(C)=O)C1OC(C)=O, model reconstructed:
+         CCCC=O
+INFO:training_vae:***SAVING***   Epoch 1, saved model.
+INFO:training_vae:
+Sample Generated Molecule:
+CC(C)CC(NC(=O)CNC(=O)C(C)NC(=O)CCCCCNC(=O)CNC(=O)C(CCCCNC(C)C)NC(=O)CCC1=CC=C(O)C=C1)NC(=O)CNC(=O)CN
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 1, test loss = 170.8812, reconstruction = 170.7612, KL = 0.1200.
+INFO:training_vae:Epoch 1. NEW best test loss = 170.8812        (Rec = 170.7612, KLD = 0.1200).
+INFO:training_vae:Epoch 1. NEW best reconstruction loss = 170.7612       (Loss = 170.8812, KLD = 0.1200)
+INFO:training_vae:***TRAINING***         Epoch: 1, step 3100/5322.      Loss: 221.4809, time spent: 527.7887392044067
+INFO:training_vae:Sample input:
+         OC(=O)CCNC1=NC(CC2=NN=C(SCC#N)N2NC(=O)C3=CC=C(Cl)C=C3)=CS1, model reconstructed:
+         CCCC=CCCCC1CC=C1CC2CC=C(C)C2C=C(CC)CC=CC=CCCCl
+INFO:training_vae:***TRAINING***         Epoch: 1, step 3200/5322.      Loss: 210.5977, time spent: 170.18804621696472
+INFO:training_vae:Sample input:
+         CC1CCN(CC1C)C2=CC=C(N)C=C2C(=O)C3=CC=C(Cl)C=C3, model reconstructed:
+         CCCCCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 1, step 3300/5322.      Loss: 200.2457, time spent: 158.19067239761353
+INFO:training_vae:Sample input:
+         CC(C)=CCSC1=NC(NC2=CC=CC=C2)=N[NH1]1, model reconstructed:
+         CCCCCCC=CC=C1C=CCCC2=CC=CC=C2CC1
+INFO:training_vae:***TRAINING***         Epoch: 1, step 3400/5322.      Loss: 198.0057, time spent: 162.27133512496948
+INFO:training_vae:Sample input:
+         CCC(C)C(NC(=O)C(CC(O)C(CC1CCCCC1)NC(=O)C(CC2=C[NH1]C=N2)N(C)C(=O)C(CC3=CC=CC=C3)NC(=O)CC(C)(C)N)C(C)C)C(=O)NCC4=CC=CC=[N+1]4[O-1], model reconstructed:
+         CC=CCCCC=CNC(=O)C(CN)CCCCC(C)C1=CNCCC1NC(=O)C(CC2=C[NH1]C=N2)CCCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 1, step 3500/5322.      Loss: 205.2524, time spent: 171.97076225280762
+INFO:training_vae:Sample input:
+         CC1=CC=CC(C(=O)NC2=CC=C3CC(CC3=C2)NCC4=NC=CS4)=C1C5=CC=C(C=C5)C(F)(F)F, model reconstructed:
+         C1C2CC=C1CCCC=C2C3=CCCC=C3C#N
+INFO:training_vae:
+Sample Generated Molecule:
+OCC1=CC=C(C=C1)NC=C2C=NC=CC=CC=C2
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 1, test loss = 167.8566, reconstruction = 167.7653, KL = 0.0914.
+INFO:training_vae:Epoch 1. NEW best test loss = 167.8566        (Rec = 167.7653, KLD = 0.0914).
+INFO:training_vae:Epoch 1. NEW best reconstruction loss = 167.7653       (Loss = 167.8566, KLD = 0.0914)
+INFO:training_vae:***TRAINING***         Epoch: 1, step 3600/5322.      Loss: 209.5961, time spent: 517.7079203128815
+INFO:training_vae:Sample input:
+         OC1=CC=C(C(=O)CC2=CC=C3C=CC=CC3=N2)C(O)=C1, model reconstructed:
+         C1CCC=CC1CCC=O
+INFO:training_vae:***TRAINING***         Epoch: 1, step 3700/5322.      Loss: 213.8520, time spent: 166.10209345817566
+INFO:training_vae:Sample input:
+         O=C1N=C(OC2=CC(OCC3=CC=CC=C3)=CC=C12)N4CCOCC4, model reconstructed:
+         C1#CCC=CC2=CC12C3=CCCCC3
+INFO:training_vae:***TRAINING***         Epoch: 1, step 3800/5322.      Loss: 210.6620, time spent: 167.0016701221466
+INFO:training_vae:Sample input:
+         OC(=O)C1=C(O)COC1=NC2=CC=C(C=C2)C(O)=O, model reconstructed:
+         CC(=O)C=CCCCCCC=C(C)C=C(C)CC=CCO
+INFO:training_vae:***TRAINING***         Epoch: 1, step 3900/5322.      Loss: 200.8464, time spent: 160.98834443092346
+INFO:training_vae:Sample input:
+         CC1CC=CC2C(O)C(CBr)=C(C)C3C(CC4=CC=CC=C4)NC(=O)C23C(OC(C)=O)C=CC(C)(O)C1=O, model reconstructed:
+         CCCCCCCCCCCCCCCCCCCCCCCCC1CC=CC=C1CC(=O)CC=CS=CCOC(C)=O
+INFO:training_vae:***TRAINING***         Epoch: 1, step 4000/5322.      Loss: 208.5539, time spent: 170.72134804725647
+INFO:training_vae:Sample input:
+         CNC1=NC(Br)=CN2C(CO)=CN=C12, model reconstructed:
+         CCCCC1=CCC=C2C=CCCCCC21
+INFO:training_vae:***SAVING***   Epoch 1, saved model.
+INFO:training_vae:
+Sample Generated Molecule:
+O1C=C2C=COC(OC(F)(F)F)=C2C=C1
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 1, test loss = 168.1334, reconstruction = 167.9626, KL = 0.1708.
+INFO:training_vae:***TRAINING***         Epoch: 1, step 4100/5322.      Loss: 210.8915, time spent: 519.8930413722992
+INFO:training_vae:Sample input:
+         COC1=CC=CC(=C1)C2=C[NH1]C(=N2)C(O)C3=CC=CC(CN4CCCCC4)=C3, model reconstructed:
+         C1CC=CC=CC=C1C(=C)CC=CC=CCOONC=CC=CC=C=CCCCCC=CC
+INFO:training_vae:***TRAINING***         Epoch: 1, step 4200/5322.      Loss: 214.2139, time spent: 170.02565932273865
+INFO:training_vae:Sample input:
+         COC1=CC=2C(CCCCCCCCCCCCC(C)O)OC(=O)C=2C(OC)=C1, model reconstructed:
+         CCC=CC=CCC(C)(CCCCC)CCCCCCCCC=C=O
+INFO:training_vae:***TRAINING***         Epoch: 1, step 4300/5322.      Loss: 203.7505, time spent: 168.12065505981445
+INFO:training_vae:Sample input:
+         CC(C)=CCCC1=CC=C(C=O)C(C1)C2=CC=CC=C2, model reconstructed:
+         CC(C)C1CCCCC=C(ONCC1)C2=CC=CC=C2
+INFO:training_vae:***TRAINING***         Epoch: 1, step 4400/5322.      Loss: 210.8476, time spent: 168.74209880828857
+INFO:training_vae:Sample input:
+         O=C(NC1CCCCC1)C(N(CC2=CC=CS2)C(=O)C3=CC=CS3)C4=CC=C5N=CC=CC5=C4, model reconstructed:
+         CC(CC1=CCCC2C1)C=C2CCCCC3=CC=CC3CCC=O
+INFO:training_vae:***TRAINING***         Epoch: 1, step 4500/5322.      Loss: 199.7261, time spent: 167.947580575943
+INFO:training_vae:Sample input:
+         OC1C(CC2=CC=C(O)C(Br)=C2)CS(=O)(=O)CC1NCC3=CC=CC(=C3)C4CC4, model reconstructed:
+         CC(C)CCCC=CC1CCCCCOC1C=CCC=O
+INFO:training_vae:
+Sample Generated Molecule:
+CC(C)NC(=O)N(CC(=O)NC1=CC=CC=C1C2=CC=CC=C2)C3=CC=C(F)C=C3
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 1, test loss = 167.1876, reconstruction = 166.7891, KL = 0.3985.
+INFO:training_vae:Epoch 1. NEW best test loss = 167.1876        (Rec = 166.7891, KLD = 0.3985).
+INFO:training_vae:Epoch 1. NEW best reconstruction loss = 166.7891       (Loss = 167.1876, KLD = 0.3985)
+INFO:training_vae:***TRAINING***         Epoch: 1, step 4600/5322.      Loss: 190.1097, time spent: 509.22547006607056
+INFO:training_vae:Sample input:
+         CCC(C)(CC(O)=O)CC(=O)OCC12CCC(C1C3CCC4C5(C)CCC(OC(=O)CC(C)(CC)CC(O)=O)C(C)(C)C5CCC4(C)C3(C)CC2)C(C)=C, model reconstructed:
+         CCC=CCCCCCC(O)=O
+INFO:training_vae:***TRAINING***         Epoch: 1, step 4700/5322.      Loss: 209.8939, time spent: 162.74040722846985
+INFO:training_vae:Sample input:
+         CCC1=CC=C2OC(=NC2=C1)C3=CC=C(NC(=O)C4=CC=CC(Cl)=C4Cl)C=C3, model reconstructed:
+         C1C(C2)=CCC3CC=CC3=C2C=CC=C(C)C(=O)C4CC=CC=CC4CC=C1
+INFO:training_vae:***TRAINING***         Epoch: 1, step 4800/5322.      Loss: 207.7725, time spent: 160.4493706226349
+INFO:training_vae:Sample input:
+         CN1CCN(CC(=O)NC2=CC(CO)=CC(NC3=CC=NC4=CC(Cl)=CC=C34)=C2)CC1, model reconstructed:
+         CCC1=CCC1CCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 1, step 4900/5322.      Loss: 226.3167, time spent: 182.62890219688416
+INFO:training_vae:Sample input:
+         NC1=NC(C(F)F)(C2CC2O1)C3=NC(NC(=O)C4=CC=C(Cl)C=N4)=CC=C3F, model reconstructed:
+         C1C(C)C2CCCC=NCCC=C3CC32C=CC=CCNC(=O)C4=CC=C(F)C=C4CC=C1
+INFO:training_vae:***TRAINING***         Epoch: 1, step 5000/5322.      Loss: 199.0225, time spent: 163.27631497383118
+INFO:training_vae:Sample input:
+         CC=1C=C(C(=O)N2CCOC3=C(C2)C=C(C=C3OCCC4=CC=CC=N4)C5=CSC6=CC=CC=C56)N(C)N=1, model reconstructed:
+         CCCC=CCCC=O
+INFO:training_vae:***SAVING***   Epoch 1, saved model.
+INFO:training_vae:
+Sample Generated Molecule:
+CNC1=CC=C(C)C=C1N(CCC2=CC=CC=C2)C3=CC=CC=C3
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 1, test loss = 165.9949, reconstruction = 165.8375, KL = 0.1573.
+INFO:training_vae:Epoch 1. NEW best test loss = 165.9949        (Rec = 165.8375, KLD = 0.1573).
+INFO:training_vae:Epoch 1. NEW best reconstruction loss = 165.8375       (Loss = 165.9949, KLD = 0.1573)
+INFO:training_vae:***TRAINING***         Epoch: 1, step 5100/5322.      Loss: 185.8309, time spent: 508.4008078575134
+INFO:training_vae:Sample input:
+         CCC(=O)C1=CN=C2C=CC(=CC2=C1NC3CCC(CN(C)C)CC3)C4=CC(Cl)=C(O)C(Cl)=C4, model reconstructed:
+         CCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 1, step 5200/5322.      Loss: 196.9247, time spent: 164.05821204185486
+INFO:training_vae:Sample input:
+         ClCC(=O)NC=1SC=2CCCCC=2C=1CC3=NN=C(SCC#N)N3NC(=O)C4=CC=CC=C4, model reconstructed:
+         CCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 1, step 5300/5322.      Loss: 200.2528, time spent: 161.29201698303223
+INFO:training_vae:Sample input:
+         CCOC(=O)ON1N=NC2=CC=CC=C12, model reconstructed:
+         CCCC(=O)CCC=CC1=CC=CC=C1
+INFO:training_vae:Epoch 1 finished,      Training Loss = 259.8372,Reconstruction = 259.0536, KL = 0.78363037
+INFO:training_vae:Epoch 1, took 12340.2.
+INFO:training_vae:***TRAINING***         Epoch: 2, step 100/5322.       Loss: 212.3599, time spent: 161.3444221019745
+INFO:training_vae:Sample input:
+         COC1=CC=C(NC(=O)NC2=CC=C(CC3=CC=NC=C3)C=C2)C=C1OC, model reconstructed:
+         CCC=CC=C(CC)CCC=O
+INFO:training_vae:***TRAINING***         Epoch: 2, step 200/5322.       Loss: 196.6510, time spent: 161.4869351387024
+INFO:training_vae:Sample input:
+         CCCCOC(=O)CCC(C)C1CC(=O)C2(C)C3=C(C(=O)C(OC(C)=O)C12C)C4(C)CCC(O)C(C)(C)C4CC3=O, model reconstructed:
+         COCCC(=O)C=CCCCOCCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 2, step 300/5322.       Loss: 197.9117, time spent: 171.4401671886444
+INFO:training_vae:Sample input:
+         CN1CCC(CC1)NC(=O)N2C3=CC=CC=C3OC4=CC=CC=C24, model reconstructed:
+         C1C(C)C1(C)CC(=O)CC=CC=CCCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 2, step 400/5322.       Loss: 190.3528, time spent: 155.4959316253662
+INFO:training_vae:Sample input:
+         CC(N1CCN(CC1)C2=CC(OC3=CC=CC=4SC(NC(C)=O)=NC3=4)=NC=N2)C5=CC=CC=C5, model reconstructed:
+         C1C2C13NC(CC2)C3=C
+INFO:training_vae:***TRAINING***         Epoch: 2, step 500/5322.       Loss: 203.0235, time spent: 172.7849657535553
+INFO:training_vae:Sample input:
+         CN1C=2N=C3N(CCN3C=2C(=O)N(CC=CC4=CC=CC=C4)C1=O)C5=CC(C)=CC(C)=C5, model reconstructed:
+         CCC1CC1=O
+INFO:training_vae:
+Sample Generated Molecule:
+COC1=CC=CC=C1CCNC(=O)CCNN=CCCC=O
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 2, test loss = 163.9904, reconstruction = 163.9899, KL = 0.0005.
+INFO:training_vae:Epoch 2. NEW best test loss = 163.9904        (Rec = 163.9899, KLD = 0.0005).
+INFO:training_vae:Epoch 2. NEW best reconstruction loss = 163.9899       (Loss = 163.9904, KLD = 0.0005)
+INFO:training_vae:Epoch 2. NEW best KLD = 0.0005         (loss = 163.9904, Reconstruction = 163.9899).
+INFO:training_vae:***TRAINING***         Epoch: 2, step 600/5322.       Loss: 208.5372, time spent: 530.3565509319305
+INFO:training_vae:Sample input:
+         CCCCCCCCC1(C)SC(=O)C(C)=C1OC, model reconstructed:
+         CCCCCCCCCCCCCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 2, step 700/5322.       Loss: 191.7396, time spent: 160.53615713119507
+INFO:training_vae:Sample input:
+         CC1=NN=C(SCC(=O)N2CCCC2)N(N)C1=O, model reconstructed:
+         CCCC=C(CCC)CC=O
+INFO:training_vae:***TRAINING***         Epoch: 2, step 800/5322.       Loss: 212.3070, time spent: 177.45328450202942
+INFO:training_vae:Sample input:
+         CC1=C(C)C(=O)N(C1=O)C2=CC=CC=C2, model reconstructed:
+         CCCCCCC=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 2, step 900/5322.       Loss: 198.8503, time spent: 173.6854498386383
+INFO:training_vae:Sample input:
+         COC1=CC=CC(=C1)N2C=C3N=C(N(CC4CCCN(CC5CCCO5)C4)C(=O)C3=N2)C6=CC=CN=C6C, model reconstructed:
+         CC1C=CC=CC1(C)CC2CC=C(OC3C2)C3CCCCC
+INFO:training_vae:***TRAINING***         Epoch: 2, step 1000/5322.      Loss: 193.7279, time spent: 163.9638831615448
+INFO:training_vae:Sample input:
+         COCCN1C(CN2CCC3=CC=CC=C3C2)=NC=4N(C)C(=O)N(C)C(=O)C1=4, model reconstructed:
+         CCC=CCC(C1)C2CCC=CC2(C)C1CC=C(C)CCC=O
+INFO:training_vae:***SAVING***   Epoch 2, saved model.
+INFO:training_vae:
+Sample Generated Molecule:
+C1CNC=CC=C1CCC(=O)N2CCC(CC2)C3=NC4=CC=CC=C4S3C=C
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 2, test loss = 161.5492, reconstruction = 161.5485, KL = 0.0007.
+INFO:training_vae:Epoch 2. NEW best test loss = 161.5492        (Rec = 161.5485, KLD = 0.0007).
+INFO:training_vae:Epoch 2. NEW best reconstruction loss = 161.5485       (Loss = 161.5492, KLD = 0.0007)
+INFO:training_vae:***TRAINING***         Epoch: 2, step 1100/5322.      Loss: 208.1193, time spent: 524.5508937835693
+INFO:training_vae:Sample input:
+         CC1=CC=C(NC2=NC(N)=NC(N)=C2N=O)C=C1C, model reconstructed:
+         C12CCC=CC1CC(=O)C3C=NC=CCC=C3CCC#C2
+INFO:training_vae:***TRAINING***         Epoch: 2, step 1200/5322.      Loss: 208.0539, time spent: 170.72957253456116
+INFO:training_vae:Sample input:
+         CC1=CC=2N=C3C=CC(C=C3SC=2C=C1N)=[N+1](C)C, model reconstructed:
+         CCCC=CCOCCCC(C)C(C)C=CCC(C)CC
+INFO:training_vae:***TRAINING***         Epoch: 2, step 1300/5322.      Loss: 206.0485, time spent: 171.8115758895874
+INFO:training_vae:Sample input:
+         CC(NC(=O)NC1=CC=2[NH1]N=C(CNCC(F)(F)F)C=2C=N1)C3=CC=CC=C3, model reconstructed:
+         C1CC1NCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 2, step 1400/5322.      Loss: 186.3923, time spent: 161.43692541122437
+INFO:training_vae:Sample input:
+         CCON1C(=O)CC2(CCCC2)C1=O, model reconstructed:
+         CCCC=CCC=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 2, step 1500/5322.      Loss: 194.0277, time spent: 173.15532612800598
+INFO:training_vae:Sample input:
+         CC(NC(=O)NCC1=CSC=N1)C2=CC=C(C=C2)N3CCOCC3, model reconstructed:
+         CC=CCCC(=O)CCCC=1CC=1CCC=CC(C)C2CCCCC2
+INFO:training_vae:
+Sample Generated Molecule:
+C12OC=CC=C2CCN(C(=O)C3=CC=C(C=C3)C(C)(C)C=C1)C
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 2, test loss = 158.4969, reconstruction = 158.4943, KL = 0.0026.
+INFO:training_vae:Epoch 2. NEW best test loss = 158.4969        (Rec = 158.4943, KLD = 0.0026).
+INFO:training_vae:Epoch 2. NEW best reconstruction loss = 158.4943       (Loss = 158.4969, KLD = 0.0026)
+INFO:training_vae:***TRAINING***         Epoch: 2, step 1600/5322.      Loss: 192.0649, time spent: 516.773681640625
+INFO:training_vae:Sample input:
+         COCCCNC(=O)CC1CC(C(=O)N2CCCCC2)C3(CCC4=CC=CC=C4)N(CCC5=C3[NH1]C6=CC(CCC(=O)N(C)C)=CC=C56)C1=O, model reconstructed:
+         CCC=CCC(C=O)CCCC=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 2, step 1700/5322.      Loss: 197.4099, time spent: 167.2806465625763
+INFO:training_vae:Sample input:
+         CC1=CC=CC(N2CCN(CC2)C(=O)C3=CN=C(N=C3C)N4CCCC4)=C1C, model reconstructed:
+         CCC1C=C1CC=O
+INFO:training_vae:***TRAINING***         Epoch: 2, step 1800/5322.      Loss: 196.8534, time spent: 167.1208701133728
+INFO:training_vae:Sample input:
+         CC(C)(O)C(=O)C=1OC2=NC(C3=CC=CC=C3Cl)=C(C=C2C=1N)C4=CC=C(Cl)C=C4, model reconstructed:
+         CCCCCC1CCC(=O)C=CC(=C2)CC=CC=C12
+INFO:training_vae:***TRAINING***         Epoch: 2, step 1900/5322.      Loss: 184.9344, time spent: 156.18414449691772
+INFO:training_vae:Sample input:
+         CC1=CC=CC(NC(=O)C2CCN(CC2)S(=O)(=O)C3=CC=CC4=CC=CN=C34)=N1, model reconstructed:
+         CCCCCCCCCCC=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 2, step 2000/5322.      Loss: 199.8407, time spent: 169.7336413860321
+INFO:training_vae:Sample input:
+         O=C1OCC(CC2=CC=C3OCOC3=C2)C1CC4=CC=C5OCOC5=C4, model reconstructed:
+         CC(CC1CCC2C=C3CC2)=C1C#CCC4C=CC3C4=C
+INFO:training_vae:***SAVING***   Epoch 2, saved model.
+INFO:training_vae:
+Sample Generated Molecule:
+CC(=O)NCC1CCN(CC1)C2=CC=CC(=N2)CSC(=O)NC3=CC=CC=C3Cl
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 2, test loss = 159.3859, reconstruction = 159.1381, KL = 0.2478.
+INFO:training_vae:***TRAINING***         Epoch: 2, step 2100/5322.      Loss: 187.9363, time spent: 510.7290892601013
+INFO:training_vae:Sample input:
+         CC(=O)NC1=NN(C)C2=NC3=NC=4CCCCC=4C(N)=C3C(C5=CC=CC=C5)=C12, model reconstructed:
+         CCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 2, step 2200/5322.      Loss: 195.6953, time spent: 165.3444697856903
+INFO:training_vae:Sample input:
+         CC1=CC(C)=NC(NC(NCCC2=C[NH1]C3=CC=CC=C23)=NC(=O)C(C)(C)C)=N1, model reconstructed:
+         C1CCCCCCCC1CCC(=O)CC2=CC=CC=C2
+INFO:training_vae:***TRAINING***         Epoch: 2, step 2300/5322.      Loss: 186.6722, time spent: 153.3624234199524
+INFO:training_vae:Sample input:
+         C=CCOC1CCC(CC1)NC(=O)NC23CC4CC(CC(C4)C2)C3, model reconstructed:
+         CCC=CC=C=C1CCCCC1CC(C)CCCC23CC4CCC=CC4C2C3
+INFO:training_vae:***TRAINING***         Epoch: 2, step 2400/5322.      Loss: 190.3436, time spent: 160.2610411643982
+INFO:training_vae:Sample input:
+         FC1=CC=C(CNC(=O)C(=O)NCC2OCCCN2S(=O)(=O)C3=CC=CS3)C=C1, model reconstructed:
+         CC=CC=C(CC)CC(=O)C=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 2, step 2500/5322.      Loss: 191.0164, time spent: 165.27991771697998
+INFO:training_vae:Sample input:
+         COC1=CC=C(C=C1)N2N=[O+1]C([O-1])=C2CNC3=NC4=CC=C(OC)C=C4S3, model reconstructed:
+         C1C2C=CC=CC2(C3)CC=CC=C13
+INFO:training_vae:
+Sample Generated Molecule:
+COC1=CC=C(C=C1)C(OC(=O)C2=CC=CC=C2CN3CCNCC3)C(=O)C4=CC=CC=C4
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 2, test loss = 157.0493, reconstruction = 156.4301, KL = 0.6192.
+INFO:training_vae:Epoch 2. NEW best test loss = 157.0493        (Rec = 156.4301, KLD = 0.6192).
+INFO:training_vae:Epoch 2. NEW best reconstruction loss = 156.4301       (Loss = 157.0493, KLD = 0.6192)
+INFO:training_vae:***TRAINING***         Epoch: 2, step 2600/5322.      Loss: 193.6907, time spent: 520.0556654930115
+INFO:training_vae:Sample input:
+         CC1=NCCC2=CC(Cl)=C(O)C=C2N1CC3=CC=CC=C3, model reconstructed:
+         CCCC=CCCC=CCC=CCCCl
+INFO:training_vae:***TRAINING***         Epoch: 2, step 2700/5322.      Loss: 194.3065, time spent: 168.26799035072327
+INFO:training_vae:Sample input:
+         OC(=O)C1=CC=C2C=C3N=C(C4=CC=CS4)C(=NC3=CC2=C1)C5=CC=CS5, model reconstructed:
+         CCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 2, step 2800/5322.      Loss: 190.6685, time spent: 163.6676652431488
+INFO:training_vae:Sample input:
+         CC1=CC=C(NC(=S)NNC(=O)CN2C(=O)NC(C2=O)(C3=CC=CC=C3)C4=CC=CC=C4)C=C1, model reconstructed:
+         CC1CC=CC1CC(=O)NC=C(O)C=CC=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 2, step 2900/5322.      Loss: 190.6451, time spent: 170.38824772834778
+INFO:training_vae:Sample input:
+         COC1=CC=C(CN2CC(CC3=CC=CC=C3)C(CC(=O)NC4=CC=CC=C4)C2=O)C=C1, model reconstructed:
+         CCC=C1C=CC1CNC(C2)CC3=CC=CC=C3NCCCC=CC=CNC4=CC=CC=C4C#COC=C2
+INFO:training_vae:***TRAINING***         Epoch: 2, step 3000/5322.      Loss: 196.3730, time spent: 172.20259714126587
+INFO:training_vae:Sample input:
+         OCC1OC(OC2C(CO)OC(C(O)C2O)N3C=C(COCC(COCC4=CN(N=N4)C5OC(CO)C(OC6OC(CO)C(O)C(O)C6O)C(O)C5O)(COCC7=CN(N=N7)C8OC(CO)C(OC9OC(CO)C(O)C(O)C9O)C(O)C8O)COCC(COCC%10=CN(N=N%10)C%11OC(CO)C(OC%12OC(CO)C(O)C(O)C%12O)C(O)C%11O)(COCC%13=CN(N=N%13)C%14OC(CO)C(OC%15OC(CO)C(O)C(O)C%15O)C(O)C%14O)COCC%16=CN(N=N%16)C%17OC(CO)C(OC%18OC(CO)C(O)C(O)C%18O)C(O)C%17O)N=N3)C(O)C(O)C1O, model reconstructed:
+         C1CCC2C=C2CCC1COOC=C=O
+INFO:training_vae:***SAVING***   Epoch 2, saved model.
+INFO:training_vae:
+Sample Generated Molecule:
+CC(C)CCCC(OCCCCNCCCC(=O)C1)=CC=CO1
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 2, test loss = 154.1895, reconstruction = 153.9817, KL = 0.2078.
+INFO:training_vae:Epoch 2. NEW best test loss = 154.1895        (Rec = 153.9817, KLD = 0.2078).
+INFO:training_vae:Epoch 2. NEW best reconstruction loss = 153.9817       (Loss = 154.1895, KLD = 0.2078)
+INFO:training_vae:***TRAINING***         Epoch: 2, step 3100/5322.      Loss: 193.7837, time spent: 517.878986120224
+INFO:training_vae:Sample input:
+         CC(=O)OC1C2=C(C)C(CC(O)(C(OC(=O)C3=CC=CC=C3)C4C5(COC5CC(O)C4(C)C1=O)OC(C)=O)C2(C)C)OC(=O)C(OC(=O)OCC6=CC=CC=C6)C(NC(=O)C7=CC=CC=C7)C8=CC=CC=C8, model reconstructed:
+         CCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 2, step 3200/5322.      Loss: 187.8281, time spent: 158.71301221847534
+INFO:training_vae:Sample input:
+         CC(C)(C)OC(=O)N1C=C(N=C1N)C2=CC=C(NC(=O)C3CCCN3)C=C2, model reconstructed:
+         CCCCCCCCCC=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 2, step 3300/5322.      Loss: 205.3767, time spent: 173.66257166862488
+INFO:training_vae:Sample input:
+         O=S(=O)(NCCC1=CC=CC=C1)C2=CC=CC3=C(C=CC=C23)S(=O)(=O)NCCC4=CC=CC=C4, model reconstructed:
+         CC(=O)CCCCCC1CC=C2C=C1C3NC=CC4=C2C=CC=C34
+INFO:training_vae:***TRAINING***         Epoch: 2, step 3400/5322.      Loss: 178.0629, time spent: 157.01048493385315
+INFO:training_vae:Sample input:
+         O=C(NC1CCCCC1)C2=CC=C(C=C2)C3=CC(=CC=N3)C4=CC5=C(CCNC5=O)[NH1]4, model reconstructed:
+         CC(C1)CCCCC12C=CC=CC2(C3)C(=C)CC=C3C(C)C(C45)C4C5
+INFO:training_vae:***TRAINING***         Epoch: 2, step 3500/5322.      Loss: 189.2781, time spent: 166.71021604537964
+INFO:training_vae:Sample input:
+         CC(=O)NN1C2=CC=CC=C2SC3=CC=C(Cl)C=C13, model reconstructed:
+         CCCC=O
+INFO:training_vae:
+Sample Generated Molecule:
+COC1=CC=C(C=C1)NCCN(CC2=CC=CC=C23)C(=O)C3=CS(=O)(=O)N4CCCC4
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 2, test loss = 153.7042, reconstruction = 153.3597, KL = 0.3445.
+INFO:training_vae:Epoch 2. NEW best test loss = 153.7042        (Rec = 153.3597, KLD = 0.3445).
+INFO:training_vae:Epoch 2. NEW best reconstruction loss = 153.3597       (Loss = 153.7042, KLD = 0.3445)
+INFO:training_vae:***TRAINING***         Epoch: 2, step 3600/5322.      Loss: 182.2863, time spent: 509.4816315174103
+INFO:training_vae:Sample input:
+         CC1=NC(CC(=O)NC2=CC(C)=CC(C)=C2)=CS1, model reconstructed:
+         CCCC=CC(C)CC=CNCCC=CCCl
+INFO:training_vae:***TRAINING***         Epoch: 2, step 3700/5322.      Loss: 206.3525, time spent: 180.40947723388672
+INFO:training_vae:Sample input:
+         O=C(NC1=CC=CC=N1)C2=CC=C3[NH1]C(=NC3=C2)C4=CC=C(NC(=O)C56CC7CC(C5)C(=O)C(C7)C6)C=C4, model reconstructed:
+         C1CC2CC=CC=C2C=CC=CCC#C1
+INFO:training_vae:***TRAINING***         Epoch: 2, step 3800/5322.      Loss: 197.8913, time spent: 172.08000493049622
+INFO:training_vae:Sample input:
+         CN1C=NC2=CC(=NC(NC3CC3)=C2C1=O)C4=CC=C(N=C4)N5C=NC(C)=C5, model reconstructed:
+         CCCCC=CC#CCC#CC=CC=CC=NC=C=CCC=CC1=CCCC=C1CCC2N=CCC=N2
+INFO:training_vae:***TRAINING***         Epoch: 2, step 3900/5322.      Loss: 186.7670, time spent: 166.42835593223572
+INFO:training_vae:Sample input:
+         CC(=O)CCCC(=O)NC1=CC=CC(=C1)C(N)=O, model reconstructed:
+         CCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 2, step 4000/5322.      Loss: 182.9737, time spent: 158.49298858642578
+INFO:training_vae:Sample input:
+         ClC1=CC=CC(=C1)C2=CSC(CNC(=O)CCCC3=CC=C4C=CC=NC4=N3)=N2, model reconstructed:
+         C1C=CC=C1C(NN)NCCC=O
+INFO:training_vae:***SAVING***   Epoch 2, saved model.
+INFO:training_vae:
+Sample Generated Molecule:
+COC1=CC=C(C=C1)S(=O)(=O)NC=CC2=NC=C(Cl)C=C2
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 2, test loss = 153.9618, reconstruction = 153.7160, KL = 0.2458.
+INFO:training_vae:***TRAINING***         Epoch: 2, step 4100/5322.      Loss: 196.1873, time spent: 519.5741481781006
+INFO:training_vae:Sample input:
+         CCCC(CCC)C(=O)NC1CC2=CC=C(C=C2C1)S(N)(=O)=O, model reconstructed:
+         CCCCCCCC=CCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 2, step 4200/5322.      Loss: 184.3152, time spent: 158.46464037895203
+INFO:training_vae:Sample input:
+         CN1C2CCC1C3COC(=O)CCC4(CCC(=O)NC5=CC=C(C=C5)C3C2)C6=CC=CC=C6C7=CC=CC=C47, model reconstructed:
+         CCCCCC(CCCC)=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 2, step 4300/5322.      Loss: 176.7475, time spent: 158.5871937274933
+INFO:training_vae:Sample input:
+         COC1=CC=CC(NC(=O)CN2C=C3CCCCCC3=N2)=C1, model reconstructed:
+         C1CC2=CC=CC=C2CC(=O)C=C3C=CC=CCCCCC31
+INFO:training_vae:***TRAINING***         Epoch: 2, step 4400/5322.      Loss: 191.9976, time spent: 164.50782942771912
+INFO:training_vae:Sample input:
+         CC(=O)NC(CC1=CC=C(OP(O)(O)=O)C=C1)C(=O)NCCCN2CCCNC2=O, model reconstructed:
+         CCCCCCC=C1CCCC=C(OCO)COOC=C1C=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 2, step 4500/5322.      Loss: 187.0754, time spent: 159.6772484779358
+INFO:training_vae:Sample input:
+         OC1=CC=CC(=O)N1, model reconstructed:
+         CCCC=O
+INFO:training_vae:
+Sample Generated Molecule:
+CCCN1CCCC(C1)CCC2=NC=NCNCCCC(=O)NC3=CC=CC(C)=C3C=CC2=O
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 2, test loss = 152.8788, reconstruction = 152.6105, KL = 0.2683.
+INFO:training_vae:Epoch 2. NEW best test loss = 152.8788        (Rec = 152.6105, KLD = 0.2683).
+INFO:training_vae:Epoch 2. NEW best reconstruction loss = 152.6105       (Loss = 152.8788, KLD = 0.2683)
+INFO:training_vae:***TRAINING***         Epoch: 2, step 4600/5322.      Loss: 180.1627, time spent: 508.27833700180054
+INFO:training_vae:Sample input:
+         ClC1=CC=C(C=C1C(=O)OCC(=O)NC2CCS(=O)(=O)C2)S(=O)(=O)N3CCCCC3, model reconstructed:
+         C1C=CC=CC1CNC(O)(NCCCC=O)CCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 2, step 4700/5322.      Loss: 203.9593, time spent: 186.07856678962708
+INFO:training_vae:Sample input:
+         C=CCNC1=NC(N2CCC(CC2)NC3C4=CC=CC=C4CCC5=CC=CC=C35)=C6N=CN(CC=C)C6=N1, model reconstructed:
+         CC(C1C)CC12CC(C)CC2C3C(C)CC=C3C4=C=C=CC=C4
+INFO:training_vae:***TRAINING***         Epoch: 2, step 4800/5322.      Loss: 193.5329, time spent: 171.50983214378357
+INFO:training_vae:Sample input:
+         CN1CCN(CC1)C2=CC3=C(NC4=CC=C(OC5=CC=C(C=C5)C(=O)NCC(C)(C)C)C(C)=C4)N=CN=C3C=N2, model reconstructed:
+         CC1CCC(CC1)C(=C23)C2CC(=C)C3CC4CC=C(C=C4)C=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 2, step 4900/5322.      Loss: 184.0990, time spent: 169.17885732650757
+INFO:training_vae:Sample input:
+         CCCCC1=NC(Cl)=C(C(O)=O)N1CC2=CC=C3C(=C2)C(=O)C4=CC=CC=C4C=C3C5=NN=N[NH1]5, model reconstructed:
+         CCCCCCC=CCC=CCCC(O)=O
+INFO:training_vae:***TRAINING***         Epoch: 2, step 5000/5322.      Loss: 183.0943, time spent: 165.1217486858368
+INFO:training_vae:Sample input:
+         CCCCCCCCCCCCCCCCCCOCC(COP([O-1])(=O)OCC[N+1](C)(C)C)OC, model reconstructed:
+         CCC=CCCCCCCCCCCCC1CCCCCC1CCC(O)(O)OCCOCC(C)CCC
+INFO:training_vae:***SAVING***   Epoch 2, saved model.
+INFO:training_vae:
+Sample Generated Molecule:
+CCNN=NN1C=CN=N1
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 2, test loss = 151.6535, reconstruction = 151.3866, KL = 0.2670.
+INFO:training_vae:Epoch 2. NEW best test loss = 151.6535        (Rec = 151.3866, KLD = 0.2670).
+INFO:training_vae:Epoch 2. NEW best reconstruction loss = 151.3866       (Loss = 151.6535, KLD = 0.2670)
+INFO:training_vae:***TRAINING***         Epoch: 2, step 5100/5322.      Loss: 197.5843, time spent: 525.5444505214691
+INFO:training_vae:Sample input:
+         CC1=CC=CC=C1CN2CCN(CC2)C(=O)C3=CC=C(C=C3)S(=O)(=O)NCC4=CC=CO4, model reconstructed:
+         C1CC2C=C1N(CC2)C(=O)C=CC=CC(C)C(=O)C=O
+INFO:training_vae:***TRAINING***         Epoch: 2, step 5200/5322.      Loss: 181.6354, time spent: 156.38729238510132
+INFO:training_vae:Sample input:
+         OC(=O)C1=C(N2C(C(=CC3=CC=CC=N3)C2=O)S(=O)(=O)C1)C(O)=O, model reconstructed:
+         C1C(=O)C=CC1CC(C)CC=NC2=CC=CC=C2CCC(=O)C=O
+INFO:training_vae:***TRAINING***         Epoch: 2, step 5300/5322.      Loss: 184.1062, time spent: 170.94406175613403
+INFO:training_vae:Sample input:
+         CNC(C(C1CC=CC=C1)C2=CC=CC=C2)C(=O)NCCCCC(CO)N(CC(C)C)S(=O)(=O)C3=CC=C(N)C=C3, model reconstructed:
+         CC1CC1CCCC2C=CCCC2C3=CC=CC=C3C=CC=O
+INFO:training_vae:Epoch 2 finished,      Training Loss = 184.8447,Reconstruction = 184.4606, KL = 0.38409424
+INFO:training_vae:Epoch 2, took 12364.2.
+INFO:training_vae:***TRAINING***         Epoch: 3, step 100/5322.       Loss: 220.3923, time spent: 175.61169362068176
+INFO:training_vae:Sample input:
+         CNCCCOC1=CC(F)=C(C(F)=C1)C2=C(Cl)N=C(N=C2NC(C)C(F)(F)F)C3=CN=CC=N3, model reconstructed:
+         CCCCNCCCC=CCCl
+INFO:training_vae:***TRAINING***         Epoch: 3, step 200/5322.       Loss: 171.9624, time spent: 157.9388575553894
+INFO:training_vae:Sample input:
+         CNS(=O)(=O)CC(=O)N1CC2CC(=CC2C1)C3=CC4=C(C=CN=C4[NH1]3)C5=CC(F)=CC=C5OC, model reconstructed:
+         CCC(=O)C=O
+INFO:training_vae:***TRAINING***         Epoch: 3, step 300/5322.       Loss: 176.0993, time spent: 161.09901881217957
+INFO:training_vae:Sample input:
+         OC(=O)C=O, model reconstructed:
+         CC(=O)C=CC
+INFO:training_vae:***TRAINING***         Epoch: 3, step 400/5322.       Loss: 182.8205, time spent: 164.08196759223938
+INFO:training_vae:Sample input:
+         CN1CCC2(CC1)OC(=O)N(C2=O)C3=CC=CC(Cl)=C3, model reconstructed:
+         C1CCCCC1(C)CC(=O)CCCCC(C2)CC=CC=C=C2
+INFO:training_vae:***TRAINING***         Epoch: 3, step 500/5322.       Loss: 184.6921, time spent: 165.43797254562378
+INFO:training_vae:Sample input:
+         N#CNC1=NCN(CC2=CC=CC=C2)CN1, model reconstructed:
+         CCC=C=CC=C=C(C)C=CC=CCCC=NC
+INFO:training_vae:
+Sample Generated Molecule:
+CC1=CN=C(N=C1)N2CCN(CC2)C=CC3=C(CNC4=NN=C(N)S4C(=O)C=O)OOC=C3
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 3, test loss = 149.6444, reconstruction = 149.6438, KL = 0.0005.
+INFO:training_vae:Epoch 3. NEW best test loss = 149.6444        (Rec = 149.6438, KLD = 0.0005).
+INFO:training_vae:Epoch 3. NEW best reconstruction loss = 149.6438       (Loss = 149.6444, KLD = 0.0005)
+INFO:training_vae:***TRAINING***         Epoch: 3, step 600/5322.       Loss: 174.8688, time spent: 507.93134593963623
+INFO:training_vae:Sample input:
+         C1C2CC3CC1CC(C2)(C3)N4C=C[N+1](=C4)C56CC7CC(CC(C7)C5)C6, model reconstructed:
+         CCCCCC1C(C)CCC1CCCCCCC2CC=CC3=C2C4(C)CC(C)(C4)C3C
+INFO:training_vae:***TRAINING***         Epoch: 3, step 700/5322.       Loss: 196.0324, time spent: 173.5525393486023
+INFO:training_vae:Sample input:
+         CC(C)C1=CC(Cl)=CC(C(C)C)=C1O, model reconstructed:
+         CCCCCCCC=CCC=CC=CCC(C)C=CCCC
+INFO:training_vae:***TRAINING***         Epoch: 3, step 800/5322.       Loss: 183.8699, time spent: 160.83874416351318
+INFO:training_vae:Sample input:
+         CCCNC(=O)C1=CC=C(N2CCC3(CC(=NO3)C4=CC=CC(Br)=C4)CC2)C(NC(=O)C5=CC=CC(C)=C5)=C1, model reconstructed:
+         CCCCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 3, step 900/5322.       Loss: 181.5390, time spent: 160.28779649734497
+INFO:training_vae:Sample input:
+         COC1=CC=CC(NC(=O)CN(C)C(C)C(=O)NC2=CC=C(C=C2)C#N)=C1, model reconstructed:
+         C12CC=CC=C1CCC(CC)CCCC3=CCCC=C3C2
+INFO:training_vae:***TRAINING***         Epoch: 3, step 1000/5322.      Loss: 177.9735, time spent: 158.35677886009216
+INFO:training_vae:Sample input:
+         COC1=CC2=C3CN(CCC3=C4C=C(OC)C(OC)=C(OC)C4=C2C=C1OC)C(C)C, model reconstructed:
+         C1CC=CC=CC2=C=CCC=CC1(CCC=C2CCO)CC#C
+INFO:training_vae:***SAVING***   Epoch 3, saved model.
+INFO:training_vae:
+Sample Generated Molecule:
+COC1=CC=C(C=C1)S(=O)(=O)N2CCN(CC2)C3=CC=CC=N3
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 3, test loss = 147.7289, reconstruction = 147.7284, KL = 0.0005.
+INFO:training_vae:Epoch 3. NEW best test loss = 147.7289        (Rec = 147.7284, KLD = 0.0005).
+INFO:training_vae:Epoch 3. NEW best reconstruction loss = 147.7284       (Loss = 147.7289, KLD = 0.0005)
+INFO:training_vae:***TRAINING***         Epoch: 3, step 1100/5322.      Loss: 183.3209, time spent: 518.9034028053284
+INFO:training_vae:Sample input:
+         ONC(=O)CC(C1CCCCC1)C(=O)NC(CC2=CC=CC=C2)C(=O)NCC3=CC=CC=C3, model reconstructed:
+         CCC(=O)C=CCCC1=CCCCC1C=CC=CCCC(=C)C=CC=CC(=O)N2C(C)=CC=C2
+INFO:training_vae:***TRAINING***         Epoch: 3, step 1200/5322.      Loss: 187.6250, time spent: 168.994243144989
+INFO:training_vae:Sample input:
+         O=C(C1CCCN(C1)C2=NN=C(O2)C3CC3)C4=CC=CN=C4, model reconstructed:
+         CCC1CCCCC1C2=CC=C(S2)C=CC=C=CC=CC=C
+INFO:training_vae:***TRAINING***         Epoch: 3, step 1300/5322.      Loss: 192.6397, time spent: 169.94673681259155
+INFO:training_vae:Sample input:
+         CCOC1=CC=C(C=C1)C2=NN=C(SCC(=O)NCC3=CC=CC=C3)O2, model reconstructed:
+         CC=C1C=CC=CC1(C)C=CC=C(N)C=O
+INFO:training_vae:***TRAINING***         Epoch: 3, step 1400/5322.      Loss: 178.9704, time spent: 154.7793366909027
+INFO:training_vae:Sample input:
+         ON=C1C=CC(C=C1)=NNC2=NN=CC3=CC=CC=C23, model reconstructed:
+         CCCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 3, step 1500/5322.      Loss: 189.5708, time spent: 172.73895907402039
+INFO:training_vae:Sample input:
+         OC(=O)C1=CC(=NC2=C(Cl)C=NN12)C3=CC=CS3, model reconstructed:
+         CCCC=O
+INFO:training_vae:
+Sample Generated Molecule:
+COC1=CC=C(C=C1)C(=O)NCC(O)=O
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 3, test loss = 148.2258, reconstruction = 148.2241, KL = 0.0017.
+INFO:training_vae:***TRAINING***         Epoch: 3, step 1600/5322.      Loss: 183.7792, time spent: 512.8998248577118
+INFO:training_vae:Sample input:
+         COC1=CC(=CC(OC)=C1OC)C(=O)NC2=CC=CC=C2C3=NC(=NO3)C4=CC=C(C)C=C4, model reconstructed:
+         CCC=C1C=CC=CC(C)=C1OCC(C2)NCCC=C2C=CCCF
+INFO:training_vae:***TRAINING***         Epoch: 3, step 1700/5322.      Loss: 189.8562, time spent: 169.01145029067993
+INFO:training_vae:Sample input:
+         CC1=NC(CSCCC(N)C(O)=O)C(O)C1O, model reconstructed:
+         CCCC=CCNCC=C1CCCCCCCOOC=CCOO1
+INFO:training_vae:***TRAINING***         Epoch: 3, step 1800/5322.      Loss: 177.6939, time spent: 164.5441505908966
+INFO:training_vae:Sample input:
+         COC1=CC=C(C(F)=C1)S(=O)(=O)NC2=CC=CC(=C2)C3=CC=C(S3)C(=O)C4=CC=CC(O)=C4, model reconstructed:
+         CCC=CC=CC(C)CCl
+INFO:training_vae:***TRAINING***         Epoch: 3, step 1900/5322.      Loss: 171.6404, time spent: 158.05288314819336
+INFO:training_vae:Sample input:
+         COC1=CC=CC(CN2CCNC(=O)C2CC(=O)NC3CCCC3)=C1OC, model reconstructed:
+         CCC1=CC=CC=C1CCC(C=O)CC=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 3, step 2000/5322.      Loss: 183.9126, time spent: 174.09507179260254
+INFO:training_vae:Sample input:
+         CCC(C)C(NC(=O)C(NC(=O)C(CC(N)=O)NC(=O)C(CC1=CC=C(O)C=C1)NC(=O)C(CC(C)C)NC(=O)C(CO)NC(=O)C(CCCNC(N)=N)NC(=O)C(CC(C)C)NC(=O)C(CCC(O)=O)NC(=O)C(CCC(O)=O)NC(=O)C(CO)NC(=O)CNC(C)=O)C(C)O)C(=O)NC(C)C(=O)NC(C(C)C)C(=O)NC(CC(C)C)C(=O)NCC(=O)NC(CSCC(=O)NC(CCCNC(N)=N)C(=O)NC(CCCNC(N)=N)C(=O)NC(CCCNC(N)=N)C(=O)NC(CCCNC(N)=N)C(=O)NC(CCCNC(N)=N)C(=O)NC(CCCNC(N)=N)C(=O)NC(CCCNC(N)=N)C(=O)NC(CCCNC(N)=N)C(N)=O)C(N)=O, model reconstructed:
+         CCCCCCC=CNC(=O)C(CN)C(=O)C(CCC)=O
+INFO:training_vae:***SAVING***   Epoch 3, saved model.
+INFO:training_vae:
+Sample Generated Molecule:
+CNC=C1C=CC2=CC=CC=C2N1CC=3N=N[NH1]N=3
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 3, test loss = 148.0299, reconstruction = 146.6571, KL = 1.3728.
+INFO:training_vae:Epoch 3. NEW best reconstruction loss = 146.6571       (Loss = 148.0299, KLD = 1.3728)
+INFO:training_vae:***TRAINING***         Epoch: 3, step 2100/5322.      Loss: 174.3607, time spent: 506.98189210891724
+INFO:training_vae:Sample input:
+         CCOC(=O)N1CC(CC1C(=O)N2CCCN(CC2)C3CCC3)OC4=CC=CC(F)=C4, model reconstructed:
+         CCCC(=O)CCCCCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 3, step 2200/5322.      Loss: 179.3720, time spent: 166.797518491745
+INFO:training_vae:Sample input:
+         COC1=CC=C(C=C1)C2=N[NH1]C3=CC(NC(=O)NC(C)C4=CC=CC=C4)=NC=C23, model reconstructed:
+         CCC1=CC=C(C=C1)CCCC=CC=CC(C)CC=O
+INFO:training_vae:***TRAINING***         Epoch: 3, step 2300/5322.      Loss: 182.0079, time spent: 171.72950148582458
+INFO:training_vae:Sample input:
+         CC(NC(=O)C(CCC(O)=O)NC(=O)C(C)NC(=O)C(CCC(O)=O)NC(C)=O)C(O)=O, model reconstructed:
+         C1C=C1CC(=O)C(C)C=CNCC=O
+INFO:training_vae:***TRAINING***         Epoch: 3, step 2400/5322.      Loss: 177.6854, time spent: 163.1635468006134
+INFO:training_vae:Sample input:
+         CN1CCCC2C3CC4=C(C=CC(=O)N4)C12CC(C)=C3, model reconstructed:
+         CCC=CC=CCCCCCCCCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 3, step 2500/5322.      Loss: 188.6817, time spent: 175.29997992515564
+INFO:training_vae:Sample input:
+         COC(=O)C(O)C(CC1CCCCC1)NC(=O)C(CC(C)C)NC(=O)C(CC2=CC=CC=C2)N3CC(C)(C)OC3=O, model reconstructed:
+         CCC=CC=O
+INFO:training_vae:
+Sample Generated Molecule:
+CCCN1CCN(CC1)C(=O)CC2CCN(C)CC2
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 3, test loss = 146.3138, reconstruction = 145.9017, KL = 0.4121.
+INFO:training_vae:Epoch 3. NEW best test loss = 146.3138        (Rec = 145.9017, KLD = 0.4121).
+INFO:training_vae:Epoch 3. NEW best reconstruction loss = 145.9017       (Loss = 146.3138, KLD = 0.4121)
+INFO:training_vae:***TRAINING***         Epoch: 3, step 2600/5322.      Loss: 177.9917, time spent: 522.4519989490509
+INFO:training_vae:Sample input:
+         CC1=CC=C(CN2C=C(C=C2C3=CC=C(Cl)C(C)=C3)C(=O)NN4CCCC4)C=C1, model reconstructed:
+         CCC1C=CC1CN=CCC=C(CC=CC)Cl
+INFO:training_vae:***TRAINING***         Epoch: 3, step 2700/5322.      Loss: 185.2049, time spent: 169.13915991783142
+INFO:training_vae:Sample input:
+         CC(=O)NC1=CC=C(C=C1)C2CCN(CC2)C3=C(CC4=CC=CC=C4)C(=O)NC(O)=N3, model reconstructed:
+         CCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 3, step 2800/5322.      Loss: 179.1079, time spent: 156.99052906036377
+INFO:training_vae:Sample input:
+         COC(=O)C1=C(NC(=O)C=2C=COC=2C)SC=C1C3=CC=NC=C3, model reconstructed:
+         CCC=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 3, step 2900/5322.      Loss: 180.8339, time spent: 166.0770447254181
+INFO:training_vae:Sample input:
+         CC(Br)C(=O)C1=CC=C2C=C(Br)C3=CC=CC=C3C2=C1, model reconstructed:
+         CCCCCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 3, step 3000/5322.      Loss: 172.0402, time spent: 162.65157103538513
+INFO:training_vae:Sample input:
+         CCOC(=O)CCNC(=O)CC1CC(=NO1)C2=CC=C(C=C2)C(N)=N, model reconstructed:
+         CCCC(=O)C=CCC(=O)C=CCCCCCCC=CC1CCCCC1C(C)=O
+INFO:training_vae:***SAVING***   Epoch 3, saved model.
+INFO:training_vae:
+Sample Generated Molecule:
+CC(C)(C)COC(=O)CC=NN(C(=O)CCCC1CC2CC2NCCCC3=CC=CC=C3C1)N4CCCCC4
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 3, test loss = 144.3628, reconstruction = 144.1500, KL = 0.2129.
+INFO:training_vae:Epoch 3. NEW best test loss = 144.3628        (Rec = 144.1500, KLD = 0.2129).
+INFO:training_vae:Epoch 3. NEW best reconstruction loss = 144.1500       (Loss = 144.3628, KLD = 0.2129)
+INFO:training_vae:***TRAINING***         Epoch: 3, step 3100/5322.      Loss: 195.6333, time spent: 515.3316009044647
+INFO:training_vae:Sample input:
+         OC1=CC=C(C=C2SC(=N)N(C2=O)C3=CC=CC=C3)C=C1Cl, model reconstructed:
+         C=C=C
+INFO:training_vae:***TRAINING***         Epoch: 3, step 3200/5322.      Loss: 176.1160, time spent: 163.4886691570282
+INFO:training_vae:Sample input:
+         CCCN1CCCC12COC3=CC=CC=C3C2, model reconstructed:
+         CCCC(CC1CCC2)CC(C)C=C2C1=C
+INFO:training_vae:***TRAINING***         Epoch: 3, step 3300/5322.      Loss: 177.2866, time spent: 167.2977364063263
+INFO:training_vae:Sample input:
+         CC1=CC=C(C=C1)S(=O)(=O)OCC2OC3(CCN(CC4=CC=CC=C4)CC3)C5=CC=CC=C25, model reconstructed:
+         C1CCC=CC1(C)C(=O)C=O
+INFO:training_vae:***TRAINING***         Epoch: 3, step 3400/5322.      Loss: 177.0807, time spent: 161.81985878944397
+INFO:training_vae:Sample input:
+         CN(CC1=CC=CC=C1)C(=O)CCC2CCN(CC2)C(=O)C3=CC=CC=C3C(F)(F)F, model reconstructed:
+         CCCCCC1=CC=CC=C1C(=O)C=CC=C2C=CCCCC2C=CC=CC3=CC=CC#C3
+INFO:training_vae:***TRAINING***         Epoch: 3, step 3500/5322.      Loss: 189.6846, time spent: 172.88861846923828
+INFO:training_vae:Sample input:
+         CC(=O)C1=CC=CC(NC(=O)NC2CCCCC2)=C1, model reconstructed:
+         CCCC=O
+INFO:training_vae:
+Sample Generated Molecule:
+C1C(CCC2(CC)N(C)CCC2=NC3=CC=CC)=C3CCC1
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 3, test loss = 145.0752, reconstruction = 144.8456, KL = 0.2296.
+INFO:training_vae:***TRAINING***         Epoch: 3, step 3600/5322.      Loss: 172.4190, time spent: 507.68756222724915
+INFO:training_vae:Sample input:
+         COC1=CC=C(C=C1)N2C(=S)NC(=CN(C)C)C2=O, model reconstructed:
+         CCC1=CC=C(C=C1)CCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 3, step 3700/5322.      Loss: 179.7165, time spent: 163.67025184631348
+INFO:training_vae:Sample input:
+         CCOC(=O)C1=CN(CC2=CC=CC(Br)=C2)S(=O)(=O)N(CC)C1C, model reconstructed:
+         CCCC(=O)C=CC=CCCC=CC=C(C)Cl
+INFO:training_vae:***TRAINING***         Epoch: 3, step 3800/5322.      Loss: 174.1084, time spent: 160.3717176914215
+INFO:training_vae:Sample input:
+         COC1=CC=CC=C1N2C(SCC2=O)C3=CC=CC(=C3)C(=O)N(CC=C)CC=C, model reconstructed:
+         C12CC=CC=C1CC=C2NCCCC
+INFO:training_vae:***TRAINING***         Epoch: 3, step 3900/5322.      Loss: 171.8198, time spent: 160.84626960754395
+INFO:training_vae:Sample input:
+         CN(C)C1=CC=C(NC2=NC(NC3CCCCC3)=C4[NH1]C=NC4=N2)C=C1, model reconstructed:
+         CC1CCCCCC=C2CC(=C)CCC3=CCCC4C3=CCC4=C2C=C1
+INFO:training_vae:***TRAINING***         Epoch: 3, step 4000/5322.      Loss: 170.7517, time spent: 166.0814437866211
+INFO:training_vae:Sample input:
+         CCC1CC(N2CCC(CN3CCC(CC3)OC4=CC=C(CO)C(Cl)=C4)CC2)C(=O)O1, model reconstructed:
+         C1CC=C2CC1CC2C
+INFO:training_vae:***SAVING***   Epoch 3, saved model.
+INFO:training_vae:
+Sample Generated Molecule:
+COC1=CC(O)=CC(=O)CCC=C1
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 3, test loss = 143.9182, reconstruction = 143.3883, KL = 0.5299.
+INFO:training_vae:Epoch 3. NEW best test loss = 143.9182        (Rec = 143.3883, KLD = 0.5299).
+INFO:training_vae:Epoch 3. NEW best reconstruction loss = 143.3883       (Loss = 143.9182, KLD = 0.5299)
+INFO:training_vae:***TRAINING***         Epoch: 3, step 4100/5322.      Loss: 182.1831, time spent: 516.9901275634766
+INFO:training_vae:Sample input:
+         CCOC(=O)C1=C(CC)OC(=N)C(C#N)C1C2=CC=CS2, model reconstructed:
+         CCCC(=O)CCC=C(C)C=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 3, step 4200/5322.      Loss: 170.4987, time spent: 159.69625234603882
+INFO:training_vae:Sample input:
+         NC(=O)C1=CC=CC(=C1)N2C=C(N=N2)C3=CC=C(C=C3)C(O)=O, model reconstructed:
+         CC=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 3, step 4300/5322.      Loss: 182.6375, time spent: 166.76653909683228
+INFO:training_vae:Sample input:
+         FC1=CC=CC(F)=C1NC(=O)CSC2=NN=C(O2)C3=CC=C4OCOC4=C3, model reconstructed:
+         CC=CC=CF
+INFO:training_vae:***TRAINING***         Epoch: 3, step 4400/5322.      Loss: 187.3226, time spent: 174.80106568336487
+INFO:training_vae:Sample input:
+         OC1=CC=C(C=C1)C2=CC=C3C=C(O)C=CC3=[O+1]2, model reconstructed:
+         C12C(=C3)C1(C)C(=C)C=COC=C2C3C
+INFO:training_vae:***TRAINING***         Epoch: 3, step 4500/5322.      Loss: 182.5991, time spent: 167.21417450904846
+INFO:training_vae:Sample input:
+         COC1=CC2=NN=CC(C3=CN=C(N4CCC(O)(CC4)C5CC5)C(C)=C3)=C2C=C1OC, model reconstructed:
+         CCC=C1C=CC=C(CC23)CC2CC(=O)CCC4CC4(C)CC3=CC=CCCC5=C=C5C=C1C
+INFO:training_vae:
+Sample Generated Molecule:
+CC1=CC=C(C)C=C1NC(=O)CCCCNC2CCNCC2
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 3, test loss = 145.5160, reconstruction = 145.1047, KL = 0.4113.
+INFO:training_vae:***TRAINING***         Epoch: 3, step 4600/5322.      Loss: 176.1633, time spent: 514.331734418869
+INFO:training_vae:Sample input:
+         CN1CC2=C(C(NC(=O)N2C3=CC=C(F)C(=C3)C(F)(F)F)C4=CC=C(C=C4)C#N)C(=O)N1, model reconstructed:
+         CCCCC=C1CC1NC(=O)CC2(C)C=C(CCC2)C(F)(F)F
+INFO:training_vae:***TRAINING***         Epoch: 3, step 4700/5322.      Loss: 186.1597, time spent: 169.3172264099121
+INFO:training_vae:Sample input:
+         COC1=CC(NC(=O)C2=CC=C3C=CC(C(O)=O)=C(O)C3=N2)=CC(O)=C1O, model reconstructed:
+         C1CC=CC=C1CC(=O)C=CC=CC=CC=CCCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 3, step 4800/5322.      Loss: 172.5820, time spent: 167.08022665977478
+INFO:training_vae:Sample input:
+         CS(=O)(=O)C1=CC=C(C=C1)C2=CC=CC=C2OC3=CC=CC=C3, model reconstructed:
+         CCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 3, step 4900/5322.      Loss: 182.8113, time spent: 171.6676366329193
+INFO:training_vae:Sample input:
+         ClCC1COC2(O1)C(=O)N(CN3CCOCC3)C4=CC=CC=C24, model reconstructed:
+         CC=C=CN1C=CCC1C=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 3, step 5000/5322.      Loss: 179.6714, time spent: 173.1733865737915
+INFO:training_vae:Sample input:
+         CCOC(=O)C1=CC=CC=C1NC(=O)COC(=O)CN2C(=O)NC3(CCCC3)C2=O, model reconstructed:
+         CCCCCC=O
+INFO:training_vae:***SAVING***   Epoch 3, saved model.
+INFO:training_vae:
+Sample Generated Molecule:
+C1C=CC=CC(NC(=O)CNC(=O)C2=CC=CN2)C(=N)C(C#N)=C1C3=CC=CC=C3
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 3, test loss = 142.9209, reconstruction = 142.5444, KL = 0.3765.
+INFO:training_vae:Epoch 3. NEW best test loss = 142.9209        (Rec = 142.5444, KLD = 0.3765).
+INFO:training_vae:Epoch 3. NEW best reconstruction loss = 142.5444       (Loss = 142.9209, KLD = 0.3765)
+INFO:training_vae:***TRAINING***         Epoch: 3, step 5100/5322.      Loss: 177.4543, time spent: 511.08576345443726
+INFO:training_vae:Sample input:
+         CC1=C(Br)C(=O)N(C2CCCC2)C3=NC(NC4=CC=CC=N4)=NC=C13, model reconstructed:
+         CCCCCCC=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 3, step 5200/5322.      Loss: 166.1904, time spent: 152.8441960811615
+INFO:training_vae:Sample input:
+         ClCCNC(=O)C1=CC=C(OCC2=CC=CC=C2)C=C1Cl, model reconstructed:
+         CC=CCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 3, step 5300/5322.      Loss: 182.5638, time spent: 169.23271322250366
+INFO:training_vae:Sample input:
+         CC(=NNC(=O)C1=CC2=CC=CC=C2C=C1O)C3=CC=C(C)O3, model reconstructed:
+         CCCCCCNCCC=O
+INFO:training_vae:Epoch 3 finished,      Training Loss = 198.0793,Reconstruction = 197.6519, KL = 0.42733765
+INFO:training_vae:Epoch 3, took 12296.2.
+INFO:training_vae:***TRAINING***         Epoch: 4, step 100/5322.       Loss: 196.2906, time spent: 172.22675275802612
+INFO:training_vae:Sample input:
+         CN1C(SC2=CC=CC=C12)=NC(=O)C3=NNC(=O)CC3, model reconstructed:
+         CCCC1CCC2CC=CC=C12
+INFO:training_vae:***TRAINING***         Epoch: 4, step 200/5322.       Loss: 171.6687, time spent: 167.2392382621765
+INFO:training_vae:Sample input:
+         FC1=CC=C(C(F)=C1)C2=CC=C(NC(=O)CCCCN3CCCCC3)C=C2, model reconstructed:
+         CC=CC=CC(C)CF
+INFO:training_vae:***TRAINING***         Epoch: 4, step 300/5322.       Loss: 177.8074, time spent: 174.68758511543274
+INFO:training_vae:Sample input:
+         CN(C)CCC1=C[NH1]C2=CC=C(CS(=O)(=O)N(C)CC3=CC=C(CN(C)S(=O)(=O)CC4=CC=C5[NH1]C=C(CCN(C)C)C5=C4)C=C3)C=C12, model reconstructed:
+         CC(C)CCCNCCC1C=CC1CCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 4, step 400/5322.       Loss: 167.9253, time spent: 153.23079824447632
+INFO:training_vae:Sample input:
+         CCS(=O)(=O)CC(C)OC[N+1]=1C=CN(C)C=1C=NO, model reconstructed:
+         CC(C)=O
+INFO:training_vae:***TRAINING***         Epoch: 4, step 500/5322.       Loss: 174.0317, time spent: 173.3103940486908
+INFO:training_vae:Sample input:
+         CNC(=O)CCC1=CC=C(CCNC(=O)C2=CC(Cl)=CC=C2OC)C=C1, model reconstructed:
+         CCC=CC=CC=CC1CC=CC1N=CNC(=O)C=CC=CCCl
+INFO:training_vae:
+Sample Generated Molecule:
+CC1=CC=C(C=C1S(=O)(=O)N2CCCCC2C(=O)NCCC(O)=O)C(=O)NC(CC(O)=O)C(N)=O
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 4, test loss = 140.4908, reconstruction = 140.4901, KL = 0.0008.
+INFO:training_vae:Epoch 4. NEW best test loss = 140.4908        (Rec = 140.4901, KLD = 0.0008).
+INFO:training_vae:Epoch 4. NEW best reconstruction loss = 140.4901       (Loss = 140.4908, KLD = 0.0008)
+INFO:training_vae:***TRAINING***         Epoch: 4, step 600/5322.       Loss: 186.7137, time spent: 534.987016916275
+INFO:training_vae:Sample input:
+         COC1=CC=CC(NN=C2C=CC3=CC=CC=C3C2=O)=C1, model reconstructed:
+         C1C2C3=CC=CC=C3CC4=C1C=CC=C24
+INFO:training_vae:***TRAINING***         Epoch: 4, step 700/5322.       Loss: 181.2530, time spent: 167.8147304058075
+INFO:training_vae:Sample input:
+         COC1=CC=C(C=C1NC(=O)CC2=CC=C3OCCOC3=C2)S(=O)(=O)N4CCOCC4, model reconstructed:
+         CC1C=C2C=CC1CC2CC(=O)C=CC3C=CCC(C3=CC(=O)C=O)N4CCCCC4
+INFO:training_vae:***TRAINING***         Epoch: 4, step 800/5322.       Loss: 188.6833, time spent: 177.50948524475098
+INFO:training_vae:Sample input:
+         CNC(=O)C(CC1=CC=CC=C1)NC(=O)C(CC(C)C)C(C)(CC=C)C(=O)NO, model reconstructed:
+         CCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 4, step 900/5322.       Loss: 173.6677, time spent: 165.4363842010498
+INFO:training_vae:Sample input:
+         COC(=O)CCC(=O)N1CC(=CC2=CC=CC=C2F)C(=O)C(C1)=CC3=CC=CC=C3F, model reconstructed:
+         CCC=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 4, step 1000/5322.      Loss: 178.2217, time spent: 167.7200653553009
+INFO:training_vae:Sample input:
+         CC(CN1C=NC2=C(N)N=CN=C12)OCP(=O)(NC(C)C(=O)OCC(C)(C)C)OC3=CC=CC=4CCCCC3=4, model reconstructed:
+         CC=CCCCC=1C=C=C=CN=C=1
+INFO:training_vae:***SAVING***   Epoch 4, saved model.
+INFO:training_vae:
+Sample Generated Molecule:
+CCOC(=O)CC(=O)CCCC1C=C(N)S=CC(C=C1)C(O)=O
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 4, test loss = 139.9217, reconstruction = 139.9211, KL = 0.0006.
+INFO:training_vae:Epoch 4. NEW best test loss = 139.9217        (Rec = 139.9211, KLD = 0.0006).
+INFO:training_vae:Epoch 4. NEW best reconstruction loss = 139.9211       (Loss = 139.9217, KLD = 0.0006)
+INFO:training_vae:***TRAINING***         Epoch: 4, step 1100/5322.      Loss: 175.7308, time spent: 521.0583076477051
+INFO:training_vae:Sample input:
+         CS(=O)(=O)N1CCC(CC1)NC2=CC=C(C#N)C(=C2)C(F)(F)F, model reconstructed:
+         CCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 4, step 1200/5322.      Loss: 169.0802, time spent: 160.6061704158783
+INFO:training_vae:Sample input:
+         CN1C(=NN=C1C2(CCC2)C3=CC=C(Cl)C=C3)C4=CC=C(C=C4)C(=O)N5CCCC5, model reconstructed:
+         CCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 4, step 1300/5322.      Loss: 173.3265, time spent: 161.3992555141449
+INFO:training_vae:Sample input:
+         CCOC1=CC=C(C=C1)C#CC2=CC=C(CCNC(C)=O)C=C2, model reconstructed:
+         CCC1C(=C)CC=C1C=O
+INFO:training_vae:***TRAINING***         Epoch: 4, step 1400/5322.      Loss: 175.4969, time spent: 173.92043113708496
+INFO:training_vae:Sample input:
+         CC1=CC(=CC=N1)C2=N[NH1]C3=CC(NC(=O)NCC=4C=CSC=4)=NC=C23, model reconstructed:
+         CC1(C)C=NC=C1C(C)C=CCCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 4, step 1500/5322.      Loss: 180.2638, time spent: 178.10241985321045
+INFO:training_vae:Sample input:
+         CC(OC1CCC2CN(CC2C1C3=CC=C(F)C=C3)C4=CC(=O)CCC4)C5=CC(=CC(=C5)C(F)(F)F)C(F)(F)F, model reconstructed:
+         C1CC1CC=CCCCC(C)CC(C)CC=CCCCF
+INFO:training_vae:
+Sample Generated Molecule:
+CC=C1C=C(C=CC(=O)N(NC2=CC=CC=C2)N)C1C3=CN=CC=N3
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 4, test loss = 138.3363, reconstruction = 138.3355, KL = 0.0008.
+INFO:training_vae:Epoch 4. NEW best test loss = 138.3363        (Rec = 138.3355, KLD = 0.0008).
+INFO:training_vae:Epoch 4. NEW best reconstruction loss = 138.3355       (Loss = 138.3363, KLD = 0.0008)
+INFO:training_vae:***TRAINING***         Epoch: 4, step 1600/5322.      Loss: 166.4810, time spent: 514.7335188388824
+INFO:training_vae:Sample input:
+         CC1=CC(C)=NC(=N1)N2CC3CN(CC3C2)C(=O)C4=CC=CN=C4Br, model reconstructed:
+         CCCC1=CCC=CC1
+INFO:training_vae:***TRAINING***         Epoch: 4, step 1700/5322.      Loss: 162.9368, time spent: 153.05930137634277
+INFO:training_vae:Sample input:
+         O=C(CCN1CCCCC1)NC2=CC=C(C3=CC=CC=4C(=O)C=C(NC3=4)N5CCOCC5)C=6SC7=CC=CC=C7C2=6, model reconstructed:
+         CC(CC1CCCCC1C=C=CC=C=C)NNC=CC=C(O)N=CC2CCCCO2
+INFO:training_vae:***TRAINING***         Epoch: 4, step 1800/5322.      Loss: 166.4470, time spent: 158.2609236240387
+INFO:training_vae:Sample input:
+         NCC(=O)NCC(=O)NCC(=O)NCC(O)=O, model reconstructed:
+         CC(C)ONCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 4, step 1900/5322.      Loss: 166.2457, time spent: 158.27328038215637
+INFO:training_vae:Sample input:
+         FC(F)(F)C1=CC=C(NC(=O)N2CC3NC(C2)C3C4=CC=C(C=C4)C5=CC=CC(=C5)C#N)C=C1, model reconstructed:
+         CC=CCF
+INFO:training_vae:***TRAINING***         Epoch: 4, step 2000/5322.      Loss: 185.9704, time spent: 172.80119633674622
+INFO:training_vae:Sample input:
+         CNC(C)C1=CC(=CC=C1OC2=CC=C(Cl)C(Cl)=C2)C(F)(F)F, model reconstructed:
+         CCCCC=O
+INFO:training_vae:***SAVING***   Epoch 4, saved model.
+INFO:training_vae:
+Sample Generated Molecule:
+CC1=CC=C(C=C1)CCCCC(O)C(C)CCCCC(C)CC2CC(C)C3CCC(C)C4CC(C)CCC4(C)C23CC(C)C
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 4, test loss = 141.0367, reconstruction = 140.7379, KL = 0.2988.
+INFO:training_vae:***TRAINING***         Epoch: 4, step 2100/5322.      Loss: 174.8693, time spent: 512.5763945579529
+INFO:training_vae:Sample input:
+         COC1=CC=CC=2C(=O)C3=C(CCCC3)NC1=2, model reconstructed:
+         CCC1=CC=CCCCC=CCCCCC1CC#CON
+INFO:training_vae:***TRAINING***         Epoch: 4, step 2200/5322.      Loss: 175.0243, time spent: 168.25029110908508
+INFO:training_vae:Sample input:
+         CCOC1=CC=C(C=C1)C(=O)N2CCCCC2CCN3CCOCC3, model reconstructed:
+         CC=C1C=CC=CC1(C)C(=O)CCCCCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 4, step 2300/5322.      Loss: 167.1902, time spent: 159.66333651542664
+INFO:training_vae:Sample input:
+         COC(=O)C1(C)CCCC2(C)C1CCC34C=C(C(C)C)C(CC23)C5C(CCC(=O)C45)OC(=O)C6=CC=CN=C6, model reconstructed:
+         CCC=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 4, step 2400/5322.      Loss: 172.3343, time spent: 157.58611154556274
+INFO:training_vae:Sample input:
+         CC(=O)OC1=CC=2CCC(C)(COC3=CC=C(CC4SC(N)=NC4=O)C=C3)OC=2C=C1C, model reconstructed:
+         CCCCCC1CCC=CCC=C1CCC(=C)CCCC2=CCC=NC2=O
+INFO:training_vae:***TRAINING***         Epoch: 4, step 2500/5322.      Loss: 175.2789, time spent: 164.98246955871582
+INFO:training_vae:Sample input:
+         CC1=CC(C)=C(C(C)=C1)S(=O)(=O)NC(CNC(=O)COC2CC(CNC3=CC=CC=N3)N(C2)C(=O)OCC4=CC=CC=C4)C(O)=O, model reconstructed:
+         CCCC=CCC=C1CCC=CCCO1
+INFO:training_vae:
+Sample Generated Molecule:
+CC(=O)OC(C)(C)C1=CC(C)=C(OC(=O)C2=CC=C(C)C=C2C=C1O)NC3=CC=C(OC)C(OC)=C3
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 4, test loss = 139.9762, reconstruction = 139.6480, KL = 0.3282.
+INFO:training_vae:***TRAINING***         Epoch: 4, step 2600/5322.      Loss: 178.0089, time spent: 525.539023399353
+INFO:training_vae:Sample input:
+         CCOC1=CC(NC(=O)C2=CC=CC(F)=C2)=C(OCC)C=C1NC(=S)NCCCN3CCOCC3, model reconstructed:
+         CC=CC(=C)CCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 4, step 2700/5322.      Loss: 178.0881, time spent: 172.80659770965576
+INFO:training_vae:Sample input:
+         CN(CC1=CN=C2N=C(N)N=C(N)C2=N1)C3=CC=C(C=C3)C(=O)NCCC(O)=O, model reconstructed:
+         CC=CCCCC1C2CC1CN=C(N)N2OCNC=CC3=CCCC=C3C(O)NCCCCCCC
+INFO:training_vae:***TRAINING***         Epoch: 4, step 2800/5322.      Loss: 165.7887, time spent: 159.34485936164856
+INFO:training_vae:Sample input:
+         O=C(CC1NC(=O)NC1=O)NC2(CCCCC2)C(=O)NC3CCCCC3, model reconstructed:
+         CC(NC)CCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 4, step 2900/5322.      Loss: 157.6660, time spent: 151.0231330394745
+INFO:training_vae:Sample input:
+         COC1=CC=C(Cl)C=C1NC2=NC(Cl)=NC(NCCO)=N2, model reconstructed:
+         CC1C=CC=C2C=C1CC(=O)CCC(C)NCOC2
+INFO:training_vae:***TRAINING***         Epoch: 4, step 3000/5322.      Loss: 179.7124, time spent: 170.06695008277893
+INFO:training_vae:Sample input:
+         OC(=O)CNC(=O)C1=CC=C(C=N1)C2=CC=C(Cl)C=C2, model reconstructed:
+         CC(=O)C=CC(=O)C=CC1=CCCC=C1C2=CC=CC(C)=C2
+INFO:training_vae:***SAVING***   Epoch 4, saved model.
+INFO:training_vae:
+Sample Generated Molecule:
+ClC=C1C=C(CS(=O)(=O)C2=CC=CS2)C1
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 4, test loss = 137.5655, reconstruction = 137.2873, KL = 0.2782.
+INFO:training_vae:Epoch 4. NEW best test loss = 137.5655        (Rec = 137.2873, KLD = 0.2782).
+INFO:training_vae:Epoch 4. NEW best reconstruction loss = 137.2873       (Loss = 137.5655, KLD = 0.2782)
+INFO:training_vae:***TRAINING***         Epoch: 4, step 3100/5322.      Loss: 179.8623, time spent: 518.6564209461212
+INFO:training_vae:Sample input:
+         CCCS(=O)(=O)NCCCC1=CC=C2CCC(N)C(CC3=CC=CC(Cl)=C3)C2=C1, model reconstructed:
+         CCCC(=O)C=O
+INFO:training_vae:***TRAINING***         Epoch: 4, step 3200/5322.      Loss: 172.1107, time spent: 164.92064213752747
+INFO:training_vae:Sample input:
+         CCC1C=C(C)CC(C)CC(OC)C2OC(O)(C(C)CC2OC)C(=O)C(=O)N3CCCCC3C(=O)OC(C(C)C(O)CC1=O)C(C)=CC4CCC(OCC(=O)NC5=CC=C(Cl)C(Cl)=C5)C(C4)OC, model reconstructed:
+         CCCC=CC(C)=CCCCCCCC(C)CCCCCCC=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 4, step 3300/5322.      Loss: 167.9707, time spent: 157.43061661720276
+INFO:training_vae:Sample input:
+         CC=1C=C(C)N(N=1)C2=NC3=CC(C)=CC=C3N4N=NN=C24, model reconstructed:
+         CCCCCC1CCCCC1C=CC=CC2=CCC=CC3=C2O3
+INFO:training_vae:***TRAINING***         Epoch: 4, step 3400/5322.      Loss: 168.7370, time spent: 169.29524517059326
+INFO:training_vae:Sample input:
+         NC(=N)NCCN1CCC23C4OC5=C2C(CC1C3(O)CC=6C=7CC8(O)C9CC%10=CC=C(O)C=%11OC(C=7[NH1]C4=6)C8(CCN9CC%12CC%12)C%10=%11)=CC=C5O, model reconstructed:
+         CC(=O)CCCC(CCCC1)=CC(CC)OCCC(C)=C1CCOCCCOC=CCCCl
+INFO:training_vae:***TRAINING***         Epoch: 4, step 3500/5322.      Loss: 172.7447, time spent: 168.11644625663757
+INFO:training_vae:Sample input:
+         O=C(NC1CCN(CC2=CC=CC=C2)C1)C3=CC=CC(=C3)C=4C=CSC=4, model reconstructed:
+         C1C(C)CCC2=C(C)C3C=C2CC3C=CC=C1C(C)C
+INFO:training_vae:
+Sample Generated Molecule:
+CCCCCCCCC=CCCC(O)CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 4, test loss = 137.4325, reconstruction = 137.0832, KL = 0.3493.
+INFO:training_vae:Epoch 4. NEW best test loss = 137.4325        (Rec = 137.0832, KLD = 0.3493).
+INFO:training_vae:Epoch 4. NEW best reconstruction loss = 137.0832       (Loss = 137.4325, KLD = 0.3493)
+INFO:training_vae:***TRAINING***         Epoch: 4, step 3600/5322.      Loss: 173.4326, time spent: 516.5370490550995
+INFO:training_vae:Sample input:
+         FC1=CC=CC=C1CN(CC2=CC=CC=C2)C(=S)NCC(=O)NCC3=CC=C(Cl)C=C3, model reconstructed:
+         C=1C=CC=C=1
+INFO:training_vae:***TRAINING***         Epoch: 4, step 3700/5322.      Loss: 168.9449, time spent: 167.28991961479187
+INFO:training_vae:Sample input:
+         CCCC1=C(OCCCCCCCCC=2N=N[NH1]N=2)C=CC(C(C)=O)=C1O, model reconstructed:
+         CCCCCC=CCC(CCCC)CC=1CCCC=1CCCCC(C)CCC
+INFO:training_vae:***TRAINING***         Epoch: 4, step 3800/5322.      Loss: 177.3347, time spent: 178.41574215888977
+INFO:training_vae:Sample input:
+         COC1=CC=CC=2C(CCCC1=2)NS(N)(=O)=O, model reconstructed:
+         CCC=CC=C(CCCNCCCCCCCC)CC=O
+INFO:training_vae:***TRAINING***         Epoch: 4, step 3900/5322.      Loss: 169.9703, time spent: 158.01220059394836
+INFO:training_vae:Sample input:
+         CC1=NC=CC=C1NC(=O)C2CCOC3CCN(CC23)C4=CC=NC=N4, model reconstructed:
+         CCCC=CC=CC=CCC(=O)C=C1CCC#CC1
+INFO:training_vae:***TRAINING***         Epoch: 4, step 4000/5322.      Loss: 169.3431, time spent: 163.5830101966858
+INFO:training_vae:Sample input:
+         OC1=C(N(C(=O)N1C2=CC=CC(Cl)=C2)C3=CC=CC(Cl)=C3)C4=CC=CC=C4, model reconstructed:
+         C1=CCC1CCC=O
+INFO:training_vae:***SAVING***   Epoch 4, saved model.
+INFO:training_vae:
+Sample Generated Molecule:
+O=CCNC(CC1=CC=CC=C1)C=CC=NC=C
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 4, test loss = 136.3499, reconstruction = 136.0242, KL = 0.3257.
+INFO:training_vae:Epoch 4. NEW best test loss = 136.3499        (Rec = 136.0242, KLD = 0.3257).
+INFO:training_vae:Epoch 4. NEW best reconstruction loss = 136.0242       (Loss = 136.3499, KLD = 0.3257)
+INFO:training_vae:***TRAINING***         Epoch: 4, step 4100/5322.      Loss: 157.2675, time spent: 507.520649433136
+INFO:training_vae:Sample input:
+         CCCC(N(CCCO)CC1=CC2=CC(C)=CC(C)=C2NC1=O)C3=NN=NN3C(C)(C)CC, model reconstructed:
+         C1C2C=CC1C#CC=CCC3=C(CC4=C2COC3C4)C=O
+INFO:training_vae:***TRAINING***         Epoch: 4, step 4200/5322.      Loss: 172.6525, time spent: 174.34621834754944
+INFO:training_vae:Sample input:
+         CC(C)(CNC(=O)C1(N)CCCC1)CN(C2=NS(=O)(=O)C3=CC(F)=CC=C23)C4=CC=CC=C4, model reconstructed:
+         CCCCCCCCCCCC=O
+INFO:training_vae:***TRAINING***         Epoch: 4, step 4300/5322.      Loss: 174.6933, time spent: 172.54563927650452
+INFO:training_vae:Sample input:
+         CC1=CN(C2CC(OP(O)(=O)OCC3OC(CC3OP(O)(=O)OCC4OC(CC4OP(O)(=O)OCC5OC(CC5OP(O)(=O)OCC6OC(CC6OP(O)(=O)OCC7OC(CC7OP(O)(=O)OCC8OC(CC8OP(O)(=O)OCC9OC(CC9OP(O)(=O)OCC%10OC(CC%10OP(O)(=O)OCC%11OC(CC%11OP(O)(=O)OCC%12OC(C(O)C%12O)N%13C=NC%14=C%13NC(N)=NC%14=O)N%15C=NC%16=C%15NC(N)=NC%16=S)N%17C=C(C)C(=S)NC%17=O)N%18C=NC%19=C%18NC(N)=NC%19=S)N%20C=NC%21=C%20N=C(N)NC%21=S)N%22C=NC%23=C%22N=C(N)NC%23=S)N%24C=C(C)C(=S)NC%24=O)N%25C=NC%26=C%25N=C(N)NC%26=S)N%27C=NC%28=C%27N=C(N)NC%28=S)N%29C=NC%30=C%29N=C(N)NC%30=S)C(CO)O2)C(=O)NC1=S, model reconstructed:
+         CCC1C=C1CCC2CC2=CCC(O)C=O
+INFO:training_vae:***TRAINING***         Epoch: 4, step 4400/5322.      Loss: 167.9177, time spent: 161.5472433567047
+INFO:training_vae:Sample input:
+         CC(NCC1=CC=CC(OCC2=CC=CC=C2)=C1)C(O)C3=CC=CC=C3, model reconstructed:
+         C1CC1CCCN2C=C(CCC=C3CC=CC=C3C2)C=CCOOCC=CC=C
+INFO:training_vae:***TRAINING***         Epoch: 4, step 4500/5322.      Loss: 170.1273, time spent: 161.84914088249207
+INFO:training_vae:Sample input:
+         NC1NC(=O)N(C=C1)C2OC(CO)C(CO)=C2, model reconstructed:
+         CC(C)C=O
+INFO:training_vae:
+Sample Generated Molecule:
+C1C2=CC1=CC=C2CNC(=S)NC(=S)NC=CC3=CC=CC=CC=CC=C3
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 4, test loss = 137.4710, reconstruction = 137.1102, KL = 0.3608.
+INFO:training_vae:***TRAINING***         Epoch: 4, step 4600/5322.      Loss: 177.7615, time spent: 527.1937074661255
+INFO:training_vae:Sample input:
+         CC1=CC=CC2=NC(CCC3=NC(=CN3CC(O)CN4CCCC4)C5=CC=CS5)=NN12, model reconstructed:
+         C=1CCC=CC=C=1
+INFO:training_vae:***TRAINING***         Epoch: 4, step 4700/5322.      Loss: 170.4334, time spent: 164.98618268966675
+INFO:training_vae:Sample input:
+         FC1=CC=C(C=C1)N2N=C3CS(=O)(=O)CC3=C2NC(=O)C45CC6CC(CC(C6)C4)C5, model reconstructed:
+         C1C=CC=CC1(C)CC=CC=CCC=O
+INFO:training_vae:***TRAINING***         Epoch: 4, step 4800/5322.      Loss: 163.8957, time spent: 154.56578159332275
+INFO:training_vae:Sample input:
+         CC(C)C12CCC3(CO)CCC4(C)C(C(CC5C6(C)CCC(O)C(C)(C)C6CCC45C)N7N1C(=O)N(C)C7=O)=C23, model reconstructed:
+         CCCCCCCCC=CCCOC(C)COC=CC1COCC(C=23)C=2OCC4CCCCCCCCC13CCC=C4CCC=O
+INFO:training_vae:***TRAINING***         Epoch: 4, step 4900/5322.      Loss: 167.8318, time spent: 165.3670358657837
+INFO:training_vae:Sample input:
+         CC1=C(C(C2=CC=CN=C2)N3N=NN=C3N1)C(=O)NC4=CC=CC=N4, model reconstructed:
+         C1CCC1C(C2)CC=CC=C2C3C=CC=C3CC(C)ONCCC=C
+INFO:training_vae:***TRAINING***         Epoch: 4, step 5000/5322.      Loss: 172.0384, time spent: 163.31768465042114
+INFO:training_vae:Sample input:
+         CC1=CC=C(C=C1)C(=O)NCC(=O)OCC2=CC(=O)N3N=C(SC3=N2)C4CC4, model reconstructed:
+         C1C(C)C1(C)C=NC=O
+INFO:training_vae:***SAVING***   Epoch 4, saved model.
+INFO:training_vae:
+Sample Generated Molecule:
+OC(=O)C1=CC=C(C=C1)C2=CC=C(C=C2)C3=CC=NC=C3
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 4, test loss = 137.5025, reconstruction = 137.2025, KL = 0.3000.
+INFO:training_vae:***TRAINING***         Epoch: 4, step 5100/5322.      Loss: 174.3509, time spent: 514.3511717319489
+INFO:training_vae:Sample input:
+         COC1=CC(=CC(OC)=C1OC)C2C3C(COC3=O)C(OC(=O)CC4=CC=CC=C4)C5=CC=6OCOC=6C=C25, model reconstructed:
+         CCC=CC1=CN=CC(OC)=C1OCC=CCC2CCCC2=O
+INFO:training_vae:***TRAINING***         Epoch: 4, step 5200/5322.      Loss: 161.1545, time spent: 157.80823278427124
+INFO:training_vae:Sample input:
+         FC(F)(F)S(=O)(=O)NC(=O)C(CC1=CC=CC=C1)N2C(=S)NC(=CC3=CC=C(O3)C4=CC=C(Cl)C(Cl)=C4)C2=O, model reconstructed:
+         CC(F)(F)CCC=O
+INFO:training_vae:***TRAINING***         Epoch: 4, step 5300/5322.      Loss: 178.8440, time spent: 180.09175562858582
+INFO:training_vae:Sample input:
+         CNC1=NC(NC2=CC=C(C=C2OC)C(=O)N3CCOCC3)=NC=C1C(F)(F)F, model reconstructed:
+         CCCC1C2=C1CC(=O)C2(C)CCCCC=O
+INFO:training_vae:Epoch 4 finished,      Training Loss = 194.5652,Reconstruction = 194.1756, KL = 0.38964844
+INFO:training_vae:Epoch 4, took 12347.3.
+INFO:training_vae:Sample input:
+         OC(COC1=CC=CC=C1C(=O)CCC2=CC=CC3=CC=CC=C23)CN4CCN(CC4)C5=CC=C(F)C=C5, model reconstructed:
+         C1CC1CCC2=CC=CC=C2C=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 5, step 200/5322.       Loss: 177.5883, time spent: 175.27733445167542
+INFO:training_vae:Sample input:
+         NC(=O)CC1=CN(C2CC(O)C(CO)O2)C(=O)NC1=O, model reconstructed:
+         CC=NC=O
+INFO:training_vae:***TRAINING***         Epoch: 5, step 300/5322.       Loss: 183.3411, time spent: 177.0658688545227
+INFO:training_vae:Sample input:
+         CC(C)N1CCN(CC1)C(CNC(=O)CC2=CC(=CC(=C2)C(F)(F)F)C(F)(F)F)C3=CC=CC=4OCOC3=4, model reconstructed:
+         CCCCC1CCCCC1(C2)C2=O
+INFO:training_vae:***TRAINING***         Epoch: 5, step 400/5322.       Loss: 164.5639, time spent: 163.5214865207672
+INFO:training_vae:Sample input:
+         CC(C)N1CCC=2N=C(SC=2C1)C(=O)NC3=CC(=CC=C3CCC(=O)NC4=CC=C(Cl)C=N4)C(O)=O, model reconstructed:
+         CCCCCC1C(C)C2CCCC2C1C(=O)NC3=C4CC3=CC=C4C=CC=O
+INFO:training_vae:***TRAINING***         Epoch: 5, step 500/5322.       Loss: 167.2500, time spent: 158.5055923461914
+INFO:training_vae:Sample input:
+         O=C(OCCOC1=CC=CC=C1)C2=CC=CC(=O)N2, model reconstructed:
+         CCCC1CC2=CC=CC=C2C=CC=CC=C1C=C
+INFO:training_vae:
+Sample Generated Molecule:
+COC=CC(=CC(OC)=C1COC=2CCO)CN(CC3=CC=C(Br)C=C3)C1=2
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 5, test loss = 135.8479, reconstruction = 135.8475, KL = 0.0004.
+INFO:training_vae:Epoch 5. NEW best test loss = 135.8479        (Rec = 135.8475, KLD = 0.0004).
+INFO:training_vae:Epoch 5. NEW best reconstruction loss = 135.8475       (Loss = 135.8479, KLD = 0.0004)
+INFO:training_vae:Epoch 5. NEW best KLD = 0.0004         (loss = 135.8479, Reconstruction = 135.8475).
+INFO:training_vae:***TRAINING***         Epoch: 5, step 600/5322.       Loss: 157.0654, time spent: 506.8743224143982
+INFO:training_vae:Sample input:
+         FC1=CC=C(F)C(CNC2=NC=NC=3N(CC(Cl)C4=CC=C(Br)C=C4)N=CC2=3)=C1, model reconstructed:
+         C1C=CC=C1Cl
+INFO:training_vae:***TRAINING***         Epoch: 5, step 700/5322.       Loss: 155.5538, time spent: 154.3030300140381
+INFO:training_vae:Sample input:
+         CCN(CC)CCCNC1=CC=C(C=C1S(=O)(=O)NC2=CC=C3CCCCC3=C2C(O)=O)C(F)(F)F, model reconstructed:
+         CCC(CC)CC1CC2C(=C)C1CC2CCC=O
+INFO:training_vae:***TRAINING***         Epoch: 5, step 800/5322.       Loss: 166.5778, time spent: 168.99940705299377
+INFO:training_vae:Sample input:
+         COC1=CC(C=CC2=CC=C3C=CC=C(O)C3=N2)=CC(Br)=C1OC, model reconstructed:
+         C1CC=C2C=C2CCC(=C)C#C1
+INFO:training_vae:***TRAINING***         Epoch: 5, step 900/5322.       Loss: 163.8146, time spent: 164.36184120178223
+INFO:training_vae:Sample input:
+         CN1C=C(C2=NOC(=N2)C3CN4CCC3C4)C5=CC=CC=C15, model reconstructed:
+         C1CCC2C1C(C=N2)CCCCCC(=C)P=O
+/opt/conda/envs/openad-train/bin/python
+""
+INFO:training_vae:***TRAINING***         Epoch: 5, step 1000/5322.      Loss: 176.4287, time spent: 174.02442860603333
+INFO:training_vae:Sample input:
+         COC1=CC(=CC(OC)=C1OC)C2=CN=C3C(=NC=CN23)N4CCOCC4, model reconstructed:
+         CCC=CC1=CN=CC(OC2)=C1OCC2=CC
+INFO:training_vae:***SAVING***   Epoch 5, saved model.
+INFO:training_vae:
+Sample Generated Molecule:
+CC(C)(C1)C=CC=C(CNC(=O)CC2=CC=CC=C2)C=C1
+INFO:training_vae:**TESTING**    Processing batch 499/591
+INFO:training_vae:***TESTING***          Epoch 5, test loss = 133.0245, reconstruction = 133.0239, KL = 0.0006.
+INFO:training_vae:Epoch 5. NEW best test loss = 133.0245        (Rec = 133.0239, KLD = 0.0006).
+INFO:training_vae:Epoch 5. NEW best reconstruction loss = 133.0239       (Loss = 133.0245, KLD = 0.0006)

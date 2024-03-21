@@ -1,28 +1,24 @@
 #!/usr/bin/env python3
 """Train TeacherVAE molecule generator."""
 import argparse
-from collections import Counter
 import json
 import logging
 import os
 import sys
+from collections import Counter
 from time import time
-from types import SimpleNamespace
-from paccmann_chemistry.utils import (
-    collate_fn, get_device, disable_rdkit_logging
-)
-from paccmann_chemistry.models.vae import (
-    StackGRUDecoder, StackGRUEncoder, TeacherVAE
-)
-from paccmann_chemistry.models.training import train_vae
-from paccmann_chemistry.utils.hyperparams import SEARCH_FACTORY
-from pytoda.datasets import SMILESDataset
-from pytoda.datasets import SMILESTokenizerDataset
-from pytoda.smiles.smiles_language import SMILESLanguage
-from torch.utils.tensorboard.writer import SummaryWriter
-import torch
-from pytoda.smiles import transforms
 
+import torch
+from paccmann_chemistry.models.training import train_vae
+from paccmann_chemistry.models.vae import (StackGRUDecoder, StackGRUEncoder,
+                                           TeacherVAE)
+from paccmann_chemistry.utils import (collate_fn, disable_rdkit_logging,
+                                      get_device)
+from paccmann_chemistry.utils.hyperparams import SEARCH_FACTORY
+from pytoda.datasets import SMILESDataset, SMILESTokenizerDataset
+from pytoda.smiles import transforms
+from pytoda.smiles.smiles_language import SMILESLanguage, SMILESTokenizer
+from torch.utils.tensorboard.writer import SummaryWriter
 
 # setup logging
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
@@ -58,6 +54,9 @@ parser.add_argument(
 
 def update_smiles_language(smiles_language, params):
     """
+    Unnecessary. This was early attempt at updating legacy SMILESLanguage
+    instances.
+
     Adapts SMILESLanguage objects from earlier versions (0.0.1 or 0.1.1) of
     pytoda, typically loaded from pickle, to include attributes required by
     later version pytoda (1.1.3).
@@ -86,7 +85,7 @@ def update_smiles_language(smiles_language, params):
         all_hs_explicit=params.get('all_hs_explicit', False),
         remove_bonddir=params.get('remove_bonddir', False),
         remove_chirality=params.get('remove_chirality', False),
-        sanitize=params.get('sanitize', True),
+        sanitize=params.get('sanitize', False),  # was True, based on defaults
         randomize=params.get('randomize', False),
         padding_length=params.get('padding_length', None),
     )
@@ -110,52 +109,6 @@ def update_smiles_language(smiles_language, params):
     smiles_language.transform_smiles = transforms.Compose([])
     smiles_language.transform_encoding = transforms.Compose([])
     smiles_language.token_count = Counter()
-
-
-def _set_token_len_fn(self, add_start_and_stop):
-    """
-    Defines a Callable that given a sequence of naive tokens, i.e. before
-    applying the encoding transforms, computes the number of
-    implicit tokens after transforms (implicit because it's the
-    number of token indexes, not actual tokens).
-    """
-    if add_start_and_stop:
-        self._get_total_number_of_tokens_fn = (
-            SMILESLanguage.__get_total_number_of_tokens_with_start_stop_fn
-        )
-    else:
-        self._get_total_number_of_tokens_fn = len
-
-
-def reset_initial_transforms(self):
-    """
-    Originally: Reset smiles and token indexes transforms as on initialization.
-
-    This function, borrowed from a method in pytoda 1.1.3, seems to apply
-    only to instances of SMILESTokenizer class, not to regular SMILESLanguage
-    instances.
-    """
-    self.transform_smiles = transforms.compose_smiles_transforms(
-        self.canonical,
-        self.augment,
-        self.kekulize,
-        self.all_bonds_explicit,
-        self.all_hs_explicit,
-        self.remove_bonddir,
-        self.remove_chirality,
-        self.selfies,
-        self.sanitize,
-    )
-    self.transform_encoding = transforms.compose_encoding_transforms(
-        self.randomize,
-        self.add_start_and_stop,
-        self.start_index,
-        self.stop_index,
-        self.padding,
-        self.padding_length,
-        self.padding_index,
-    )
-    self._set_token_len_fn(self.add_start_and_stop)
 
 
 def main(parser_namespace):
@@ -192,17 +145,14 @@ def main(parser_namespace):
         os.makedirs(val_dir, exist_ok=True)
 
         # Load SMILES language
-        smiles_language = None
+        # smiles_language = None
+        smiles_language = SMILESTokenizer(selfies=True, sanitize=False, add_start_and_stop=True,)
         if smiles_language_filepath is not None:
-            smiles_language = SMILESLanguage.load(smiles_language_filepath)
-            update_smiles_language(smiles_language, params)
+            # smiles_language = SMILESLanguage.load(smiles_language_filepath)
+            smiles_language._from_legacy_pickled_language(smiles_language_filepath)
+            # update_smiles_language(smiles_language, params)
 
         logger.info('Smiles filepath: %s', train_smiles_filepath)
-        
-        # smiles_language.reset_initial_transforms = SMILESLanguage.reset_initial_transforms.__get__(smiles_language)
-        # smiles_language._set_token_len_fn = _set_token_len_fn.__get__(smiles_language)
-        # smiles_language.reset_initial_transforms = reset_initial_transforms.__get__(smiles_language)
-        # smiles_language.reset_initial_transforms()
 
         # create SMILES eager dataset
         smiles_train_data = SMILESTokenizerDataset(
@@ -210,6 +160,7 @@ def main(parser_namespace):
             smiles_language=smiles_language,
             padding=False,
             selfies=params.get('selfies', False),
+            sanitize=params.get('sanitize', False),
             add_start_and_stop=params.get('add_start_stop_token', True),
             augment=params.get('augment_smiles', False),
             canonical=params.get('canonical', False),
@@ -226,6 +177,7 @@ def main(parser_namespace):
             smiles_language=smiles_language,
             padding=False,
             selfies=params.get('selfies', False),
+            sanitize=params.get('sanitize', False),
             add_start_and_stop=params.get('add_start_stop_token', True),
             augment=params.get('augment_smiles', False),
             canonical=params.get('canonical', False),
